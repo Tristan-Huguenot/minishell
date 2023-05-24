@@ -1,20 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   error.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:42:31 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/25 00:44:34 by thugueno         ###   ########.fr       */
+/*   Created: 2023/05/24 22:40:58 by thugueno          #+#    #+#             */
+/*   Updated: 2023/05/24 22:42:46 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef ERROR_H
+# define ERROR_H
 
-int	main(int argc, char **argv, char **envp)
-{
-	if (argc != 1)
-		return(error_handler(E_ARGC, argv[0] + 2, argv[1]));
-	(void)envp;
-}
+# define E_ARGC 1000
+
+#endif

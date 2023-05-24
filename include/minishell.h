@@ -6,7 +6,7 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:46:39 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/24 17:21:16 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/24 23:13:04 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,16 @@
 # include "libft.h"
 # include "color.h"
 
-typedef struct s_token
+int	g_return = 0;
+
+typedef struct s_plot
 {
-	char *cmd;
-	char **cmd_arg;
-	int	 argc;
-	char **in;
-	char **out;
-	t_token *next;
-}; t_token;
+	char	*cmd;
+	char	**cmd_arg;
+	int		argc;
+	char	**in;
+	char	**out;
+	t_plot	*next;
+}	t_plot;
 
 #endif
