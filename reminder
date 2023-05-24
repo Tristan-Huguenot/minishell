@@ -1,0 +1,19 @@
+1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
+
+2 - séparer lorsqu'il y a un pipe == changer de structure
+    si erreur de pipe c'est prio 0
+    si non erreur 2a
+2a -  création de structure
+
+3 - interpréter les variables $ sauf si 'single quote'
+
+4 - parser en suprimant les quotes les redirection et séparer ces dernières en évitant les chevrons entre quote
+
+5 - suprimer les quotes en séparant les arguments
+
+
+
+squote_concat.c
+dquote_concat.c
+squote_str.c
+dquote_str.c
