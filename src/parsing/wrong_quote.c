@@ -6,13 +6,10 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:29:06 by nminotte          #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2023/05/24 23:10:17 by thugueno         ###   ########.fr       */
-=======
-/*   Updated: 2023/05/24 23:57:17 by nminotte         ###   ########.fr       */
->>>>>>> 3edd5419a986307e2d8011e41e1bcf659b79c709
+/*   Updated: 2023/05/25 00:49:36 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 #include "minishell.h"
 
 int	first_quote(char *input, int i, char q)
