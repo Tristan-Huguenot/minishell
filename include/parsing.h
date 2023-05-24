@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   parsing.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 10:42:31 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/24 14:35:44 by thugueno         ###   ########.fr       */
+/*   Created: 2023/04/26 17:48:55 by nminotte          #+#    #+#             */
+/*   Updated: 2023/05/24 14:42:01 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#ifndef PARSING_H
+# define PARSING_H
 
-int	main(void)
-{
-	while (1)
-		prompt_in();
-	return (0);
-}
+void	parsing_prompt(char *input);
+void	parsing_redirection(char **input, int st);
+
+#endif

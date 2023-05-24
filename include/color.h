@@ -1,20 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   color.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 17:48:55 by nminotte          #+#    #+#             */
-/*   Updated: 2023/04/26 18:09:20 by nminotte         ###   ########.fr       */
+/*   Created: 2023/05/24 14:47:02 by thugueno          #+#    #+#             */
+/*   Updated: 2023/05/24 14:52:09 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#ifndef COLOR_H
+# define COLOR_H
 
-# include "../include/minishell.h"
-
-void	parsing_prompt(char *input);
+# define NOC "\033[0m"
+# define PROMPTC "\033[0;196m"
 
 #endif

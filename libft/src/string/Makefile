@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/03/10 19:54:45 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/24 14:32:01 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ SRCS		:=	ft_split.c	\
 				ft_strdup.c			\
 				ft_striteri.c		\
 				ft_strjoin.c		\
+				ft_strjoin_free.c	\
 				ft_strlcat.c		\
 				ft_strlcpy.c		\
 				ft_strlen.c			\

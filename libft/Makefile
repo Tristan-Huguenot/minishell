@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/03/10 21:58:57 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/24 14:32:21 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,6 +111,7 @@ STRING		:= 	src/string/ft_strlen.c			\
 				src/string/ft_strdup.c			\
 				src/string/ft_substr.c			\
 				src/string/ft_strjoin.c			\
+				src/string/ft_strjoin_free.c	\
 				src/string/ft_strtrim.c			\
 				src/string/ft_split.c			\
 				src/string/ft_strmapi.c			\

@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 21:01:03 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/24 14:07:36 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/24 14:46:54 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -32,14 +32,16 @@ BUILD	:=	.build/
 
 SRC		:=	src/
 
-SRC0	:=	parsing/
-			builtin/
-			prompt/
-			pipe/
+SRC0	:=	parsing/	\
+			builtin/	\
+			prompt/		\
+			pipe/		\
 
 #PREREQUISITES
 
 SRCS	:=	src/main.c	\
+			src/parsing/parsing_prompt.c	\
+			src/prompt/prompt.c				\
 
 #TARGETS
 
@@ -62,7 +64,7 @@ endif
 
 CPPFLAGS	:= -MP -MMD -I${INCLUDE} -I${dir ${LIBFT}}include/
 
-LDFLAGS		:=	-L${dir ${LIBFT}} -l:${notdir ${LIBFT}}
+LDFLAGS		:=	-L${dir ${LIBFT}} -l:${notdir ${LIBFT}} -lreadline
 
 ##########################################
 ####	DECORATION						##

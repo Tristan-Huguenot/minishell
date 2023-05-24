@@ -6,14 +6,11 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 16:07:05 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/02 14:52:28 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/05/24 14:42:30 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include "parsing.h"
+#include "minishell.h"
 
 int	parse_redirection_in(char *input)
 {
@@ -79,6 +76,7 @@ int	parse_redirection_in(char *input)
 			i++;
 		}
 	}*/
+	(void)rtrn;
 	return (0);
 }
 
@@ -194,10 +192,4 @@ void	parsing_redirection(char **input, int st)
 		}
 		j++;
 	}
-}
-
-int	main(int argc, char **argv)
-{
-	parsing_redirection(argv, 0);
-	return (0);
 }
