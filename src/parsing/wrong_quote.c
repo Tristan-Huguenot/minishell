@@ -6,16 +6,10 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:29:06 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/24 20:56:46 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/05/24 23:57:17 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 #include "minishell.h"
-
-void	quote_need_end(char *str)
-{
-	printf("%s", str);
-	exit(0);
-}
 
 int	first_quote(char *input, int i, char q)
 {
@@ -29,9 +23,9 @@ int	first_quote(char *input, int i, char q)
 	{
 		if (input[i] == '\0')
 		{
-			size = ft_strlen(input) - tmp;
-			str = ft_substr(input, tmp, size);
-			quote_need_end(str);
+			ft_putendl_fd("your quote is note close", 2);
+			g_return = EPERM;
+			return (-1);
 		}
 		i++;
 	}
@@ -47,8 +41,10 @@ int	wrong_quote(char *input)
 	{
 		if (input[i] == '\'')
 			i = first_quote(input, i, '\'');
-		if (input[i] == '"')
+		if (input[i] == '\"')
 			i = first_quote(input, i, '\"');
+		if (i == -1)
+			return (1);
 		i++;
 	}
 	return (0);
