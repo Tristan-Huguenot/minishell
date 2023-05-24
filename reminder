@@ -1,5 +1,7 @@
 1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
 
+1a- vérifier si les quotes sont toutes fermés
+
 2 - séparer lorsqu'il y a un pipe == changer de structure
     si erreur de pipe c'est prio 0
     si non erreur 2a
