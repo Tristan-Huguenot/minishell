@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 19:54:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/02/04 19:02:53 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:56:51 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,8 @@ char	*get_next_line(int fd)
 	char		*li;
 	int			ret;
 
+	if (fd == -42)
+		gnl_free_buff(&buff);
 	if (fd < 0 || BUFFER_SIZE < 1)
 		return (NULL);
 	if (!buff)

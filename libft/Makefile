@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/24 14:32:21 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/09 21:54:23 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -111,12 +111,13 @@ STRING		:= 	src/string/ft_strlen.c			\
 				src/string/ft_strdup.c			\
 				src/string/ft_substr.c			\
 				src/string/ft_strjoin.c			\
-				src/string/ft_strjoin_free.c	\
+				src/string/ft_strjoin.c			\
 				src/string/ft_strtrim.c			\
 				src/string/ft_split.c			\
 				src/string/ft_strmapi.c			\
 				src/string/ft_striteri.c		\
 				src/string/ft_strchr_charset.c	\
+				src/string/ft_free_strs.c		\
 
 NUM_STRING	:=	src/num_string/ft_atoi.c		\
 				src/num_string/ft_itoa.c		\
@@ -125,6 +126,7 @@ NUM_STRING	:=	src/num_string/ft_atoi.c		\
 MATH		:=	src/math/ft_power.c	\
 
 FILE		:=	src/file/get_next_line.c	\
+				src/file/gnl_utils.c		\
 				src/file/get_all_line.c		\
 
 FT_LST		:=	src/ft_lst/ft_lstnew.c		\
@@ -244,7 +246,7 @@ clean:
 fclean:		clean
 			@${RM} ${NAME}
 			@${RM} src/*/*.a
-			@echo "${CFCLEAN} ${INDENT} Removing ${NAME}${NOCOLOR}"
+			@echo "${CFCLEAN}${INDENT} Removing ${NAME}${NOCOLOR}"
 
 re:			fclean all
 

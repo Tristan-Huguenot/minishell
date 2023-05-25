@@ -1,42 +1,51 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_printf.c                                        :+:      :+:    :+:   */
+/*   pf_utils.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thugueno <thugueno@student.42angoulem      + +  +:+       + +        */
 /*                                                + + + + + +   + +           */
-/*   Created: 2022/10/18 15:57:44 by thugueno           +      +              */
-/*   Updated: 2023/01/12 23:09:00 by thugueno         ###   ########.fr       */
+/*   Created: 2023/03/23 00:12:00 by thugueno           +      +              */
+/*   Updated: 2023/03/23 00:12:00 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_ft_printf.h"
 
-int	ft_printf(const char *s, ...)
+int	print_to_next_arg(char **s, int fd)
 {
-	va_list	ap;
-	int		printed;
-	t_str	*tmp;
+	int	printed;
 
-	if (!s)
-		return (-1);
-	va_start(ap, s);
 	printed = 0;
-	while (*s)
+	while (**s && **s != '%')
 	{
-		printed += print_to_next_arg((char **)&s, 1);
-		if (*s == '%')
-		{
-			tmp = pf_create_str((char *)s, ap);
-			if (!tmp)
-				return (-1);
-			printed += tmp->len;
-			ft_put_str(tmp, 1);
-			pass_arg((char **)&s);
-			free(tmp->s);
-			free(tmp);
-		}
+		ft_putchar_fd(**s, fd);
+		*s += 1;
+		printed++;
 	}
-	va_end(ap);
 	return (printed);
+}
+
+void	pass_arg(char **sptr)
+{
+	*sptr += 1;
+	if (pf_parsing_arg(*sptr))
+	{
+		while (!ft_char_in_set(**sptr, "cspdiuxX%") && **sptr)
+			*sptr += 1;
+		if (**sptr)
+			*sptr += 1;
+	}
+}
+
+void	ft_put_str(t_str *str, int fd)
+{
+	size_t	i;
+
+	i = 0;
+	while (i < str->len)
+	{
+		ft_putchar_fd(str->s[i], fd);
+		i++;
+	}
 }

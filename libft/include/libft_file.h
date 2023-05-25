@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 19:48:37 by thugueno          #+#    #+#             */
-/*   Updated: 2023/02/09 17:21:11 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/09 21:53:52 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@
 # define GNL_NNL 2
 
 char	*get_next_line(int fd);
+void	gnl_free_buff(char **buff);
 char	**get_all_line(int fd);
 
 #endif

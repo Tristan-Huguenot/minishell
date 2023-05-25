@@ -37,6 +37,8 @@ MODULE		:=	ft_printf/
 #PREREQUISITES
 
 SRCS		:=	ft_printf.c			\
+				ft_fprintf.c		\
+				pf_utils.c			\
 				pf_add_functions.c	\
 				pf_get_number.c		\
 				pf_get_xupperx.c	\

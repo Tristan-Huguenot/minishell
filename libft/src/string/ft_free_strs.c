@@ -1,29 +1,29 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_strncmp.c                                       :+:      :+:    :+:   */
+/*   ft_free_strs.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: thugueno <huguenot.tristan@gmail.com>      +#+  +:+       +#+        */
+/*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/08/10 23:20:13 by thugueno          #+#    #+#             */
-/*   Updated: 2023/04/02 19:01:35 by thugueno         ###   ########.fr       */
+/*   Created: 2023/03/19 17:01:30 by thugueno          #+#    #+#             */
+/*   Updated: 2023/05/08 14:26:28 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft_string.h"
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
+int	ft_free_strs(char **strs)
 {
-	size_t	i;
+	int	i;
 
-	if (!s1 || !s2)
-		return (-1);
-	if (n == 0)
-		return (0);
+	if (!strs)
+		return (1);
 	i = 0;
-	while (s1[i] == s2[i] && (s1[i] && s2[i]) && i < n)
+	while (strs[i])
+	{
+		free(strs[i]);
 		i++;
-	if (i == n)
-		return (0);
-	return ((unsigned char)s1[i] - (unsigned char)s2[i]);
+	}
+	free(strs);
+	return (0);
 }

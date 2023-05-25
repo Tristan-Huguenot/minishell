@@ -30,6 +30,10 @@ typedef struct s_flag
 }	t_flag;
 
 int		ft_printf(const char *s, ...);
+int		ft_fprintf(int fd, const char *s, ...);
+int		print_to_next_arg(char **s, int fd);
+void	pass_arg(char **sptr);
+void	ft_put_str(t_str *str, int fd);
 int		pf_parsing_arg(char *s);
 int		pf_get_dot(char *arg);
 int		pf_get_padding(char *arg);
