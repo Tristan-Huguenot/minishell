@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error.h                                            :+:      :+:    :+:   */
+/*   define_error.h                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 22:40:58 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/24 22:42:46 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/25 10:07:40 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ERROR_H
-# define ERROR_H
+#ifndef DEFINE_ERROR_H
+# define DEFINE_ERROR_H
 
 # define E_ARGC 1000
 
