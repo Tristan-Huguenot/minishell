@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 21:01:03 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/30 12:24:19 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/30 13:21:17 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,8 @@ SRCS	:=	src/main.c						\
 			src/files/files_compute.c		\
 			src/error/error_handler.c		\
 			src/parsing/parsing_prompt.c	\
+			src/parsing/parsing.c			\
+			src/parsing/wrong_quote.c		\
 			src/prompt/prompt.c				\
 
 #TARGETS
