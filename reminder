@@ -1,4 +1,4 @@
-1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
+DONE 1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
 
 1a- vérifier si les quotes sont toutes fermés
 
@@ -7,11 +7,13 @@
     si non erreur 2a
 2a -  création de structure
 
+3a - Recuperer in files et out files
+
 3 - interpréter les variables $ sauf si 'single quote'
 
-4 - parser en suprimant les quotes les redirection et séparer ces dernières en évitant les chevrons entre quote
+4 - parser en suprimant les quotes les redirection et separer arguments
 
-5 - suprimer les quotes en séparant les arguments
+//5 - suprimer les quotes en séparant les arguments
 
 
 
