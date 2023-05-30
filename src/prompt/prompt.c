@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 14:36:04 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 12:43:02 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:13:47 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	prompt_in(t_param *param)
 {
 	char	*input;
 
-	input = readline(param->prompt); // on rajoutera le chemin?
+	input = readline(param->prompt);
 	if (ft_strlen(input) != 0)
 	{
 		add_history(input);
@@ -27,7 +27,7 @@ void	prompt_in(t_param *param)
 			g_return = 0;
 			exit_program(param);
 		}
-		if (!parsing(&input))
+		if (!parsing(param, input))
 		{		
 			//execut();
 			//free_chained_link();
