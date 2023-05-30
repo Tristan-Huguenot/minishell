@@ -1,20 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   parsing.h                                          :+:      :+:    :+:   */
+/*   exit_program.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/04/26 17:48:55 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/24 20:07:25 by nminotte         ###   ########.fr       */
+/*   Created: 2023/05/30 12:12:27 by thugueno          #+#    #+#             */
+/*   Updated: 2023/05/30 12:26:55 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PARSING_H
-# define PARSING_H
+#include "minishell.h"
 
-void	parsing_prompt(char *input);
-void	parsing_redirection(char **input, int st);
-int		wrong_quote(char *input);
+void	free_param(t_param *param)
+{
+	if (param && param->paths)
+		ft_free_strs(param->paths);
+	free(param);
+}
 
-#endif
+void	exit_program(t_param *param)
+{
+	free_param(param);
+	exit(g_return);
+}

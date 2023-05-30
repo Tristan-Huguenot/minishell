@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/03/19 17:04:38 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/30 11:37:48 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,13 +36,13 @@ MODULE		:=	string/
 
 #PREREQUISITES
 
-SRCS		:=	ft_split.c	\
-				ft_strchr.c	\
+SRCS		:=	ft_split.c			\
+				ft_strchr.c			\
 				ft_strchr_charset.c	\
 				ft_strdup.c			\
 				ft_striteri.c		\
 				ft_strjoin.c		\
-				ft_strjoin_free.c		\
+				ft_strjoin_free.c	\
 				ft_strlcat.c		\
 				ft_strlcpy.c		\
 				ft_strlen.c			\

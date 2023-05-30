@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 21:01:03 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/25 09:46:13 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/30 12:24:19 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,16 +36,20 @@ SRC0	:=	parsing/	\
 			builtin/	\
 			prompt/		\
 			pipe/		\
+			init/		\
 			error/		\
+			exit/		\
 			files/		\
 
 #PREREQUISITES
 
-SRCS	:=	src/main.c					\
-			src/files/files_compute.c	\
-			src/error/error_handler.c	\
-			#src/parsing/parsing_prompt.c	\#
-			#src/prompt/prompt.c				\#
+SRCS	:=	src/main.c						\
+			src/init/init_param.c			\
+			src/exit/exit_program.c			\
+			src/files/files_compute.c		\
+			src/error/error_handler.c		\
+			src/parsing/parsing_prompt.c	\
+			src/prompt/prompt.c				\
 
 #TARGETS
 
