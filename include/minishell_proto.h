@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 13:18:19 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:29:34 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,15 @@ char	*file_is_exe(char *file, char **paths);
 /*	ERROR	*/
 
 void	error_handler(int err, t_param *param, char *name);
+
+/*	LST		*/
+
+t_env	*envlink_getvar(t_env *head, char *var);
+t_env	*envlink_last(t_env *head);
+t_env	*envlink_new(char *var, char *content);
+void	envlink_delvar(t_env *head, char *var);
+void	envlink_clear(t_env **head);
+void	envlink_addback(t_env **lst, t_env *new);
 
 /*	PARSING	*/
 

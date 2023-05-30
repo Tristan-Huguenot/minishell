@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:18:36 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 13:37:25 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 17:52:57 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,25 +28,38 @@ static void	add_last_slash(char **paths)
 	return ;
 }
 
-static void	init_paths(t_param *param, char **envp)
+static void	init_paths(t_param *param)
 {
-	char	*tmp;
+	t_env	*path;
 	int		i;
 
 	i = 0;
-	while (envp && envp[i] && ft_strncmp("PATH=", envp[i], 5))
-		i++;
-	if (!envp || !envp[i])
+	path = envlink_getvar(param->env, "PATH");
+	if (!path)
 		param->paths = NULL;
 	else
 	{
-		param->paths = ft_split(envp[i], ':');
+		param->paths = ft_split(path->content, ':');
 		if (!param->paths)
 			return ;
-		tmp = ft_strdup(param->paths[0] + 5);
-		free(param->paths[0]);
-		param->paths[0] = tmp;
 		add_last_slash(param->paths);
+	}
+}
+
+static void	init_env(t_param *param, char **envp)
+{
+	int	i;
+	int y;
+
+	i = 0;
+	while (envp[i])
+	{
+		y = 0;
+		while (envp[i][y] != '=')
+			y++;
+		envlink_addback(&param->env, envlink_new(ft_substr(envp[i], 0, y), \
+		ft_strdup(envp[i] + y + 1)));
+		i++;
 	}
 }
 
@@ -72,6 +85,7 @@ t_param	*init_param(char *name, char **envp)
 		return (param);
 	param->progname = name;
 	param->prompt = init_prompt(name);
-	init_paths(param, envp);
+	init_env(param, envp);
+	init_paths(param);
 	return (param);
 }

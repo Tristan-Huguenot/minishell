@@ -1,15 +1,3 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/03/10 21:01:03 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/30 17:46:01 by nminotte         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
-
 ##########################################
 ####	MAKE CONF						##
 
@@ -32,19 +20,22 @@ BUILD	:=	.build/
 
 SRC		:=	src/
 
-SRC0	:=	parsing/	\
-			builtin/	\
-			prompt/		\
-			pipe/		\
-			init/		\
-			error/		\
-			exit/		\
-			files/		\
+SRC0	:=	parsing/		\
+			linked_list/	\
+			builtin/		\
+			prompt/			\
+			pipe/			\
+			init/			\
+			error/			\
+			exit/			\
+			files/			\
 
 #PREREQUISITES
 
 SRCS	:=	src/main.c						\
 			src/init/init_param.c			\
+			src/linked_list/list_env.c		\
+			src/linked_list/list_utils.c	\
 			src/exit/exit_program.c			\
 			src/files/files_compute.c		\
 			src/error/error_handler.c		\
