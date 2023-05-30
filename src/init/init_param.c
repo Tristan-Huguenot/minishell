@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 12:18:36 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 17:52:57 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/31 00:51:38 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,7 @@ static void	add_last_slash(char **paths)
 static void	init_paths(t_param *param)
 {
 	t_env	*path;
-	int		i;
 
-	i = 0;
 	path = envlink_getvar(param->env, "PATH");
 	if (!path)
 		param->paths = NULL;
