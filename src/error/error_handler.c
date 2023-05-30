@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   error_handler.c                                    :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/24 15:25:25 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 11:22:58 by thugueno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #include "minishell.h"
 
 static void	print_argc_error(char *first, char *second, char *last, int err)
