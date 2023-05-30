@@ -6,7 +6,7 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/24 19:29:06 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/30 12:06:55 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 13:22:57 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 int	first_quote(char *input, int i, char q)
 {
-	char	*str;
-
 	if (!input)
 		return (-1);
 	i++;
