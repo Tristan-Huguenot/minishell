@@ -30,7 +30,7 @@ int	wrong_quote(char *input)
 		if (i == -1)
 		{
 			ft_putendl_fd("your quote is note close", 2);
-			g_return = EPERM;
+			g_return = EINVAL;
 			return (1);
 		}
 		i++;
