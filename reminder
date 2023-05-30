@@ -1,6 +1,7 @@
 DONE 1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
 
-1a- vérifier si les quotes sont toutes fermés
+1a- vérifier si les quotes sont toutes fermés !!!!!!!!!!!!!!!!!!!!!!!! faut renomer la func first_quote pour etre plus general d ailleurs on peut
+surement utiliser ft_strchr a la place
 
 2 - séparer lorsqu'il y a un pipe == changer de structure
     si erreur de pipe c'est prio 0
