@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 12:27:35 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 12:43:27 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@ void	error_handler(int err, t_param *param, char *name);
 
 /*	PARSING	*/
 
+int		
 int		wrong_quote(char *input);
 void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
