@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/09 21:54:23 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/30 11:35:45 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -140,6 +140,8 @@ FT_LST		:=	src/ft_lst/ft_lstnew.c		\
 				src/ft_lst/ft_lstmap.c		\
 
 FT_PRINTF	:=	src/ft_printf/ft_printf.c			\
+				src/ft_printf/ft_fprintf.c			\
+				src/ft_printf/pf_utils.c			\
 				src/ft_printf/pf_create_str.c		\
 				src/ft_printf/pf_get_percentsc.c	\
 				src/ft_printf/pf_parsing_arg.c		\
