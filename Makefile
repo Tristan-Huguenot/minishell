@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/03/10 21:01:03 by thugueno          #+#    #+#              #
-#    Updated: 2023/05/30 13:37:39 by thugueno         ###   ########.fr        #
+#    Updated: 2023/05/30 17:46:01 by nminotte         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,7 @@ SRCS	:=	src/main.c						\
 			src/parsing/parsing.c			\
 			src/parsing/wrong_quote.c		\
 			src/prompt/prompt.c				\
+			src/parsing/parsing_variable.c	\
 
 #TARGETS
 

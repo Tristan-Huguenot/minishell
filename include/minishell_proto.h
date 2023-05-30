@@ -31,8 +31,10 @@ void	error_handler(int err, t_param *param, char *name);
 
 int		parsing(t_param *param, char *input);
 int		wrong_quote(char *input);
+int		first_qote(char *input, int t, char q);
 void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
+void	parsing_variable(char *str, t_env *env);
 
 /*	PROMPT	*/
 

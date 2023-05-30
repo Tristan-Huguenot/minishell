@@ -25,6 +25,8 @@ int	main(int argc, char **argv, char **envp)
 		free_param(param);
 		exit(g_return);
 	}
-	free_param(param);
-	return (0);
+	while (1)
+		prompt_in(param);
+	g_return = 0;
+	exit_program(param);
 }
