@@ -6,7 +6,7 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 10:42:31 by nminotte          #+#    #+#             */
-/*   Updated: 2023/05/30 12:21:05 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/30 18:06:29 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,7 @@ int	main(int argc, char **argv, char **envp)
 	if (argc != 1)
 	{
 		error_handler(E_ARGC, param, argv[1]);
-		free_param(param);
-		exit(g_return);
+		exit_program(param);
 	}
 	while (1)
 		prompt_in(param);
