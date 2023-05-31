@@ -180,4 +180,5 @@ void	parsing_redirection(char **input, int st)
 		}
 		j++;
 	}
+	(void)vreturn;
 }

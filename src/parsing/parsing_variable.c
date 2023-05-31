@@ -16,9 +16,9 @@ int	remove_dol(char *str, int i)
 
 int	interpretation_var(char *str, int i)
 {
-	int	tmp;
+	//int	tmp;
 
-	tmp = i;
+//	tmp = i;
 	i++;
 	while (str[i] && str[i] != ' ' && str[i] == '	')
 	{
@@ -48,8 +48,9 @@ int	interpretation_var_q(char *str, int i)
 void	parsing_variable(char *str, t_env *env)
 {
 	int	i;
-	int	tmp;
+	//int	tmp;
 
+	(void)env;
 	i = 0;
 	while (str[i])
 	{
@@ -57,12 +58,12 @@ void	parsing_variable(char *str, t_env *env)
 			i = first_quote(str, i, '\'');
 		if (str[i] == '\"')
 		{
-			tmp = i;
+			//tmp = i;
 			i = interpretation_var_q(str, i);
 		}
 		if (str[i] == '$')
 		{
-			tmp = i;
+			//tmp = i;
 			if (str[i + 1] && ((str[i + 1] == '\'') || (str[i + 1] == '\"')))
 				remove_dol(str, i);
 			else if (str[i + 1] && ((str[i + 1] != ' ') || (str[i + 1] != '	')))
