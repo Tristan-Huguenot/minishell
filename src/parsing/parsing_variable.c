@@ -1,17 +1,25 @@
 #include "minishell.h"
 
-int	remove_dol(char *str, int i)
+char	*remove_dol(char *str, int i)
 {
 	char	*str2;
 	int		size;
 
+	printf("bon\n");
 	str2 = ft_strdup(str);
 	str = ft_substr(str, 0, i);
+	printf("str : %s\n", str);
+
 	size = ft_strlen(str2) - i;
-	str2 = ft_substr(str, i, size);
+	printf("str2 : %s\n", str2);
+
+	str2 = ft_substr(str2, i + 1, size);
+	printf("str2 : %s\n", str2);
+
 	str = ft_strjoin_free(str, str2);
 	free(str2);
-	return (i);
+	printf("str : %s\n", str);
+	return (str);
 }
 
 int	interpretation_var(char *str, int i)
@@ -48,6 +56,7 @@ int	interpretation_var_q(char *str, int i)
 void	parsing_variable(char *str, t_env *env)
 {
 	int	i;
+	// char *tmp;
 	//int	tmp;
 
 	(void)env;
@@ -65,10 +74,11 @@ void	parsing_variable(char *str, t_env *env)
 		{
 			//tmp = i;
 			if (str[i + 1] && ((str[i + 1] == '\'') || (str[i + 1] == '\"')))
-				remove_dol(str, i);
-			else if (str[i + 1] && ((str[i + 1] != ' ') || (str[i + 1] != '	')))
-				i = interpretation_var(str, i);
+				str = remove_dol(str, i);
+		//	else if (str[i + 1] && ((str[i + 1] != ' ') || (str[i + 1] != '	')))
+		//i = interpretation_var(str, i);
 		}
 		i++;
 	}
+	printf("----%s-----\n", str);
 }

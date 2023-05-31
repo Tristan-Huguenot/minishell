@@ -1,13 +1,14 @@
 #include "minishell.h"
 
-int	parsing_plot(t_param *param)
+int	parsing_plot(t_param *param, char *input)
 {
 	t_plot	*tmp;
 
 	tmp = param->plots;
+	parsing_variable(input, param->env);
 	while (tmp)
 	{
-		parsing_variable(tmp->cmd, param->env);
+		// parsing_variable(tmp->cmd, param->env);
 		// if (parsing_redir(tmp, param))
 			// return (1);
 		// parsing_token(tmp);
@@ -18,11 +19,14 @@ int	parsing_plot(t_param *param)
 
 int	parsing(t_param *param, char *input)
 {
-	// int ret;
+	char	quote;
 
-	if ((wrong_quote(input)) != 0)
-		return (1);
+	quote = wrong_quote(input);
+	if (quote)
+		error_handler(E_WQUOTE, param, &quote);
+	else
+		ft_printf("%s\n", input);// int ret;
 	// init_plots(param, input);
-	parsing_plot(param);
+	parsing_plot(param, input);
 	return (0);
 }
