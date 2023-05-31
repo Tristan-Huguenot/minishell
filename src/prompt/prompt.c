@@ -15,7 +15,7 @@ void	exit_tmp(t_param *param, char **input_ptr)
 void	prompt_in(t_param *param)
 {
 	char	*input;
-	char	quote;
+	// char	quote;
 
 	input = readline(param->prompt);
 	if (ft_strlen(input) != 0)
@@ -23,11 +23,7 @@ void	prompt_in(t_param *param)
 		add_history(input);
 		if (ft_strncmp(input, "exit", 5) == 0)
 			exit_tmp(param, &input);
-		quote = wrong_quote(input);
-		if (quote)
-			error_handler(E_WQUOTE, param, &quote);
-		else
-			ft_printf("%s\n", input);
+		parsing(param, input);
 		/*if (!parsing(param, input))
 		{		
 			execut();
