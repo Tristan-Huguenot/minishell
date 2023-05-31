@@ -55,7 +55,7 @@ static char	*init_prompt(char *name)
 	char	*prompt;
 
 	prompt = ft_strjoin(PROMPTC, name);
-	tmp = ft_strjoin(prompt, " $> ");
+	tmp = ft_strjoin(prompt, " $>");
 	free(prompt);
 	prompt = ft_strjoin(tmp, NOC);
 	free(tmp);
