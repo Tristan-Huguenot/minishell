@@ -38,4 +38,6 @@ void	error_handler(int err, t_param *param, char *name)
 {
 	if (err == E_ARGC)
 		return (error_argc(param, name));
+	if (err == E_WQUOTE)
+		ft_fprintf(2, "%s: %c : Quote not closed\n", param->progname, *name);
 }
