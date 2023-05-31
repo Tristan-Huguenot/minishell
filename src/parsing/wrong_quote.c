@@ -14,26 +14,31 @@ int	first_quote(char *input, int i, char q)
 	return (i);
 }
 
-int	wrong_quote(char *input)
+char	wrong_quote(char *input)
 {
-	int	i;
+	char	c;
 
 	if (!input)
 		return (-1);
-	i = 0;
-	while (input[i])
+	while (*input)
 	{
-		if (input[i] == '\'')
-			i = first_quote(input, i, '\'');
-		if (input[i] == '\"')
-			i = first_quote(input, i, '\"');
-		if (i == -1)
+		if (*input == '\'')
 		{
-			ft_putendl_fd("your quote is note close", 2);
-			g_return = EINVAL;
-			return (1);
+			input = ft_strchr(input + 1, '\'');
+			c = '\'';
 		}
-		i++;
+		else if (*input == '\"')
+		{
+			input = ft_strchr(input + 1, '\"');
+			c = '\"';
+		}
+		if (!input)
+		{
+			g_return = EINVAL;
+			return (c);
+		}
+		c = 0;
+		input++;
 	}
-	return (0);
+	return (c);
 }
