@@ -43,7 +43,7 @@ int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
 void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
-void	parsing_variable(char *str, t_env *env);
+void	parsing_variable(t_plot *plot, t_env *env);
 
 /*	PROMPT	*/
 
