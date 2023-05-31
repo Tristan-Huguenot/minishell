@@ -28,7 +28,7 @@ int	parsing(t_param *param, char *input)
 	{
 		ft_printf("%s\n", input);// int ret;
 		param->plots = ft_calloc(1, sizeof(*param->plots));
-		param->plots->cmd = input;
+		param->plots->cmd = ft_strdup(input);
 		// init_plots(param, input);
 		parsing_plot(param);
 		free(param->plots->cmd);
