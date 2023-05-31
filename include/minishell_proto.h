@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/31 18:50:44 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/31 21:38:41 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	error_handler(int err, t_param *param, char *name);
 
 /*	LST		*/
 
-void	*link_last(void *head);
+t_env	*link_last(t_env *head);
 t_env	*envlink_getvar(t_env *head, char *var);
 t_env	*envlink_new(char *var, char *content);
 void	envlink_delvar(t_env *head, char *var);
