@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 17:29:34 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/05/31 02:10:34 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,8 @@ void	envlink_addback(t_env **lst, t_env *new);
 /*	PARSING	*/
 
 int		parsing(t_param *param, char *input);
-int		wrong_quote(char *input);
-int		first_qote(char *input, int t, char q);
+int		first_quote(char *input, int t, char q);
+char	wrong_quote(char *input);
 void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
 void	parsing_variable(char *str, t_env *env);
