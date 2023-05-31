@@ -62,7 +62,7 @@ void	envlink_addback(t_env **lst, t_env *new)
 {
 	t_env	*last;
 
-	if (!new)
+	if (!new || !lst)
 		return ;
 	if (!*lst)
 	{
