@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/31 22:04:48 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/01 01:38:06 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ extern int	g_return;
 /*	INIT	*/
 
 t_param	*init_param(char *name, char **envp);
+void	init_plots(t_param *param, char *input);
 
 /*	FILE	*/
 
@@ -36,10 +37,10 @@ void	envlink_delvar(t_env *head, char *var);
 void	envlink_clear(t_env **head);
 void	envlink_addback(t_env **lst, t_env *new);
 t_plot	*plotlink_last(t_plot *plots);
-t_plot	*plotnew_last(char *cmd);
+t_plot	*plotlink_new(char *cmd);
 void	plotlink_addback(t_plot **plots, t_plot *new);
 void	delete_plot(t_plot *plot);
-void	potlink_clear(t_plot **plots);
+void	plotlink_clear(t_plot **plots);
 
 /*	PARSING	*/
 
