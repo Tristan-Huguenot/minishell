@@ -18,7 +18,7 @@ static char	*jump_next_pipe(char *input)
 		if (*input && *input != '|')
 			input++;
 	}
-	return (input);	
+	return (input);
 }
 
 static void	init_plot(t_param *param, char *input)
