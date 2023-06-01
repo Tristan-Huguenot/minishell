@@ -1,24 +1,62 @@
 DONE 1 - gérer le nombre d'argument de ./minishell avec les erreurs -->  Tristan
 
-1a- vérifier si les quotes sont toutes fermés !!!!!!!!!!!!!!!!!!!!!!!! faut renomer la func first_quote pour etre plus general d ailleurs on peut
-surement utiliser ft_strchr a la place
+DONE 1a- vérifier si les quotes sont toutes fermés !!!!!!!!!!!!!!!!!!!!!!!! faut renomer la func first_quote pour etre plus general d ailleurs on peut
+surement utiliser ft_strchr a la place  ---- 
 
-2 - séparer lorsqu'il y a un pipe == changer de structure
+DONE 2 - séparer lorsqu'il y a un pipe == changer de structure
     si erreur de pipe c'est prio 0
     si non erreur 2a
-2a -  création de structure
+DONE 2a -  création de structure
 
-3a - Recuperer in files et out files
+DONE 3 - interpréter les variables $ sauf si 'single quote'
 
-3 - interpréter les variables $ sauf si 'single quote'
+3a - Recuperer in files et out files en laissant quote + remove des redir dans le cmd --> TRISTAN
 
-4 - parser en suprimant les quotes les redirection et separer arguments
+3b - separer args en laissant quotes  --> a voir
 
-//5 - suprimer les quotes en séparant les arguments
+3 c -suprimer les quotes  --> NIL
 
+4 - HEREDOC
 
+5 - PIPEX
 
-squote_concat.c
-dquote_concat.c
-squote_str.c
-dquote_str.c
+5 - REDIRECTION parsing à l'ouverture
+
+6 - BUILTNGS
+
+/*
+
+< sidfhif      <<  pofdgu
+sidfhif	<  pofdgu
+
+< fjkdng     <<
+2=fjkdng     2=fdsfk	1=   
+<<d <<f 	< g  <h	>>  <  >
+
+d f g h
+
+<g <<f << d < h
+g f d h 
+
+ouvrir g 
+
+< sdf  < rg <  << < < 
+<<  < '<' < <
+
+while char *
+ if << 
+ tab 0
+ 	1
+ 	
+ while char *
+ if << 
+ tab 0
+  */
+  
+Quote 
+char **
+cmd_arg | in | out
+
+"'bla'"' sdf'  'bla' sdf
+
+" jsd fsfsd"  ->   jsd fsfsd
