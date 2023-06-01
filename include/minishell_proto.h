@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/01 01:38:06 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/01 11:32:09 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ t_plot	*plotlink_new(char *cmd);
 void	plotlink_addback(t_plot **plots, t_plot *new);
 void	delete_plot(t_plot *plot);
 void	plotlink_clear(t_plot **plots);
+int		is_delim(char sep);
+int		is_delim_redir(char sep);
+int		is_delim_quote(char sep);
+int		is_delim_var(char sep);
+int		is_delim_space(char sep);
+
 
 /*	PARSING	*/
 

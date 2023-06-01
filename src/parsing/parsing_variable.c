@@ -21,7 +21,7 @@ char	*find_var(char **str, t_env	*env)
 	int	size_st;
 
 	size_st = ft_strlen(*str);
-	printf("str : %s\n", *str);
+	// printf("str : %s\n", *str);
 	while (env)
 	{
 		size = ft_strlen(env->var);
@@ -59,20 +59,22 @@ char	*interpretation_var(t_plot *plot, int i, t_env *env)
 
 	tmp = i;
 	i++;
-	if (!plot->cmd[i] || plot->cmd[i] == ' ' || plot->cmd[i] == '	' || plot->cmd[i] == '<'
-		|| plot->cmd[i] == '>' || plot->cmd[i] == '|')
+	if (plot->cmd[i] && plot->cmd[i] == '\"')
+	{
+		plot->cmd = remove_dol(plot, i - 1);
 		return (plot->cmd);
-	while (plot->cmd[i] && plot->cmd[i] != ' ' && plot->cmd[i] != '	' && plot->cmd[i] != '\''
-		&& plot->cmd[i] != '\"' && plot->cmd[i] != '<' && plot->cmd[i] != '>' && plot->cmd[i] != '|')
+	}
+	else if (!plot->cmd[i] || !(ft_isalnum(plot->cmd[i])))
+		return (plot->cmd);
+	while (plot->cmd[i] && ft_isalnum(plot->cmd[i]) == 1)
 		i++;
-	if (plot->cmd[i] == ' ' || plot->cmd[i] == '\t' || plot->cmd[i] == '<' || plot->cmd[i] == '\''
-		|| plot->cmd[i] == '\"' || plot->cmd[i] == '>' || plot->cmd[i] == '|')
+	if (!(ft_isalnum(plot->cmd[i])) || plot->cmd[i] == '|')
 		i--;
 	size = ft_strlen(plot->cmd) - i;
 	strtmp2 = ft_substr(plot->cmd, i + 1, size);
 	size = i - tmp;
 	strtmp = ft_substr(plot->cmd, tmp + 1, size);
-	strtmp = find_var(&strtmp, env);	
+	strtmp = find_var(&strtmp, env);
 	plot->cmd = ft_substr(plot->cmd, 0, tmp);
 	plot->cmd = ft_strjoin_free(plot->cmd, strtmp);
 	free(strtmp);
@@ -85,14 +87,17 @@ int	interpretation_var_q(t_plot *plot, int i, t_env *env)
 {
 
 	i++;
-	while (plot->cmd[i] && plot->cmd[i] == '\"')
+	// printf("i = %d\n", i);
+	// printf("what passed : %c, plot  : %s\n", plot->cmd[i], plot->cmd);
+	while (plot->cmd[i] && plot->cmd[i] != '\"')
 	{
-		if (plot->cmd[i] == '\"' || plot->cmd[i] == ' ' || plot->cmd[i] == '	')
-		{
-			while (plot->cmd[i] && plot->cmd[i] == '\"')
-				i++;
+		// printf("test");
+		if (plot->cmd[i] == '\"')
+		// {
+			// while (plot->cmd[i] && plot->cmd[i] == '\"')
+				// i++;
 			return (i - 1);
-		}
+		// }
 		if (plot->cmd[i] == '$')
 			plot->cmd = interpretation_var(plot, i, env);
 		i++;
@@ -124,5 +129,5 @@ void	parsing_variable(t_plot *plot, t_env *env)
 		if (plot->cmd[i])
 			i++;
 	}
-	printf("----%s-----\n", plot->cmd);
+	// printf("----%s-----\n", plot->cmd);
 }

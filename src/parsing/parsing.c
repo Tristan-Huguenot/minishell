@@ -5,7 +5,7 @@ int	parsing_plot(t_param *param)
 	t_plot	*tmp;
 
 	tmp = param->plots;
-	//parsing_variable(param->plots, param->env);
+	parsing_variable(param->plots, param->env);
 	while (tmp)
 	{
 		// parsing_variable(tmp->cmd, param->env);
