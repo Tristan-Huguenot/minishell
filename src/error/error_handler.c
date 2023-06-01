@@ -27,11 +27,12 @@ static void	error_argc(t_param *param, char *file)
 	else
 		free(tmp);
 	if (access(file, F_OK) == -1)
-		return (print_argc_error(param->progname, file, strerror(ENOENT), EKEYEXPIRED));
+		return (print_argc_error(param->progname, \
+		file, strerror(ENOENT), EKEYEXPIRED));
 	if (access(file, R_OK) == -1)
-		return (print_argc_error(param->progname, file, strerror(EACCES), ENOKEY));
+		return (print_argc_error(param->progname, \
+		file, strerror(EACCES), ENOKEY));
 	g_return = 0;
-	return ;
 }
 
 void	error_handler(int err, t_param *param, char *name)
