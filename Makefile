@@ -34,6 +34,7 @@ SRC0	:=	parsing/		\
 
 SRCS	:=	src/main.c						\
 			src/init/init_param.c			\
+			src/init/init_plots.c			\
 			src/linked_list/list_env.c		\
 			src/linked_list/list_plots.c	\
 			src/linked_list/list_utils.c	\
