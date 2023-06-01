@@ -5,7 +5,6 @@ int	parsing_plot(t_param *param)
 	t_plot	*tmp;
 
 	tmp = param->plots;
-	// parsing_variable(param->plots, param->env);
 	while (tmp)
 	{
 		parsing_variable(tmp, param->env);
@@ -27,7 +26,6 @@ int	parsing(t_param *param, char *input)
 		error_handler(E_WQUOTE, param, &quote);
 	else
 	{
-		//ft_printf("%s\n", input);// int ret;
 		init_plots(param, input);
 		parsing_plot(param);
 	}
