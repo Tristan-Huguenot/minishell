@@ -29,6 +29,7 @@ void	prompt_in(t_param *param)
 			execut();
 			free_chained_link();
 		}*/
+		plotlink_clear(&param->plots);
 		free(input);
 	}
 	else
