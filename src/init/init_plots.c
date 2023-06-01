@@ -57,6 +57,7 @@ void	init_plots(t_param *param, char *input)
 				error_handler(E_TOKEN, param, "|");
 			if (param->plots && *input)
 				plotlink_clear(&param->plots);
+			g_return = ENOENT;
 			return ;
 		}
 		init_plot(param, input);
