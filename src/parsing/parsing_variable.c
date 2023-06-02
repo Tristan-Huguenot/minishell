@@ -67,7 +67,7 @@ char	*interpretation_var(t_plot *plot, int i, t_env *env)
 
 	tmp = i;
 	i++;
-	if (plot->cmd[i] && ft_char_in_set(plot->cmd[i], "\'\""))
+	if (plot->cmd[i] && ft_char_in_set(plot->cmd[i], CS_QUOTE))
 	{
 		remove_dol(plot, i - 1);
 		return (plot->cmd);
@@ -119,7 +119,7 @@ void	parsing_variable(t_plot *plot, t_env *env)
 		else if (plot->cmd[i] == '$')
 		{
 			if (i == 1 && plot->cmd[i + 1] && plot->cmd[i - 1] != '\"'
-				&& ft_char_in_set(plot->cmd[i + 1], "\'\""))
+				&& ft_char_in_set(plot->cmd[i + 1], CS_QUOTE))
 				remove_dol(plot, i);
 			else if (plot->cmd[i + 1] && !is_delim_space(plot->cmd[i + 1]))
 				plot->cmd = interpretation_var(plot, i, env);
