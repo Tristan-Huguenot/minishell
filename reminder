@@ -60,3 +60,9 @@ cmd_arg | in | out
 "'bla'"' sdf'  'bla' sdf
 
 " jsd fsfsd"  ->   jsd fsfsd
+
+
+
+
+chercher le < si deuxieme status = 1;
+on passe white space si le charactere est chevron ou \n ou | erreur et le token c est le chevron trouver apres wite space
