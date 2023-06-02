@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/01 01:34:12 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/02 18:18:39 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,5 +23,10 @@
 # define E_ARGC 1000
 # define E_WQUOTE 1001
 # define E_TOKEN 1002
+
+/*	CHARSET	*/
+
+# define CS_WSPACE " \b\t\n\v\f\r"
+# define CS_QUOTE "\'\""
 
 #endif
