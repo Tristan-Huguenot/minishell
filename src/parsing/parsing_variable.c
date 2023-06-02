@@ -40,8 +40,11 @@ char	*find_var(char **str, t_env	*env)
 	return (NULL);
 }
 
-char	*interpret_var_changement(t_plot *plot, t_env *env, int i, int tmp)
+
+void	interpretation_var(t_plot *plot, int i, t_env *env)
 {
+	int		tmp;
+	char	*new;
 	char	*strtmp;
 	char	*strtmp2;
 	int		size;
@@ -66,18 +69,26 @@ char	*interpretation_var(t_plot *plot, int i, t_env *env)
 	tmp = i;
 	i++;
 	if (plot->cmd[i] && ft_char_in_set(plot->cmd[i], "\'\""))
-	{
 		remove_dol(plot, i - 1);
-		return (plot->cmd);
-	}
 	else if (!plot->cmd[i] || !(ft_isalnum(plot->cmd[i])))
-		return (plot->cmd);
+		return ;
 	while (plot->cmd[i] && ft_isalnum(plot->cmd[i]) == 1)
 		i++;
 	if (!(ft_isalnum(plot->cmd[i])) || plot->cmd[i] == '|')
 		i--;
+
 	plot->cmd = interpret_var_changement(plot, env, i, tmp);
 	return (plot->cmd);
+	strtmp2 = ft_substr(plot->cmd, i + 1, ft_strlen(plot->cmd) - i);
+	strtmp = ft_substr(plot->cmd, tmp + 1, i - tmp);
+	strtmp = find_var(&strtmp, env);
+	new = ft_substr(plot->cmd, 0, tmp);
+	free(plot->cmd);
+	plot->cmd = ft_strjoin_free(new, strtmp);
+	free(strtmp);
+	plot->cmd = ft_strjoin_free(plot->cmd, strtmp2);
+	free(strtmp2);
+
 }
 
 int	interpretation_var_q(t_plot *plot, int i, t_env *env)
@@ -88,7 +99,7 @@ int	interpretation_var_q(t_plot *plot, int i, t_env *env)
 		if (plot->cmd[i] == '\"')
 			return (i - 1);
 		if (plot->cmd[i] == '$')
-			plot->cmd = interpretation_var(plot, i, env);
+			interpretation_var(plot, i, env);
 		i++;
 	}
 	return (i);
@@ -109,11 +120,11 @@ void	parsing_variable(t_plot *plot, t_env *env)
 			i = interpretation_var_q(plot, i, env);
 		else if (plot->cmd[i] == '$')
 		{
-			if (i == 1 && plot->cmd[i + 1] && plot->cmd[i - 1] != '\"'
+			if (i != 0 && plot->cmd[i + 1] && plot->cmd[i - 1] != '\"'
 				&& ft_char_in_set(plot->cmd[i + 1], "\'\""))
 				remove_dol(plot, i);
 			else if (plot->cmd[i + 1] && !is_delim_space(plot->cmd[i + 1]))
-				plot->cmd = interpretation_var(plot, i, env);
+				interpretation_var(plot, i, env);
 		}
 		if (plot->cmd[i])
 			i++;
