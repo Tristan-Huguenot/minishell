@@ -40,12 +40,28 @@ char	*find_var(char **str, t_env	*env)
 	return (NULL);
 }
 
+char	*interpret_var_changement(t_plot *plot, t_env *env, int i, int tmp)
+{
+	char	*strtmp;
+	char	*strtmp2;
+	int		size;
+
+	size = ft_strlen(plot->cmd) - i;
+	strtmp2 = ft_substr(plot->cmd, i + 1, size);
+	size = i - tmp;
+	strtmp = ft_substr(plot->cmd, tmp + 1, size);
+	strtmp = find_var(&strtmp, env);
+	plot->cmd = ft_substr(plot->cmd, 0, tmp);
+	plot->cmd = ft_strjoin_free(plot->cmd, strtmp);
+	free(strtmp);
+	plot->cmd = ft_strjoin_free(plot->cmd, strtmp2);
+	free(strtmp2);
+	return (plot->cmd);
+}
+
 char	*interpretation_var(t_plot *plot, int i, t_env *env)
 {
 	int		tmp;
-	int		size;
-	char	*strtmp;
-	char	*strtmp2;
 
 	tmp = i;
 	i++;
@@ -60,22 +76,12 @@ char	*interpretation_var(t_plot *plot, int i, t_env *env)
 		i++;
 	if (!(ft_isalnum(plot->cmd[i])) || plot->cmd[i] == '|')
 		i--;
-	size = ft_strlen(plot->cmd) - i;
-	strtmp2 = ft_substr(plot->cmd, i + 1, size);
-	size = i - tmp;
-	strtmp = ft_substr(plot->cmd, tmp + 1, size);
-	strtmp = find_var(&strtmp, env);
-	plot->cmd = ft_substr(plot->cmd, 0, tmp);
-	plot->cmd = ft_strjoin_free(plot->cmd, strtmp);
-	free(strtmp);
-	plot->cmd = ft_strjoin_free(plot->cmd, strtmp2);
-	free(strtmp2);
+	plot->cmd = interpret_var_changement(plot, env, i, tmp);
 	return (plot->cmd);
 }
 
 int	interpretation_var_q(t_plot *plot, int i, t_env *env)
 {
-
 	i++;
 	while (plot->cmd[i] && plot->cmd[i] != '\"')
 	{
