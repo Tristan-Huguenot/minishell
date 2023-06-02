@@ -56,7 +56,6 @@ char	*interpret_var_changement(t_plot *plot, t_env *env, int i, int tmp)
 	free(plot->cmd);
 	plot->cmd = ft_strjoin_free(new, strtmp);
 	free(strtmp);
-	free(new);
 	plot->cmd = ft_strjoin_free(plot->cmd, strtmp2);
 	free(strtmp2);
 	return (plot->cmd);
