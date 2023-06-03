@@ -43,8 +43,7 @@ SRCS	:=	src/main.c								\
 			src/error/error_handler.c				\
 			src/parsing/parsing_prompt.c			\
 			src/parsing/parsing.c					\
-			src/parsing/parsing_redirect.c			\
-			src/parsing/parsing_redirect_utils.c	\
+			src/parsing/parsing_redir.c				\
 			src/parsing/wrong_quote.c				\
 			src/prompt/prompt.c						\
 			src/parsing/parsing_variable.c			\
