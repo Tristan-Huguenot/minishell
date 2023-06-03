@@ -32,21 +32,23 @@ SRC0	:=	parsing/		\
 
 #PREREQUISITES
 
-SRCS	:=	src/main.c						\
-			src/init/init_param.c			\
-			src/init/init_plots.c			\
-			src/linked_list/list_env.c		\
-			src/linked_list/list_plots.c	\
-			src/linked_list/list_utils.c	\
-			src/exit/exit_program.c			\
-			src/files/files_compute.c		\
-			src/error/error_handler.c		\
-			src/parsing/parsing_prompt.c	\
-			src/parsing/parsing.c			\
-			src/parsing/wrong_quote.c		\
-			src/prompt/prompt.c				\
-			src/parsing/parsing_variable.c	\
-			src/parsing/is_separator.c		\
+SRCS	:=	src/main.c								\
+			src/init/init_param.c					\
+			src/init/init_plots.c					\
+			src/linked_list/list_env.c				\
+			src/linked_list/list_plots.c			\
+			src/linked_list/list_utils.c			\
+			src/exit/exit_program.c					\
+			src/files/files_compute.c				\
+			src/error/error_handler.c				\
+			src/parsing/parsing_prompt.c			\
+			src/parsing/parsing.c					\
+			src/parsing/parsing_redirect.c			\
+			src/parsing/parsing_redirect_utils.c	\
+			src/parsing/wrong_quote.c				\
+			src/prompt/prompt.c						\
+			src/parsing/parsing_variable.c			\
+			src/parsing/is_separator.c				\
 
 #TARGETS
 
@@ -62,7 +64,7 @@ CC			:=	clang
 CFLAGS		:=	-Werror -Wextra -Wall
 
 ifdef DEBUG
-	CFLAGS +=  -g
+	CFLAGS +=  -O0 -gdwarf-4
 else
 	CFLAGS +=  -O3
 endif

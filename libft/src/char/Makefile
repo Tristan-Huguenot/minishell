@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/03/10 19:21:58 by thugueno         ###   ########.fr        #
+#    Updated: 2023/06/03 03:03:56 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -59,7 +59,7 @@ CC			:= 	clang
 CFLAGS		:= 	-Werror -Wextra -Wall
 
 ifdef DEBUG
-	CFLAGS +=  -g
+	CFLAGS +=  -O0 -gdwarf-4
 else
 	CFLAGS +=  -O3
 endif
