@@ -23,15 +23,14 @@ void	prompt_in(t_param *param)
 		add_history(input);
 		if (ft_strncmp(input, "exit", 5) == 0)
 			exit_tmp(param, &input);
-		parsing(param, input);
+		if (!parsing(param, input))
+			ft_printf("No token error\n");
 		/*if (!parsing(param, input))
 		{		
 			execut();
 			free_chained_link();
 		}*/
 		plotlink_clear(&param->plots);
-		free(input);
 	}
-	else
-		free(input);
+	free(input);
 }
