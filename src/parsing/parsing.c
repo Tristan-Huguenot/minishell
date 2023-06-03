@@ -11,7 +11,6 @@ int	parsing_plot(t_param *param)
 		if (parsing_redir(tmp, param))
 			return (1);
 		// parsing_token(tmp);
-		ft_printf("%s\n", tmp->cmd);
 		tmp = tmp->next;
 	}
 	return (0);
