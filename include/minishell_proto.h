@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/03 02:17:20 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/03 23:33:58 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,7 @@ int		is_delim_space(char sep);
 
 int		parsing(t_param *param, char *input);
 int		parsing_redir(t_plot *plot, t_param *param);
+void	move_redir(t_plot *plot, int size);
 int		jump_next_redir(char *cmd, int i);
 int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
