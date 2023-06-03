@@ -8,11 +8,11 @@ int	parsing_plot(t_param *param)
 	while (tmp)
 	{
 		parsing_variable(tmp, param->env);
-		// if (parsing_redir(tmp, param))
-			// return (1);
+		if (parsing_redir(tmp, param))
+			return (1);
 		// parsing_token(tmp);
 		ft_printf("%s\n", tmp->cmd);
-		tmp= tmp->next;
+		tmp = tmp->next;
 	}
 	return (0);
 }
@@ -27,7 +27,10 @@ int	parsing(t_param *param, char *input)
 	else
 	{
 		init_plots(param, input);
-		parsing_plot(param);
+		if (!param->plots)
+			return (1);
+		if (parsing_plot(param))
+			return (1);
 	}
 	return (0);
 }
