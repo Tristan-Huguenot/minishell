@@ -10,7 +10,7 @@ int	parsing_plot(t_param *param)
 		parsing_variable(tmp, param->env);
 		if (parsing_redir(tmp, param))
 			return (1);
-		// parsing_token(tmp);
+		parsing_arg(tmp, param);
 		tmp = tmp->next;
 	}
 	return (0);
