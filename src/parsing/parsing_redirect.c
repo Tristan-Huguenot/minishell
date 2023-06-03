@@ -30,6 +30,7 @@ int	check_redir(t_plot *plot, t_param *param)
 			n = -1;
 			break;
 		}
+		i = jump_next_redir(plot->cmd, i);
 	}
 	return (n);
 }
@@ -44,5 +45,6 @@ int	parsing_redir(t_plot *plot, t_param *param)
 		g_return = ENOENT;
 		return (1);
 	}
+	ft_printf("redir = %d\n", size);
 	return (0);
 }
