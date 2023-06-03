@@ -47,3 +47,26 @@ void	error_handler(int err, t_param *param, char *name)
 		param->progname, name);
 	}
 }
+
+void	error_redir(int i, t_plot *plot, t_param *param)
+{
+	char	c[3];
+
+	if (!plot->cmd[i])
+	{
+		if (plot->next)
+			error_handler(E_TOKEN, param, "|");
+		else
+			error_handler(E_TOKEN, param, "newline");
+	}
+	else
+	{
+		c[0] = plot->cmd[i];
+		if (plot->cmd[i] == plot->cmd[i + 1])
+			c[1] = c[0];
+		else
+			c[1] = '\0';
+		c[2] = '\0';
+		error_handler(E_TOKEN, param, c);
+	}
+}
