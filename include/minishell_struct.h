@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/05/30 17:41:10 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/03 01:30:02 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,7 @@ typedef struct s_plot
 	char			*cmd;
 	char			**cmd_arg;
 	int				argc;
-	char			**in;
-	char			**out;
+	char			**redir;
 	struct s_plot	*next;
 }	t_plot;
 

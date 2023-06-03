@@ -46,10 +46,8 @@ void	delete_plot(t_plot *plot)
 		free(plot->cmd);
 	if (plot->cmd_arg)
 		ft_free_strs(plot->cmd_arg);
-	if (plot->in)
-		ft_free_strs(plot->in);
-	if (plot->out)
-		ft_free_strs(plot->out);
+	if (plot->redir)
+		ft_free_strs(plot->redir);
 	free(plot);
 }
 
