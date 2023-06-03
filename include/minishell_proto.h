@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/01 11:32:09 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/03 02:17:20 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@ char	*file_is_exe(char *file, char **paths);
 /*	ERROR	*/
 
 void	error_handler(int err, t_param *param, char *name);
+void	error_redir(int i, t_plot *plot, t_param *param);
 
 /*	LST		*/
 
@@ -41,6 +42,9 @@ t_plot	*plotlink_new(char *cmd);
 void	plotlink_addback(t_plot **plots, t_plot *new);
 void	delete_plot(t_plot *plot);
 void	plotlink_clear(t_plot **plots);
+
+/*	IS_DELIM	*/
+
 int		is_delim(char sep);
 int		is_delim_redir(char sep);
 int		is_delim_quote(char sep);
@@ -51,6 +55,8 @@ int		is_delim_space(char sep);
 /*	PARSING	*/
 
 int		parsing(t_param *param, char *input);
+int		parsing_redir(t_plot *plot, t_param *param);
+int		jump_next_redir(char *cmd, int i);
 int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
 void	parsing_prompt(char *input);
