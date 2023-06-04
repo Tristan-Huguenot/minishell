@@ -10,9 +10,13 @@ DONE 2a -  création de structure
 
 DONE 3 - interpréter les variables $ sauf si 'single quote'
 
-3a - Recuperer in files et out files en laissant quote + remove des redir dans le cmd --> TRISTAN
+DONE 3a - Recuperer in files et out files en laissant quote + remove des redir dans le cmd --> TRISTAN
 
-3b - separer args en laissant quotes  --> a voir
+DONE 3b - separer args en laissant quotes  --> a voir
+
+Il va falloir reflechir a bouger l interpretation des vars, le fait que les variable qui n existe pas laisse rien pose probleme au moment de spater les redir
+Du genre :   <$lala lolo      donnera : 01=lolo
+faudrait faire l interpretation apres avoir remplis les tableaux cmd_arg et redir et a ce moment on peut verifier si y a une ambigous redirect
 
 3 c -suprimer les quotes  --> NIL
 
