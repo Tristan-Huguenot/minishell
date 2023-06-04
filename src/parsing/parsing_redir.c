@@ -1,8 +1,8 @@
 #include "minishell.h"
 
-int	jump_next_redir(char *cmd, int i)
+int	jump_next_charset(char *cmd, int i, char *charset)
 {
-	while (cmd[i] && !ft_char_in_set(cmd[i], CS_REDIR))
+	while (cmd[i] && !ft_char_in_set(cmd[i], charset))
 	{
 		if (ft_char_in_set(cmd[i], CS_QUOTE))
 			i = first_quote(cmd, i, cmd[i]);
@@ -31,7 +31,7 @@ static int	check_redir(t_plot *plot, t_param *param)
 	int	stat[2];
 
 	init_check(&i, &n, stat);
-	i = jump_next_redir(plot->cmd, i);
+	i = jump_next_charset(plot->cmd, i, CS_REDIR);
 	while (plot->cmd[i])
 	{
 		n++;
@@ -46,7 +46,7 @@ static int	check_redir(t_plot *plot, t_param *param)
 			n = -1;
 			break;
 		}
-		i = jump_next_redir(plot->cmd, i);
+		i = jump_next_charset(plot->cmd, i, CS_REDIR);
 	}
 	return (n);
 }

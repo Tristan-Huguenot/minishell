@@ -13,6 +13,8 @@ static char	*delete_redir(char *cmd, int redir)
 		redir++;
 	while (cmd[redir] && !ft_char_in_set(cmd[redir], CS_WSPACE))
 	{
+		if (ft_char_in_set(cmd[redir], CS_REDIR))
+			break ;
 		if (ft_char_in_set(cmd[redir], CS_QUOTE))
 			redir = first_quote(cmd, redir, cmd[redir]);
 		redir++;
@@ -36,6 +38,8 @@ static char	*get_redir_name(char *cmd, int redir)
 	end = redir;
 	while (cmd[end] && !ft_char_in_set(cmd[end], CS_WSPACE))
 	{
+		if (ft_char_in_set(cmd[end], CS_REDIR))
+			break ;
 		if (ft_char_in_set(cmd[end], CS_QUOTE))
 			end = first_quote(cmd, end, cmd[end]);
 		end++;
@@ -73,7 +77,7 @@ void	move_redir(t_plot *plot, int size)
 	i = 0;
 	while (i < size)
 	{
-		redir = jump_next_redir(plot->cmd, 0);
+		redir = jump_next_charset(plot->cmd, 0, CS_REDIR);
 		tmp = get_redir_type(plot->cmd, redir);
 		name = get_redir_name(plot->cmd, redir);
 		tmp = ft_strjoin_free(tmp, name);
