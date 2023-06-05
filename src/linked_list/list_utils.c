@@ -16,6 +16,7 @@ int	envlink_size(t_env *head)
 char **convert_env_strs(t_env *head)
 {
 	char	**strs;
+	char	*tmp;
 	int		size;
 	int		i;
 
@@ -24,7 +25,8 @@ char **convert_env_strs(t_env *head)
 	i = 0;
 	while (head)
 	{
-		strs[i] = ft_strjoin(head->var, head->content);
+		tmp = ft_strjoin(head->var, "=");
+		strs[i] = ft_strjoin_free(tmp, head->content);
 		head = head->next;
 		i++;
 	}
@@ -33,11 +35,7 @@ char **convert_env_strs(t_env *head)
 
 t_env	*envlink_getvar(t_env *head, char *var)
 {
-	while (ft_strncmp(head->var, var, ft_strlen(var)))
-	{
-		if (!head->next)
-			return (NULL);
+	while (head && ft_strncmp(head->var, var, ft_strlen(var)))
 		head = head->next;
-	}
 	return (head);
 }
