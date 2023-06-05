@@ -1,16 +1,35 @@
 #include "minishell.h"
 
-int	parsing_plot(t_param *param)
+static void	rendering_variable(t_plot *plot, t_env *env)
+{
+	int	i;
+
+	i = 0;
+	while (plot->cmd_arg[i])
+	{
+		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env);
+		i++;
+	}
+	i = 0;
+	while (plot->redir[i])
+	{
+		plot->redir[i] = parsing_variable(plot->redir[i], env);
+		i++;
+	}
+	i = 0;
+}
+
+static int	parsing_plot(t_param *param)
 {
 	t_plot	*tmp;
 
 	tmp = param->plots;
 	while (tmp)
 	{
-		parsing_variable(tmp, param->env);
 		if (parsing_redir(tmp, param))
 			return (1);
 		parsing_arg(tmp);
+		rendering_variable(tmp, param->env);
 		tmp = tmp->next;
 	}
 	return (0);

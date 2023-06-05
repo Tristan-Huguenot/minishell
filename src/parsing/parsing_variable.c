@@ -1,19 +1,20 @@
 #include "minishell.h"
 
-void	remove_dol(t_plot *plot, int i)
+char	*remove_dol(char *str, int i)
 {
 	char	*strtmp;
 	char	*strtmp2;
 	int		size;
 
-	strtmp2 = ft_strdup(plot->cmd);
-	free(plot->cmd);
-	plot->cmd = ft_substr(strtmp2, 0, i);
+	strtmp2 = ft_strdup(str);
+	free(str);
+	str = ft_substr(strtmp2, 0, i);
 	size = ft_strlen(strtmp2) - i;
 	strtmp = ft_substr(strtmp2, i + 1, size);
-	plot->cmd = ft_strjoin_free(plot->cmd, strtmp);
+	str = ft_strjoin_free(str, strtmp);
 	free(strtmp2);
 	free(strtmp);
+	return (str);
 }
 
 char	*find_var(char **str, t_env	*env)
@@ -40,91 +41,92 @@ char	*find_var(char **str, t_env	*env)
 	return (NULL);
 }
 
-char	*interpret_var_changement(t_plot *plot, t_env *env, int i, int tmp)
+char	*interpret_var_changement(char *str, t_env *env, int i, int tmp)
 {
 	char	*strtmp;
 	char	*strtmp2;
 	char	*new;
 	int		size;
 
-	size = ft_strlen(plot->cmd) - i;
-	strtmp2 = ft_substr(plot->cmd, i + 1, size);
+	size = ft_strlen(str) - i;
+	strtmp2 = ft_substr(str, i + 1, size);
 	size = i - tmp;
-	strtmp = ft_substr(plot->cmd, tmp + 1, size);
+	strtmp = ft_substr(str, tmp + 1, size);
 	strtmp = find_var(&strtmp, env);
-	new = ft_substr(plot->cmd, 0, tmp);
-	free(plot->cmd);
-	plot->cmd = ft_strjoin_free(new, strtmp);
+	new = ft_substr(str, 0, tmp);
+	free(str);
+	str = ft_strjoin_free(new, strtmp);
 	free(strtmp);
-	plot->cmd = ft_strjoin_free(plot->cmd, strtmp2);
+	str = ft_strjoin_free(str, strtmp2);
 	free(strtmp2);
-	return (plot->cmd);
+	return (str);
 }
 
-char	*interpretation_var(t_plot *plot, int i, t_env *env)
+char	*interpretation_var(char *str, int i, t_env *env)
 {
 	int		tmp;
 
 	tmp = i;
 	i++;
-	if (plot->cmd[i] && ft_char_in_set(plot->cmd[i], CS_QUOTE))
+	if (str[i] && ft_char_in_set(str[i], CS_QUOTE))
 	{
-		remove_dol(plot, i - 1);
-		return (plot->cmd);
+		str = remove_dol(str, i - 1);
+		return (str);
 	}
-	else if (!plot->cmd[i] || !(ft_isalnum(plot->cmd[i])))
-		return (plot->cmd);
-	while (plot->cmd[i] && ft_isalnum(plot->cmd[i]) == 1)
+	else if (!str[i] || !(ft_isalnum(str[i])))
+		return (str);
+	while (str[i] && ft_isalnum(str[i]) == 1)
 		i++;
-	if (!(ft_isalnum(plot->cmd[i])) || plot->cmd[i] == '|')
+	if (!(ft_isalnum(str[i])) || str[i] == '|')
 		i--;
-	plot->cmd = interpret_var_changement(plot, env, i, tmp);
-	return (plot->cmd);
+	str = interpret_var_changement(str, env, i, tmp);
+	return (str);
 }
 
-int	interpretation_var_q(t_plot *plot, int i, t_env *env)
+int	interpretation_var_q(char **str, int i, t_env *env)
 {
 	i++;
-	while (plot->cmd[i] && plot->cmd[i] != '\"')
+	while ((*str)[i] && (*str)[i] != '\"')
 	{
-		if (plot->cmd[i] == '\"')
+		if ((*str)[i] == '\"')
 			return (i - 1);
-		if (plot->cmd[i] == '$')
+		if ((*str)[i] == '$')
 		{
-			if (plot->cmd[i + 1] && plot->cmd[i + 1] == '\"')
+			if ((*str)[i + 1] && (*str)[i + 1] == '\"')
 			{
 				i++;
 				break ;
 			}
-			interpretation_var(plot, i, env);
+			*str = interpretation_var(*str, i, env);
 		}
 		i++;
 	}
 	return (i);
 }
 
-void	parsing_variable(t_plot *plot, t_env *env)
+char	*parsing_variable(char *str, t_env *env)
 {
 	int	i;
 
 	i = 0;
-	while (plot->cmd && plot->cmd[i])
+	while (str && str[i])
 	{
-		if (plot->cmd[i] == '\'')
-			i = first_quote(plot->cmd, i, '\'');
-		if (i == -1 || plot->cmd[i] == '\0')
+		if (str[i] == '\'')
+			i = first_quote(str, i, '\'');
+		if (i == -1 || str[i] == '\0')
 			break ;
-		if (plot->cmd[i] == '\"')
-			i = interpretation_var_q(plot, i, env);
-		else if (plot->cmd[i] == '$')
+		if (str[i] == '\"')
+			i = interpretation_var_q(&str, i, env);
+		else if (str[i] == '$')
 		{
-			if (i == 1 && plot->cmd[i + 1] && plot->cmd[i - 1] != '\"'
-				&& ft_char_in_set(plot->cmd[i + 1], CS_QUOTE))
-				remove_dol(plot, i);
-			else if (plot->cmd[i + 1] && !is_delim_space(plot->cmd[i + 1]))
-				plot->cmd = interpretation_var(plot, i, env);
+			if (i == 1 && str[i + 1] && str[i - 1] != '\"'
+				&& ft_char_in_set(str[i + 1], CS_QUOTE))
+				str = remove_dol(str, i);
+			else if (str[i + 1] && !is_delim_space(str[i + 1]))
+				str = interpretation_var(str, i, env);
 		}
-		if (plot->cmd[i])
+		if (str[i])
 			i++;
 	}
+	return (str);
 }

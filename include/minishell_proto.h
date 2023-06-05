@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/04 02:04:45 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/05 12:14:09 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
 void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
-void	parsing_variable(t_plot *plot, t_env *env);
+char	*parsing_variable(char *str, t_env *env);
 
 /*	PROMPT	*/
 
