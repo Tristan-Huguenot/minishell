@@ -14,10 +14,6 @@ DONE 3a - Recuperer in files et out files en laissant quote + remove des redir d
 
 DONE 3b - separer args en laissant quotes  --> a voir
 
-Il va falloir reflechir a bouger l interpretation des vars, le fait que les variable qui n existe pas laisse rien pose probleme au moment de spater les redir
-Du genre :   <$lala lolo      donnera : 01=lolo
-faudrait faire l interpretation apres avoir remplis les tableaux cmd_arg et redir et a ce moment on peut verifier si y a une ambigous redirect
-
 3 c -suprimer les quotes  --> NIL
 
 4 - HEREDOC
@@ -30,22 +26,6 @@ faudrait faire l interpretation apres avoir remplis les tableaux cmd_arg et redi
 
 /*
 
-< sidfhif      <<  pofdgu
-sidfhif	<  pofdgu
-
-< fjkdng     <<
-2=fjkdng     2=fdsfk	1=   
-<<d <<f 	< g  <h	>>  <  >
-
-d f g h
-
-<g <<f << d < h
-g f d h 
-
-ouvrir g 
-
-< sdf  < rg <  << < < 
-<<  < '<' < <
 
 while char *
  if << 
@@ -64,9 +44,3 @@ cmd_arg | in | out
 "'bla'"' sdf'  'bla' sdf
 
 " jsd fsfsd"  ->   jsd fsfsd
-
-
-
-
-chercher le < si deuxieme status = 1;
-on passe white space si le charactere est chevron ou \n ou | erreur et le token c est le chevron trouver apres wite space
