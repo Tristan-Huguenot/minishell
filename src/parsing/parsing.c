@@ -1,6 +1,23 @@
 #include "minishell.h"
 
-static void	rendering_variable(t_plot *plot, t_env *env)
+char	*remove_dol(char *str, int i)
+{
+	char	*strtmp;
+	char	*strtmp2;
+	int		size;
+
+	strtmp2 = ft_strdup(str);
+	free(str);
+	str = ft_substr(strtmp2, 0, i);
+	size = ft_strlen(strtmp2) - i;
+	strtmp = ft_substr(strtmp2, i + 1, size);
+	str = ft_strjoin_free(str, strtmp);
+	free(strtmp2);
+	free(strtmp);
+	return (str);
+}
+
+static void	rendering(t_plot *plot, t_env *env)
 {
 	int	i;
 
@@ -29,7 +46,7 @@ static int	parsing_plot(t_param *param)
 		if (parsing_redir(tmp, param))
 			return (1);
 		parsing_arg(tmp);
-		rendering_variable(tmp, param->env);
+		rendering(tmp, param->env);
 		tmp = tmp->next;
 	}
 	return (0);

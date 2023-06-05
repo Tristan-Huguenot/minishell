@@ -1,22 +1,5 @@
 #include "minishell.h"
 
-char	*remove_dol(char *str, int i)
-{
-	char	*strtmp;
-	char	*strtmp2;
-	int		size;
-
-	strtmp2 = ft_strdup(str);
-	free(str);
-	str = ft_substr(strtmp2, 0, i);
-	size = ft_strlen(strtmp2) - i;
-	strtmp = ft_substr(strtmp2, i + 1, size);
-	str = ft_strjoin_free(str, strtmp);
-	free(strtmp2);
-	free(strtmp);
-	return (str);
-}
-
 char	*find_var(char **str, t_env	*env)
 {
 	int	size;
