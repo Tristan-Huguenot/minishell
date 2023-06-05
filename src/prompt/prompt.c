@@ -51,6 +51,7 @@ void	print_plots(t_plot *plots)
 
 void	prompt_in(t_param *param)
 {
+	char	**tmp_env;
 	char	*input;
 	// char	quote;
 
@@ -61,12 +62,16 @@ void	prompt_in(t_param *param)
 		if (ft_strncmp(input, "exit", 5) == 0)
 			exit_tmp(param, &input);
 		if (!parsing(param, input))
-			print_plots(param->plots);
-		/*if (!parsing(param, input))
-		{		
-			execut();
-			free_chained_link();
-		}*/
+		{
+			if (!ft_strncmp(param->plots->cmd_arg[0], "env", 4))
+			{
+				tmp_env = convert_env_strs(param->env);
+				env(param->plots->argc, param->plots->cmd_arg, tmp_env);
+				ft_free_strs(tmp_env);
+			}
+			else
+				print_plots(param->plots);
+		}
 		plotlink_clear(&param->plots);
 	}
 	free(input);
