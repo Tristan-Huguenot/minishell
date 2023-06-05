@@ -36,7 +36,9 @@ static void	init_env(t_param *param, char **envp)
 {
 	int	i;
 	int y;
-
+	
+	if (!envp)
+		return ;
 	i = 0;
 	while (envp[i])
 	{
