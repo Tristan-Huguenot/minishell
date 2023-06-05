@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/05 14:28:43 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:04:33 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
 char	*parsing_variable(char *str, t_env *env);
 char	*remove_dol(char *str, int i);
+char	*there_is_quote_to_remove(char *str);
 
 /*	PROMPT	*/
 

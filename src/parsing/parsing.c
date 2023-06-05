@@ -25,12 +25,14 @@ static void	rendering(t_plot *plot, t_env *env)
 	while (plot->cmd_arg[i])
 	{
 		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env);
+		plot->cmd_arg[i] = there_is_quote_to_remove(plot->cmd_arg[i]);
 		i++;
 	}
 	i = 0;
 	while (plot->redir[i])
 	{
 		plot->redir[i] = parsing_variable(plot->redir[i], env);
+		plot->redir[i] = there_is_quote_to_remove(plot->redir[i]);
 		i++;
 	}
 	i = 0;
@@ -58,7 +60,10 @@ int	parsing(t_param *param, char *input)
 
 	quote = wrong_quote(input);
 	if (quote)
+	{
 		error_handler(E_WQUOTE, param, &quote);
+		return (1);
+	}
 	else
 	{
 		init_plots(param, input);

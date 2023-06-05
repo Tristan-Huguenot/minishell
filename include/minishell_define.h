@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/03 02:39:42 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/05 16:51:21 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 /*	COLORS	*/
 
-# define NOC "\033[0m"
-# define PROMPTC "\033[38;5;207m"
+# define NOC "\033\001[0m"
+# define PROMPTC "\033\001[38;5;207m"
 
 /*	ERRORS	*/
 

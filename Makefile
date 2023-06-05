@@ -51,6 +51,7 @@ SRCS	:=	src/main.c								\
 			src/parsing/is_separator.c				\
 			src/prompt/prompt.c						\
 			src/builtin/env.c						\
+			src/parsing/remove_quote.c				\
 
 #TARGETS
 
