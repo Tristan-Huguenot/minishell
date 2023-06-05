@@ -47,9 +47,10 @@ SRCS	:=	src/main.c								\
 			src/parsing/parsing_redir.c				\
 			src/parsing/parsing_redir_move.c		\
 			src/parsing/wrong_quote.c				\
-			src/prompt/prompt.c						\
 			src/parsing/parsing_variable.c			\
 			src/parsing/is_separator.c				\
+			src/prompt/prompt.c						\
+			src/builtin/env.c						\
 
 #TARGETS
 
