@@ -12,9 +12,13 @@ DONE 3 - interpréter les variables $ sauf si 'single quote'
 
 DONE 3a - Recuperer in files et out files en laissant quote + remove des redir dans le cmd --> TRISTAN
 
+PEUT ETRE Verifier variable dans les redirs
+
 DONE 3b - separer args en laissant quotes  --> a voir
 
 DONE 3 c -suprimer les quotes  --> NIL
+
+Ajouter interpretation $?
 
 4 - HEREDOC
 
