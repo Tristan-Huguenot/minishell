@@ -18,7 +18,9 @@ DONE 3b - separer args en laissant quotes  --> a voir
 
 DONE 3 c -suprimer les quotes  --> NIL
 
-Ajouter interpretation $?
+DONE Ajouter interpretation $?
+
+creer une fonction qui verifie si Bulting sinon go execve 
 
 4 - HEREDOC
 
@@ -28,23 +30,11 @@ Ajouter interpretation $?
 
 6 - BUILTNGS
 
-/*
+echo NIL
+cd 
+pwd NIL getcwd, 
+export TRISTAN
+unset TRISTAN
+exit 
 
-
-while char *
- if << 
- tab 0
- 	1
- 	
- while char *
- if << 
- tab 0
-  */
-  
-Quote 
-char **
-cmd_arg | in | out
-
-"'bla'"' sdf'  'bla' sdf
-
-" jsd fsfsd"  ->   jsd fsfsd
+gérer les signaux
