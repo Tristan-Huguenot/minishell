@@ -21,13 +21,7 @@ static void	rendering(t_plot *plot, t_env *env)
 {
 	int	i;
 
-	i = 0;
-	while (plot->cmd_arg[i])
-	{
-		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env);
-		plot->cmd_arg[i] = there_is_quote_to_remove(plot->cmd_arg[i]);
-		i++;
-	}
+	plot->cmd = parsing_variable(plot->cmd, env);
 	i = 0;
 	while (plot->redir[i])
 	{
@@ -35,20 +29,26 @@ static void	rendering(t_plot *plot, t_env *env)
 		plot->redir[i] = there_is_quote_to_remove(plot->redir[i]);
 		i++;
 	}
-	i = 0;
 }
 
 static int	parsing_plot(t_param *param)
 {
 	t_plot	*tmp;
+	int		i;
 
 	tmp = param->plots;
 	while (tmp)
 	{
 		if (parsing_redir(tmp, param))
 			return (1);
-		parsing_arg(tmp);
 		rendering(tmp, param->env);
+		parsing_arg(tmp);
+		i = 0;
+		while (tmp->cmd_arg[i])
+		{
+			tmp->cmd_arg[i] = there_is_quote_to_remove(tmp->cmd_arg[i]);
+			i++;
+		}
 		tmp = tmp->next;
 	}
 	return (0);
