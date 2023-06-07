@@ -53,6 +53,7 @@ SRCS	:=	src/main.c								\
 			src/prompt/prompt.c						\
 			src/builtin/env.c						\
 			src/builtin/unset.c						\
+			src/builtin/echo.c						\
 
 #TARGETS
 
