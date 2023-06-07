@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/07 10:06:21 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/07 11:46:26 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,5 +81,6 @@ void	exit_program(t_param *param);
 /*	BUILTIN	*/
 
 void	env(int argc, char **argv, char **env);
+int		unset(int argc, char **argv, t_env *env);
 
 #endif
