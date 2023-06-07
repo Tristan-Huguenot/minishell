@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/05 16:51:21 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/07 15:00:43 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,17 @@
 # define CS_WSPACE " \b\t\n\v\f\r"
 # define CS_QUOTE "\'\""
 # define CS_REDIR "<>"
+
+/* ENUM BUILTIN */
+
+enum {
+	ECHO = 1,
+	CD,
+	PWD,
+	EXPORT,
+	UNSET,
+	ENV,
+	EXIT,
+};
 
 #endif
