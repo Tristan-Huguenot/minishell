@@ -49,9 +49,10 @@ SRCS	:=	src/main.c								\
 			src/parsing/wrong_quote.c				\
 			src/parsing/parsing_variable.c			\
 			src/parsing/is_separator.c				\
+			src/parsing/remove_quote.c				\
 			src/prompt/prompt.c						\
 			src/builtin/env.c						\
-			src/parsing/remove_quote.c				\
+			src/builtin/unset.c						\
 
 #TARGETS
 
