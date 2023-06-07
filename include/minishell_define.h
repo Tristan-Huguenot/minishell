@@ -15,8 +15,8 @@
 
 /*	COLORS	*/
 
-# define NOC "\033\001[0m"
-# define PROMPTC "\033\001[38;5;207m"
+# define NOC     "\001\e[0m\002"            /* "\033\001[0m"*/
+# define PROMPTC "\001\e[1m\e[38;5;207m\002"         /*"\033\001[38;5;207m"*/
 
 /*	ERRORS	*/
 

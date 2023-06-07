@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/07 15:22:12 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/07 18:16:22 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ int		is_delim_quote(char sep);
 int		is_delim_var(char sep);
 int		is_delim_space(char sep);
 
-
 /*	PARSING	*/
 
 int		parsing(t_param *param, char *input);
@@ -67,6 +66,7 @@ void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
 char	*parsing_variable(char *str, t_env *env);
 int		remove_dol(char **str, int i);
+char	*find_var(char **str, t_env	*env);
 char	*there_is_quote_to_remove(char *str);
 
 /*	PROMPT	*/
@@ -83,5 +83,6 @@ void	exit_program(t_param *param);
 void	env(int argc, char **argv, char **env);
 int		unset(int argc, char **argv, t_env *env);
 int		echo(int argc, char **cmd_arg);
+int		pwd(int argc, char **argv, char **env);
 
 #endif
