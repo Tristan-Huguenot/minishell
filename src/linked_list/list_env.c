@@ -30,6 +30,8 @@ void	envlink_delvar(t_env *head, char *var)
 		return ;
 	while (head->next && ft_strncmp(var, head->next->var, ft_strlen(var)))
 		head = head->next;
+	if (!head->next)
+		return ;
 	if (head->next->var)
 		free(head->next->var);
 	if (head->next->content)
