@@ -139,17 +139,17 @@ char	*parsing_variable(char *str, t_env *env)
 				tmp = remove_dol(&str, i);
 			else if (str[i + 1] && !is_delim_space(str[i + 1]))
 				tmp = interpretation_var(&str, i, env);
-			i = tmp;
+		//	i = tmp;
 		}
 		// printf("---%d---\n", i);
 		// printf("str == %s\n", str);	
-		if (i >= 0) 
+		if (tmp >= 0) 
 		{
 			if (str[i])
 				i++;
 		}
-		else if (i < 0)
-			i = 0;
+		else if (tmp < 0)
+			tmp = i;
 
 	}
 	return (str);
