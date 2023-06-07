@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/07 18:16:22 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/07 19:59:29 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,6 +72,7 @@ char	*there_is_quote_to_remove(char *str);
 /*	PROMPT	*/
 
 void	prompt_in(t_param *param);
+void	need_execution(t_param *param);
 
 /*	EXIT	*/
 
