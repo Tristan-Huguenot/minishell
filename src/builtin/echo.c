@@ -71,7 +71,10 @@ int	echo(int argc, char **cmd_arg)
 	int		flag;
 
 	if (argc == 1)
+	{
+		write(1, "\n", 1);
 		return (0);
+	}
 	i = 1;
 	flag = 0;
 	flag = echo_flag(cmd_arg[i]);
