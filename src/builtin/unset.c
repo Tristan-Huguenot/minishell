@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-int	unset(int argc, char **argv, t_env *env)
+int	unset(int argc, char **argv, t_env **env)
 {
 	int	i;
 

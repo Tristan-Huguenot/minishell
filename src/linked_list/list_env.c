@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_env.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/06/08 16:15:52 by thugueno          #+#    #+#             */
+/*   Updated: 2023/06/08 16:49:29 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 t_env	*envlink_last(t_env *head)
@@ -22,24 +34,35 @@ t_env	*envlink_new(char *var, char *content)
 	return (new_link);
 }
 
-void	envlink_delvar(t_env *head, char *var)
+void	envlink_delvar(t_env **head, char *var)
 {
+	t_env	*loop;
 	t_env	*tmp;
 
-	if (!head)
+	if (!*head)
 		return ;
-	while (head->next && ft_strncmp(var, head->next->var, ft_strlen(var)))
-		head = head->next;
-	if (!head->next)
+	loop = *head;
+	if (!ft_strncmp(var, loop->var, ft_strlen(var)))
+	{	
+		if (loop->var)
+			free(loop->var);
+		if (loop->content)
+			free(loop->content);
+		*head = (*head)->next;
+		free(loop);
 		return ;
-	if (head->next->var)
-		free(head->next->var);
-	if (head->next->content)
-		free(head->next->content);
-	tmp = head->next->next;
-	if (head->next)
-		free(head->next);
-	head->next = tmp;
+	}
+	while (loop->next && ft_strncmp(var, loop->next->var, ft_strlen(var)))
+		loop = loop->next;
+	if (!loop || !loop->next)
+		return ;
+	if (loop->next->var)
+		free(loop->next->var);
+	if (loop->next->content)
+		free(loop->next->content);
+	tmp = loop->next->next;
+	free(loop->next);
+	loop->next = tmp;
 }
 
 void	envlink_clear(t_env **head)

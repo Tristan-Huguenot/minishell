@@ -10,7 +10,7 @@ int	env(int argc, char **argv, char **env)
 		return (1);
 	}
 	i = 0;
-	while (env[i])
+	while (env && env[i])
 	{
 		printf("%s\n", env[i]);
 		i++;

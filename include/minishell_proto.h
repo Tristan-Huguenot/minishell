@@ -23,7 +23,7 @@ void	error_redir(int i, t_plot *plot, t_param *param);
 t_env	*envlink_last(t_env *head);
 t_env	*envlink_getvar(t_env *head, char *var);
 t_env	*envlink_new(char *var, char *content);
-void	envlink_delvar(t_env *head, char *var);
+void	envlink_delvar(t_env **head, char *var);
 void	envlink_clear(t_env **head);
 void	envlink_addback(t_env **lst, t_env *new);
 int		envlink_size(t_env *head);
@@ -75,7 +75,7 @@ void	exit_program(t_param *param);
 
 int		env(int argc, char **argv, char **env);
 int		ft_export(int argc, char **argv, t_env *env);
-int		unset(int argc, char **argv, t_env *env);
+int		unset(int argc, char **argv, t_env **env);
 int		echo(int argc, char **cmd_arg);
 int		pwd(int argc, char **argv, char **env);
 
