@@ -6,7 +6,7 @@ static void	print_argc_error(char *first, char *second, char *last, int err)
 	g_return = err;
 }
 
-static void	error_argc(t_param *param, char *file)
+void	error_argc(t_param *param, char *file)
 {
 	char	*tmp;
 	int		fd;
@@ -35,16 +35,14 @@ static void	error_argc(t_param *param, char *file)
 	g_return = 0;
 }
 
-void	error_handler(int err, t_param *param, char *name)
+void	error_handler(int err, char	*progname, char *name)
 {
-	if (err == E_ARGC)
-		return (error_argc(param, name));
-	else if (err == E_WQUOTE)
-		ft_fprintf(2, "%s: %c: Quote not closed\n", param->progname, *name);
+	if (err == E_WQUOTE)
+		ft_fprintf(2, "%s: %c: Quote not closed\n", progname, *name);
 	else if (err == E_TOKEN)
 	{
 		ft_fprintf(2, "%s: syntax error near unexpected token '%s'\n", \
-		param->progname, name);
+		progname, name);
 	}
 }
 

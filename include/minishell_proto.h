@@ -15,7 +15,8 @@ char	*file_is_exe(char *file, char **paths);
 
 /*	ERROR	*/
 
-void	error_handler(int err, t_param *param, char *name);
+void	error_handler(int err, char *progname, char *name);
+void	error_argc(t_param *param, char *file);
 void	error_redir(int i, t_plot *plot, t_param *param);
 
 /*	LST		*/
