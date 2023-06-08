@@ -13,7 +13,29 @@ int	envlink_size(t_env *head)
 	return (i);
 }
 
-char **convert_env_strs(t_env *head)
+char	**convert_env_names_strs(t_env *head)
+{
+	char	**strs;
+	int		size;
+	int		i;
+
+	size = envlink_size(head);
+	strs = ft_calloc(size + 1, sizeof(*strs));
+	if (!strs)
+		return (strs);
+	i = 0;
+	while (head)
+	{
+		strs[i] = ft_strdup(head->var);
+		if (!strs[i])
+			return (strs);
+		head = head->next;
+		i++;
+	}
+	return (strs);
+}
+
+char	**convert_env_strs(t_env *head)
 {
 	char	**strs;
 	char	*tmp;
@@ -22,11 +44,15 @@ char **convert_env_strs(t_env *head)
 
 	size = envlink_size(head);
 	strs = ft_calloc(size + 1, sizeof(*strs));
+	if (!strs)
+		return (strs);
 	i = 0;
 	while (head)
 	{
 		tmp = ft_strjoin(head->var, "=");
 		strs[i] = ft_strjoin_free(tmp, head->content);
+		if (!strs[i])
+			return (strs);
 		head = head->next;
 		i++;
 	}

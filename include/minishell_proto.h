@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/07 19:59:29 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/07 23:10:43 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,7 @@ void	envlink_delvar(t_env *head, char *var);
 void	envlink_clear(t_env **head);
 void	envlink_addback(t_env **lst, t_env *new);
 int		envlink_size(t_env *head);
+char	**convert_env_names_strs(t_env *head);
 char	**convert_env_strs(t_env *head);
 t_plot	*plotlink_last(t_plot *plots);
 t_plot	*plotlink_new(char *cmd);
@@ -81,9 +82,14 @@ void	exit_program(t_param *param);
 
 /*	BUILTIN	*/
 
-void	env(int argc, char **argv, char **env);
+int		env(int argc, char **argv, char **env);
+int		ft_export(int argc, char **argv, t_env *env);
 int		unset(int argc, char **argv, t_env *env);
 int		echo(int argc, char **cmd_arg);
 int		pwd(int argc, char **argv, char **env);
+
+/*	BUILTIN UTILS	*/
+
+void	sort_strs(char **strs);
 
 #endif

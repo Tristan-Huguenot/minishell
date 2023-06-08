@@ -19,7 +19,7 @@ void	print_strs(char **strs)
 	i = 0;
 	while (strs[i])
 	{
-		ft_printf("\t\t%s\n", strs[i]);
+		printf("\t\t%s\n", strs[i]);
 		i++;
 	}
 }
@@ -31,17 +31,17 @@ void	print_plots(t_plot *plots)
 	i = 1;
 	while (plots)
 	{
-		ft_printf("plot %d:\n", i);
+		printf("plot %d:\n", i);
 		if (plots->cmd)
-			ft_printf("\tcmd : %s\n", plots->cmd);
+			printf("\tcmd : %s\n", plots->cmd);
 		if (plots->cmd_arg)
 		{
-			ft_printf("\tcmd_arg :\n", i);
+			printf("\tcmd_arg :\n");
 			print_strs(plots->cmd_arg);
 		}
 		if (plots->redir)
 		{
-			ft_printf("\tredir :\n", i);
+			printf("\tredir :\n");
 			print_strs(plots->redir);
 		}
 		i++;

@@ -48,15 +48,15 @@ SRCS	:=	src/main.c								\
 			src/parsing/parsing_redir_move.c		\
 			src/parsing/wrong_quote.c				\
 			src/parsing/parsing_variable.c			\
-			src/parsing/parsing_variable_utils.c	\
 			src/parsing/is_separator.c				\
 			src/parsing/remove_quote.c				\
 			src/prompt/prompt.c						\
 			src/prompt/need_execution.c				\
+			src/builtin/utils.c						\
 			src/builtin/env.c						\
+			src/builtin/export.c					\
 			src/builtin/unset.c						\
 			src/builtin/echo.c						\
-			src/builtin/pwd.c						\
 
 #TARGETS
 
