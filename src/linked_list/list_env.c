@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:15:52 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/08 16:49:29 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/08 17:04:01 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,7 @@ void	envlink_delvar(t_env **head, char *var)
 		free(loop);
 		return ;
 	}
-	while (loop->next && ft_strncmp(var, loop->next->var, ft_strlen(var)))
-		loop = loop->next;
+	loop = envlink_getnextvar(loop, var);
 	if (!loop || !loop->next)
 		return ;
 	if (loop->next->var)

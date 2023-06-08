@@ -22,6 +22,7 @@ void	error_redir(int i, t_plot *plot, t_param *param);
 
 t_env	*envlink_last(t_env *head);
 t_env	*envlink_getvar(t_env *head, char *var);
+t_env	*envlink_getnextvar(t_env *head, char *var);
 t_env	*envlink_new(char *var, char *content);
 void	envlink_delvar(t_env **head, char *var);
 void	envlink_clear(t_env **head);

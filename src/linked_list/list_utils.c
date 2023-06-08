@@ -65,3 +65,14 @@ t_env	*envlink_getvar(t_env *head, char *var)
 		head = head->next;
 	return (head);
 }
+
+t_env	*envlink_getnextvar(t_env *head, char *var)
+{
+	if (!head)
+		return ;
+	while (head->next && ft_strncmp(head->next->var, var, ft_strlen(var)))
+		head = head->next;
+	if (!head->next)
+		return (NULL);
+	return (head);
+}
