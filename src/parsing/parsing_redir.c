@@ -44,7 +44,7 @@ static int	check_redir(t_plot *plot, t_param *param)
 		{
 			error_redir(i, plot, param);
 			n = -1;
-			break;
+			break ;
 		}
 		i = jump_next_charset(plot->cmd, i, CS_REDIR);
 	}
