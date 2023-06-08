@@ -30,11 +30,11 @@ creer une fonction qui verifie si Bulting sinon go execve
 
 6 - BUILTNGS
 
-echo NIL
+7 - gérer les signaux
+
+DONE echo NIL
 cd 
 pwd NIL getcwd, 
-export TRISTAN
-unset TRISTAN
+export TRISTAN comme exit, si dans un pipe se fait dans un enfant et la variable exporte ou modifier ne l est que dans l enfant
+DONE unset TRISTAN
 exit 
-
-gérer les signaux
