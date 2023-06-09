@@ -44,6 +44,8 @@ void	error_handler(int err, char	*progname, char *name)
 		ft_fprintf(2, "%s: syntax error near unexpected token '%s'\n", \
 		progname, name);
 	}
+	else if (err == E_IDENTIFIER)
+		ft_fprintf(2, "%s: 'name': not a valid identifier\n", progname, *name);
 }
 
 void	error_redir(int i, t_plot *plot, t_param *param)

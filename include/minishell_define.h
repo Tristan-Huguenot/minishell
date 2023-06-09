@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/09 00:07:59 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/09 02:00:07 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # define CS_WSPACE " \b\t\n\v\f\r"
 # define CS_QUOTE "\'\""
 # define CS_REDIR "<>"
+# define CS_IDENTIFIER ""
 
 /*	ENUM ERRORS	*/
 
@@ -30,6 +31,7 @@ enum e_error {
 	E_ARGC = 1000,
 	E_WQUOTE,
 	E_TOKEN,
+	E_IDENTIFIER,
 };
 
 /* ENUM BUILTIN */
