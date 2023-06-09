@@ -49,11 +49,14 @@ char	**convert_env_strs(t_env *head)
 	i = 0;
 	while (head)
 	{
-		tmp = ft_strjoin(head->var, "=");
-		strs[i] = ft_strjoin_free(tmp, head->content);
-		if (!strs[i])
-			return (strs);
-		head = head->next;
+		if (head->content)
+		{
+			tmp = ft_strjoin(head->var, "=");
+			strs[i] = ft_strjoin_free(tmp, head->content);
+			if (!strs[i])
+				return (strs);
+			head = head->next;
+		}
 		i++;
 	}
 	return (strs);
