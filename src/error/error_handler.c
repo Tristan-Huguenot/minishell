@@ -55,9 +55,9 @@ void	error_redir(int i, t_plot *plot, t_param *param)
 	if (!plot->cmd[i])
 	{
 		if (plot->next)
-			error_handler(E_TOKEN, param, "|");
+			error_handler(E_TOKEN, param->progname, "|");
 		else
-			error_handler(E_TOKEN, param, "newline");
+			error_handler(E_TOKEN, param->progname, "newline");
 	}
 	else
 	{
@@ -67,6 +67,6 @@ void	error_redir(int i, t_plot *plot, t_param *param)
 		else
 			c[1] = '\0';
 		c[2] = '\0';
-		error_handler(E_TOKEN, param, c);
+		error_handler(E_TOKEN, param->progname, c);
 	}
 }

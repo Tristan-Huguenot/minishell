@@ -23,6 +23,8 @@ static char	*jump_next_pipe(char *input)
 
 static void	init_plot(t_param *param, char *input)
 {
+	t_plot	*plot;
+	char	*tmp;
 	char	*pipe;
 	int		i;
 
@@ -35,7 +37,14 @@ static void	init_plot(t_param *param, char *input)
 		pipe--;
 		i++;
 	}
-	plotlink_addback(&param->plots, plotlink_new(ft_substr(input, 0, i)));
+	plot = NULL;
+	tmp = ft_substr(input, 0, i);
+	if (tmp)
+		plot = plotlink_new(tmp);
+	if (plot)
+		plotlink_addback(&param->plots, plot);
+	else
+		free(tmp);
 }
 
 void	init_plots(t_param *param, char *input)
@@ -52,9 +61,9 @@ void	init_plots(t_param *param, char *input)
 		{
 			if ((*input && *(input + 1) == '|')
 				|| (input != tmp && *(input - 1) == '|'))
-				error_handler(E_TOKEN, param, "||");
+				error_handler(E_TOKEN, param->progname, "||");
 			else if (!input || (*input && *(input + 1) != '|'))
-				error_handler(E_TOKEN, param, "|");
+				error_handler(E_TOKEN, param->progname, "|");
 			if (param->plots && *input)
 				plotlink_clear(&param->plots);
 			g_return = ENOENT;

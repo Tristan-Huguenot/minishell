@@ -44,7 +44,7 @@ int	parsing(t_param *param, char *input)
 	quote = wrong_quote(input);
 	if (quote)
 	{
-		error_handler(E_WQUOTE, param, &quote);
+		error_handler(E_WQUOTE, param->progname, &quote);
 		return (1);
 	}
 	else
