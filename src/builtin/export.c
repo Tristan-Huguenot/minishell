@@ -1,8 +1,10 @@
 #include "minishell.h"
 
-void	print_env(t_env *env)
+static void	print_env(t_env *env)
 {
+	t_env	*tmp_env;
 	char	**names;
+	char	*tmp_content;
 	int		i;
 
 	names = convert_env_names_strs(env);
@@ -13,19 +15,82 @@ void	print_env(t_env *env)
 	while (names[i])
 	{
 		if (ft_strncmp(names[i], "_", 2) != 0)
-			printf("declare -x %s=\"%s\"\n", names[i], \
-			(envlink_getvar(env, names[i]))->content);
+		{
+			tmp_content = NULL;
+			tmp_env = envlink_getvar(env, names[i]);
+			if (tmp_env)
+				tmp_content = tmp_env->content;
+			if (tmp_content)
+				printf("declare -x %s=\"%s\"\n", names[i], tmp_content);
+			else
+				printf("declare -x %s\n", names[i]);	
+		}
 		i++;
 	}
 }
 
+static int	check_identifier(char *arg, int end)
+{
+	int	i;
+
+	i = 0;
+	if (ft_isdigit(arg[i]))
+		return (1);
+	while (i < end)
+	{
+		if (arg[i] != '_' || !ft_isalnum(arg[i]))
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+static int	handle_arg(char *arg, t_env *env)
+{
+	t_env	*new;
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	while(arg[i] && arg[i] != '+' && arg[i] != '=')
+		i++;
+	if (i == 0 || check_identifier(arg, i))
+		error_handler(E_IDENTIFIER, "export", arg);
+	if (i == 0 || check_identifier(arg, i))
+		return (1);
+	if (!arg[i])
+	{
+		new = NULL;
+		tmp = ft_strdup(arg);
+		if (tmp)
+			new = envlink_new(tmp, NULL);
+		if (new)
+			envlink_addback(&env, new);
+		else
+			free(tmp);
+	}
+	//else
+	//	create_nonull_var(i, argc, env)
+	return (0);
+}
+
 int	ft_export(int argc, char **argv, t_env *env)
 {
+	int	i;
+	int	ret;
+
 	if (argc == 1)
 	{
 		print_env(env);
 		return (0);
 	}
-	(void)argv;
-	return (0);
+	ret = 0;
+	i = 1;
+	while (i < argc)
+	{
+		if (handle_arg(argv[i], env))
+			ret = 1;
+		i++;
+	}
+	return (ret);
 }
