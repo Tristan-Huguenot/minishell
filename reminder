@@ -32,19 +32,38 @@ creer une fonction qui verifie si Bulting sinon go execve
 
 7 - gérer les signaux
 
-DONE env -> precision, env n affiche pas les variable NULL c est a dire
-les variables definie comme ceci > "export VAR"
-contrairement a "export VAR=" qui n est pas NULL mais vide
-quand on appelle un exe on lui transmet les variables env mais pas
-les NULL du coup j ai modifier convert_env_strs pour ne transformer que
-les VAR non NULL le seul probleme c est que on peut allouer trop de
-memoire vu que ca se base sur envlink_size qui compte sans distinction
-des content NULL
-J ai verifier aussi d export une VAR NULL et ensuite de lancer un autre bash, il ne recupere pas les variables NULL donc le convert_env_strs marchera niquel pour les execve en occultant les NULL
+DONE env ->
+	precision, env n affiche pas les variable NULL c est a dire
+	les variables definie comme ceci > "export VAR"
+	contrairement a "export VAR=" qui n est pas NULL mais vide
+	quand on appelle un exe on lui transmet les variables env mais pas
+	les NULL du coup j ai modifier convert_env_strs pour ne transformer que
+	les VAR non NULL le seul probleme c est que on peut allouer trop de
+	memoire vu que ca se base sur envlink_size qui compte sans distinction
+	des content NULL
+	J ai verifier aussi d export une VAR NULL et ensuite de lancer un autre bash, 
+	il ne recupere pas les variables NULL donc le convert_env_strs marchera niquel
+	pour les execve en occultant les NULL
 
 DONE echo NIL
 cd 
 pwd NIL getcwd, 
-export TRISTAN comme exit, si dans un pipe se fait dans un enfant et la variable exporte ou modifier ne l est que dans l enfant
+export TRISTAN 
+	comme exit, si dans un pipe se fait dans un enfant et la variable
+	export ou modifier ne l est que dans l enfant
+
+	Les noms peuvent contenir chiffres (mais pas commencer par) et lettres et _ , d ailleurs il faudrat peut etre ajouter 
+	des "|| char == '_'" dans les conditions de lecture du nom de variable
+	pendant l interpretation
+
+	si le nom est pas bon conduit a une erreur IDENTIFIER avec la chaine de char concerne
+	Ca me fait me demander, on doit pas gerer les charactere speciaux 
+	pour minishell, on devrait les chercher tous en faire un define 
+	et si on tombe dessus dans l'input (sauf dans les quote et double)
+	on fait un unexpected token,
+
+	et pour finir comme dit plus haut "export VAR" la variable est nul
+									  "export VAR=" variable vide
+
 DONE unset TRISTAN
 exit 
