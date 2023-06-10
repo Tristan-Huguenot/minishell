@@ -37,6 +37,30 @@ static int	parsing_plot(t_param *param)
 	return (0);
 }
 
+static int	check_unmanaged_token(t_param *param, char *input)
+{
+	int		i;
+	char	c[2];
+
+	i = 0;
+	while (input[i])
+	{
+		if (ft_char_in_set(input[i], CS_QUOTE))
+			i = first_quote(input, i, input[i]);
+		if (i == -1)
+			return (0);
+		if (ft_char_in_set(input[i], CS_UTOKEN))
+		{
+			c[0] = input[i];
+			c[1] = 0;
+			error_handler(E_UTOKEN, param->progname, c);
+			return (1);
+		}
+		i++;
+	}
+	return (0);
+}
+
 int	parsing(t_param *param, char *input)
 {
 	char	quote;
@@ -49,6 +73,8 @@ int	parsing(t_param *param, char *input)
 	}
 	else
 	{
+		if (check_unmanaged_token(param, input))
+			return (1);
 		init_plots(param, input);
 		if (!param->plots)
 			return (1);
