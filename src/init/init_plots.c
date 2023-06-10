@@ -61,7 +61,7 @@ void	init_plots(t_param *param, char *input)
 		{
 			if ((*input && *(input + 1) == '|')
 				|| (input != tmp && *(input - 1) == '|'))
-				error_handler(E_TOKEN, param->progname, "||");
+				error_handler(E_UTOKEN, param->progname, "||");
 			else if (!input || (*input && *(input + 1) != '|'))
 				error_handler(E_TOKEN, param->progname, "|");
 			if (param->plots && *input)
