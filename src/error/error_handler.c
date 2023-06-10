@@ -44,6 +44,11 @@ void	error_handler(int err, char	*progname, char *name)
 		ft_fprintf(2, "%s: syntax error near unexpected token '%s'\n", \
 		progname, name);
 	}
+	else if (err == E_UTOKEN)
+	{
+		ft_fprintf(2, "%s: syntax error near unmanaged token '%s'\n", \
+		progname, name);
+	}
 	else if (err == E_IDENTIFIER)
 		ft_fprintf(2, "%s: '%s': not a valid identifier\n", progname, name);
 }
