@@ -34,20 +34,30 @@ static void	init_paths(t_param *param)
 
 static void	init_env(t_param *param, char **envp)
 {
-	int	i;
-	int y;
+	t_env	*new;
+	char	*tmp[2];
+	int		i[2];
 	
 	if (!envp)
 		return ;
-	i = 0;
-	while (envp[i])
+	i[0] = 0;
+	while (envp[i[0]])
 	{
-		y = 0;
-		while (envp[i][y] != '=')
-			y++;
-		envlink_addback(&param->env, envlink_new(ft_substr(envp[i], 0, y), \
-		ft_strdup(envp[i] + y + 1)));
-		i++;
+		new = NULL;
+		i[1] = 0;
+		while (envp[i[0]][i[1]] != '=')
+			i[1]++;
+		tmp[0] = ft_substr(envp[i[0]], 0, i[1]);
+		tmp[1] = ft_strdup(envp[i[0]] + i[1] + 1);
+		if (tmp[0] && tmp[1])
+			new = envlink_new(tmp[0], tmp[1]);
+		if (new)
+			envlink_addback(&param->env, new);
+		if (!new && tmp[0])
+			free(tmp[0]);
+		if (!new && tmp[1])
+			free(tmp[1]);
+		i[0]++;
 	}
 }
 
