@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/10 17:02:08 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/10 17:10:44 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@
 # define CS_WSPACE " \b\t\n\v\f\r"
 # define CS_QUOTE "\'\""
 # define CS_REDIR "<>"
-# define CS_UTOKEN "\\\;\#\&\(\)"
+# define CS_UTOKEN "\\;#&()"
 
 /*	ENUM ERRORS	*/
 
