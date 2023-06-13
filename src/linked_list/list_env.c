@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/08 16:15:52 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/08 17:04:01 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/13 20:57:54 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,32 +36,31 @@ t_env	*envlink_new(char *var, char *content)
 
 void	envlink_delvar(t_env **head, char *var)
 {
-	t_env	*loop;
-	t_env	*tmp;
+	t_env	*tmp[2];
 
 	if (!*head)
 		return ;
-	loop = *head;
-	if (!ft_strncmp(var, loop->var, ft_strlen(var)))
+	tmp[0] = *head;
+	if (!ft_strncmp(var, tmp[0]->var, ft_strlen(var)))
 	{	
-		if (loop->var)
-			free(loop->var);
-		if (loop->content)
-			free(loop->content);
+		if (tmp[0]->var)
+			free(tmp[0]->var);
+		if (tmp[0]->content)
+			free(tmp[0]->content);
 		*head = (*head)->next;
-		free(loop);
+		free(tmp[0]);
 		return ;
 	}
-	loop = envlink_getnextvar(loop, var);
-	if (!loop || !loop->next)
+	tmp[0] = envlink_getnextvar(tmp[0], var);
+	if (!tmp[0] || !tmp[0]->next)
 		return ;
-	if (loop->next->var)
-		free(loop->next->var);
-	if (loop->next->content)
-		free(loop->next->content);
-	tmp = loop->next->next;
-	free(loop->next);
-	loop->next = tmp;
+	if (tmp[0]->next->var)
+		free(tmp[0]->next->var);
+	if (tmp[0]->next->content)
+		free(tmp[0]->next->content);
+	tmp[1] = tmp[0]->next->next;
+	free(tmp[0]->next);
+	tmp[0]->next = tmp[1];
 }
 
 void	envlink_clear(t_env **head)
