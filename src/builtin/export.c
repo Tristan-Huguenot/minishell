@@ -2,7 +2,6 @@
 
 static void	print_env(t_env *env)
 {
-	t_env	*tmp_env;
 	char	**names;
 	char	*tmp_content;
 	int		i;
@@ -17,9 +16,8 @@ static void	print_env(t_env *env)
 		if (ft_strncmp(names[i], "_", 2) != 0)
 		{
 			tmp_content = NULL;
-			tmp_env = envlink_getvar(env, names[i]);
-			if (tmp_env)
-				tmp_content = tmp_env->content;
+			if (envlink_getvar(env, names[i]) != NULL)
+				tmp_content = envlink_getvar(env, names[i])->content;
 			if (tmp_content)
 				printf("declare -x %s=\"%s\"\n", names[i], tmp_content);
 			else
@@ -27,6 +25,7 @@ static void	print_env(t_env *env)
 		}
 		i++;
 	}
+	ft_free_strs(names);
 }
 
 static int	check_identifier(char *arg, int end)
