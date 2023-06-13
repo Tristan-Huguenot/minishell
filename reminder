@@ -69,4 +69,14 @@ export TRISTAN
 									  "export VAR=" variable vide
 
 DONE unset TRISTAN
-exit 
+
+exit
+	
+	Plus d infor :	effectivement return le modulo 255 sur 8 bits donc
+	long, et ensuite verifie si ce modulo est entre 0 - 127 et apres
+	ce sont les signaux 128 + N (si en dehors range renvoir 0)
+								ou N[0 - nombre de signaux gerer]. 
+
+	Bash gere 7 signaux a partir de 0 donc 128 ... 134, je suppose que
+	nous on devrait le mettre a 130, 
+	pour l instant je vois que 3 signaux mais a voir.
