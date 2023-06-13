@@ -55,8 +55,8 @@ char	**convert_env_strs(t_env *head)
 			strs[i] = ft_strjoin_free(tmp, head->content);
 			if (!strs[i])
 				return (strs);
-			head = head->next;
 		}
+		head = head->next;
 		i++;
 	}
 	return (strs);
