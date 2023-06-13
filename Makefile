@@ -41,7 +41,6 @@ SRCS	:=	src/main.c								\
 			src/exit/exit_program.c					\
 			src/files/files_compute.c				\
 			src/error/error_handler.c				\
-			src/parsing/parsing_prompt.c			\
 			src/parsing/parsing.c					\
 			src/parsing/parsing_arg.c				\
 			src/parsing/parsing_redir.c				\

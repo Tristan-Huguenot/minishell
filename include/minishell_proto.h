@@ -54,7 +54,6 @@ void	move_redir(t_plot *plot, int size);
 int		jump_next_charset(char *cmd, int i, char *charset);
 int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
-void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
 char	*parsing_variable(char *str, t_env *env);
 int		remove_dol(char **str, int i);
