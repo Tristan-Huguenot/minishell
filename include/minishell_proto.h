@@ -58,10 +58,12 @@ void	parsing_prompt(char *input);
 void	parsing_redirection(char **input, int st);
 char	*parsing_variable(char *str, t_env *env);
 int		remove_dol(char **str, int i);
+int		remove_dol_num(char **str, int i);
 int		interpret_var_changement(char **str, t_env *env, int i, int tmp);
 int		interpretation_var(char **str, int i, t_env *env);
 char	*find_var(char **str, t_env	*env);
-char	*there_is_quote_to_remove(char *str);
+char	**split_tmp_var(char *str);
+char	*there_is_quote_to_remove(char *str); 
 
 /*	PROMPT	*/
 

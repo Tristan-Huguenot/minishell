@@ -18,7 +18,10 @@ DONE 3b - separer args en laissant quotes  --> a voir
 
 DONE 3 c -suprimer les quotes  --> NIL
 
-DONE Ajouter interpretation $?
+IN progress  Ajouter interpretation $?  ->   penser à $12dsfsgd ça donne 2dsfsgd et 						rajouter les '_'  comme char valide.
+
+			
+
 
 creer une fonction qui verifie si Bulting sinon go execve 
 
