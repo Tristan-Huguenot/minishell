@@ -88,5 +88,4 @@ void	move_redir(t_plot *plot, int size)
 		plot->cmd = tmp;
 		i++;
 	}
-
 }

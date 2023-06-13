@@ -37,7 +37,7 @@ static void	init_env(t_param *param, char **envp)
 	t_env	*new;
 	char	*tmp[2];
 	int		i[2];
-	
+
 	if (!envp)
 		return ;
 	i[0] = 0;
@@ -63,7 +63,7 @@ static void	init_env(t_param *param, char **envp)
 
 static char	*init_prompt(char *name)
 {
-	char 	*tmp;
+	char	*tmp;
 	char	*prompt;
 
 	prompt = ft_strjoin(PROMPTC, name);

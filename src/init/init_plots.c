@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static char *pass_white_space(char *input)
+static char	*pass_white_space(char *input)
 {
 	if (!*input)
 		return (input);
@@ -18,7 +18,7 @@ static char	*jump_next_pipe(char *input)
 		if (*input && *input != '|')
 			input++;
 	}
-	return (input);	
+	return (input);
 }
 
 static void	init_plot(t_param *param, char *input)
