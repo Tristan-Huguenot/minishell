@@ -34,7 +34,7 @@ static void	do_builtin(t_plot *plot, t_env **envp, int builtin)
 	else if (builtin == PWD)
 		g_return = 0;// pwd(plot->argc, plot->cmd_arg, envp);
 	else if (builtin == EXPORT)
-		g_return = ft_export(plot->argc, plot->cmd_arg, *envp);
+		g_return = ft_export(plot->argc, plot->cmd_arg, envp);
 	else if (builtin == UNSET)
 		g_return = unset(plot->argc, plot->cmd_arg, envp);
 	else if (builtin == ENV)
