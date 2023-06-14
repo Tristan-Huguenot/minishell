@@ -52,12 +52,13 @@ char	**convert_env_strs(t_env *head)
 		if (head->content)
 		{
 			tmp = ft_strjoin(head->var, "=");
-			strs[i] = ft_strjoin_free(tmp, head->content);
+			strs[i] = ft_strjoin(tmp, head->content);
+			free(tmp);
 			if (!strs[i])
 				return (strs);
+			i++;
 		}
 		head = head->next;
-		i++;
 	}
 	return (strs);
 }
