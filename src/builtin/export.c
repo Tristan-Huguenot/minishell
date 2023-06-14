@@ -32,19 +32,36 @@ static int	check_identifier(char *arg, int end)
 {
 	int	i;
 
+	if (!arg[0])
+		return (0);
 	i = 0;
 	if (ft_isdigit(arg[i]))
 		return (1);
 	while (i < end)
 	{
-		if (arg[i] != '_' || !ft_isalnum(arg[i]))
+		if (arg[i] != '_' && !ft_isalnum(arg[i]))
 			return (1);
 		i++;
 	}
+	if (arg[end] && arg[end] == '+' && arg[end + 1] != '=')
+		return (1);
 	return (0);
 }
 
-static int	handle_arg(char *arg, t_env *env)
+static void	export_nonull(int middle, char *arg, t_env **env)
+{
+	char	*var;
+
+	var = ft_substr(arg, 0, middle);
+	if (!var)
+		return ;
+	if (arg[middle] != '=' && envlink_getvar(*env, var))
+		export_adding(arg + middle + 2, var, *env);
+	else
+		export_create(arg + middle, var, env);
+}
+
+static int	handle_arg(char *arg, t_env **env)
 {
 	t_env	*new;
 	char	*tmp;
@@ -57,30 +74,30 @@ static int	handle_arg(char *arg, t_env *env)
 		error_handler(E_IDENTIFIER, "export", arg);
 	if (i == 0 || check_identifier(arg, i))
 		return (1);
-	if (!arg[i])
+	if (!arg[i] && !envlink_getvar(*env, arg))
 	{
 		new = NULL;
 		tmp = ft_strdup(arg);
 		if (tmp)
 			new = envlink_new(tmp, NULL);
 		if (new)
-			envlink_addback(&env, new);
+			envlink_addback(env, new);
 		else
 			free(tmp);
 	}
-	//else
-	//	create_nonull_var(i, argc, env)
+	else if (arg[i])
+		export_nonull(i, arg, env);
 	return (0);
 }
 
-int	ft_export(int argc, char **argv, t_env *env)
+int	ft_export(int argc, char **argv, t_env **env)
 {
 	int	i;
 	int	ret;
 
 	if (argc == 1)
 	{
-		print_env(env);
+		print_env(*env);
 		return (0);
 	}
 	ret = 0;
