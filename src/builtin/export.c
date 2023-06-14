@@ -21,7 +21,7 @@ static void	print_env(t_env *env)
 			if (tmp_content)
 				printf("declare -x %s=\"%s\"\n", names[i], tmp_content);
 			else
-				printf("declare -x %s\n", names[i]);	
+				printf("declare -x %s\n", names[i]);
 		}
 		i++;
 	}
@@ -68,7 +68,7 @@ static int	handle_arg(char *arg, t_env **env)
 	int		i;
 
 	i = 0;
-	while(arg[i] && arg[i] != '+' && arg[i] != '=')
+	while (arg[i] && arg[i] != '+' && arg[i] != '=')
 		i++;
 	if (i == 0 || check_identifier(arg, i))
 		error_handler(E_IDENTIFIER, "export", arg);
