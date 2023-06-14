@@ -7,7 +7,7 @@ int	split_element_without_quote(char *str, int i)
 		if (ft_char_in_set(str[i], CS_WSPACE))
 		{
 			i++;
-			break;
+			break ;
 		}
 		i++;
 	}
@@ -27,12 +27,6 @@ int	split_element(char *str, int i)
 			tmp++;
 			i++;
 		}
-		// else if (str[i] && ft_char_in_set(str[i], CS_WSPACE))
-		// {
-			// while (str[i] && ft_char_in_set(str[i], CS_WSPACE))
-				// i++;
-			// tmp++;
-		// }
 		else if (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
 		{
 			i = split_element_without_quote(str, i);
@@ -42,7 +36,7 @@ int	split_element(char *str, int i)
 	return (tmp);
 }
 
-// int	split_sub(int i, int tmp, char **str_split,i char *str)
+// int	split_sub(int i, int tmp, char **str_split, char *str)
 // {
 	// return (i);
 // }
@@ -61,22 +55,12 @@ char	**split_tmp_var(char *str)
 	tmp = i;
 	while (str[i])
 	{
-		// printf("i = %d \t\t\t tmp = %d\n", i, tmp);
 		// split_sub(i, tmp, str_split, str);
 		if (str[i] && ft_char_in_set(str[i], CS_QUOTE))
 		{
 			i = first_quote(str, i, str[i]);
 			str_split[j] = ft_substr(str, tmp, i - tmp + 1);
-			// printf("-------\n str_split[j] = |%s|\n -------------\n", str_split[j]);
 		}
-		// else if (str[i] && !ft_char_in_set(str[i], CS_QUOTE) && ft_char_in_set(str[i], CS_WSPACE))
-		// {
-			// while (str[i] && !ft_char_in_set(str[i], CS_QUOTE) && ft_char_in_set(str[i], CS_WSPACE))
-				// i++;
-			// str_split[j] = ft_substr(str, tmp, i - tmp);
-			// printf("-------\n str_split[j] = |%s|\n -------------\n", str_split[j]);
-			// i--;
-		// }
 		else if (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
 		{
 			while (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
@@ -84,12 +68,11 @@ char	**split_tmp_var(char *str)
 				if (ft_char_in_set(str[i], CS_WSPACE))
 				{
 					i++;
-					break;
+					break ;
 				}
 				i++;
 			}
 			str_split[j] = ft_substr(str, tmp, i - tmp);
-			// printf("-------\n str_split[j] = |%s|\n -------------\n", str_split[j]);
 			i--;
 		}
 		i++;

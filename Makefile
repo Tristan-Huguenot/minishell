@@ -59,6 +59,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/export_utils.c				\
 			src/builtin/unset.c						\
 			src/builtin/echo.c						\
+			src/builtin/pwd.c						\
 
 #TARGETS
 

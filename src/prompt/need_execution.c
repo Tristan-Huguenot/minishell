@@ -25,14 +25,14 @@ static int	is_builtin(char *str)
 static void	do_builtin(t_plot *plot, t_env **envp, int builtin)
 {
 	char	**tmp;
-		
+
 	tmp = convert_env_strs(*envp);
 	if (builtin == ECHO)
 		g_return = echo(plot->argc, plot->cmd_arg);
 	else if (builtin == CD)
 		g_return = 0 ;
 	else if (builtin == PWD)
-		g_return = 0;// pwd(plot->argc, plot->cmd_arg, envp);
+		g_return = pwd();
 	else if (builtin == EXPORT)
 		g_return = ft_export(plot->argc, plot->cmd_arg, envp);
 	else if (builtin == UNSET)

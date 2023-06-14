@@ -79,7 +79,7 @@ void	exit_program(t_param *param);
 int		env(int argc, char **argv, char **env);
 int		unset(int argc, char **argv, t_env **env);
 int		echo(int argc, char **cmd_arg);
-int		pwd(int argc, char **argv, char **env);
+int		pwd(void);
 void	sort_strs(char **strs);
 	
 	/*	EXPORT	*/
