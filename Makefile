@@ -56,6 +56,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/utils.c						\
 			src/builtin/env.c						\
 			src/builtin/export.c					\
+			src/builtin/export_utils.c				\
 			src/builtin/unset.c						\
 			src/builtin/echo.c						\
 

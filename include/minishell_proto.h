@@ -77,13 +77,15 @@ void	exit_program(t_param *param);
 /*	BUILTIN	*/
 
 int		env(int argc, char **argv, char **env);
-int		ft_export(int argc, char **argv, t_env *env);
 int		unset(int argc, char **argv, t_env **env);
 int		echo(int argc, char **cmd_arg);
 int		pwd(int argc, char **argv, char **env);
-
-/*	BUILTIN UTILS	*/
-
 void	sort_strs(char **strs);
+	
+	/*	EXPORT	*/
+
+int		ft_export(int argc, char **argv, t_env **env);
+void	export_adding(char *arg, char *name, t_env *env);
+void	export_create(char *arg, char *name, t_env **env);
 
 #endif
