@@ -14,7 +14,10 @@ char	*find_var(char **str, t_env	*env)
 			if (ft_strncmp(*str, env->var, size) == 0)
 			{
 				free(*str);
-				*str = ft_strdup(env->content);
+				if (env->content)
+					*str = ft_strdup(env->content);
+				else
+					*str = ft_strdup("");
 				return (*str);
 			}
 		}
@@ -61,7 +64,7 @@ int	interpretation_var(char **str, int i, t_env *env)
 		return (i);
 	}
 	else if (!(*str)[i] || !(ft_isalnum((*str)[i]) || (*str)[i] == '_'))
-		return (i + 1);
+		return (i);
 	while ((*str)[i] && (ft_isalnum((*str)[i]) || (*str)[i] == '_'))
 		i++;
 	if (!(ft_isalnum((*str)[i])) || (*str)[i] == '|')

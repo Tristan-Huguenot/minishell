@@ -45,7 +45,6 @@ int	interpretation_var_q(char **str, int i, int j, t_env *env)
 	return (j);
 }
 
-
 int	interpretation_dollar(char **str, int i, int j, t_env *env)
 {
 	if (str[i][0] == '\"')
@@ -96,7 +95,7 @@ char	*parsing_variable(char *str, t_env *env)
 		j = 0;
 		if (str_tmp[i][j] != '\'' )
 		{
-			while (str_tmp[i][j])
+			while (str_tmp[i] && str_tmp[i][j])
 			{			
 				if (str_tmp[i][j] == '$')
 					j = interpretation_dollar(str_tmp, i, j, env);

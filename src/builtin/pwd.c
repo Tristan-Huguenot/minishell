@@ -6,7 +6,7 @@ int	pwd(void)
 
 	buf = malloc(sizeof(char) * PATH_MAX);
 	if (!buf)
-		return (1);
+		return (12);
 	if (!getcwd(buf, PATH_MAX))
 		perror("pwd error:");
 	else
