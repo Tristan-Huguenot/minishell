@@ -55,6 +55,8 @@ static void	export_nonull(int middle, char *arg, t_env **env)
 	var = ft_substr(arg, 0, middle);
 	if (!var)
 		return ;
+	if (!ft_strncmp(var, "_", 2))
+		return ;
 	if (arg[middle] != '=' && envlink_getvar(*env, var))
 		export_adding(arg + middle + 2, var, *env);
 	else
