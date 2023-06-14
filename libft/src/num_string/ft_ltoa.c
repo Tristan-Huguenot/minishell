@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/06/14 15:32:54 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/14 15:33:57 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/15 01:24:19 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ static char	*fill_itoa(int n, unsigned long nb, long int div, char *str)
 		div /= 10;
 		i++;
 	}
-	str[i] = '\0';
 	return (str);
 }
 
@@ -52,7 +51,7 @@ char	*ft_ltoa(long n)
 		len++;
 	}
 	len++;
-	str = malloc(sizeof(*str) * (len + 1));
+	str = ft_calloc(len + 1, sizeof(*str));
 	if (str == NULL)
 		return (str);
 	str = fill_itoa(n, nb, div, str);
