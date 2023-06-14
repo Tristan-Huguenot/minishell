@@ -1,4 +1,3 @@
-
 #ifndef MINISHELL_PROTO_H
 # define MINISHELL_PROTO_H
 
@@ -62,7 +61,7 @@ int		interpret_var_changement(char **str, t_env *env, int i, int tmp);
 int		interpretation_var(char **str, int i, t_env *env);
 char	*find_var(char **str, t_env	*env);
 char	**split_tmp_var(char *str);
-char	*there_is_quote_to_remove(char *str); 
+char	*there_is_quote_to_remove(char *str);
 
 /*	PROMPT	*/
 
@@ -81,7 +80,7 @@ int		unset(int argc, char **argv, t_env **env);
 int		echo(int argc, char **cmd_arg);
 int		pwd(void);
 void	sort_strs(char **strs);
-	
+
 	/*	EXPORT	*/
 
 int		ft_export(int argc, char **argv, t_env **env);
