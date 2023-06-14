@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/06/14 15:08:19 by thugueno         ###   ########.fr        #
+#    Updated: 2023/06/14 15:33:48 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -122,6 +122,7 @@ STRING		:= 	src/string/ft_strlen.c			\
 NUM_STRING	:=	src/num_string/ft_atoi.c		\
 				src/num_string/ft_atol.c		\
 				src/num_string/ft_itoa.c		\
+				src/num_string/ft_ltoa.c		\
 				src/num_string/ft_ultoa_base.c	\
 
 MATH		:=	src/math/ft_power.c	\
