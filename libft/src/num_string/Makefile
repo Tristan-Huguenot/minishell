@@ -6,7 +6,7 @@
 #    By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/13 01:34:31 by thugueno          #+#    #+#              #
-#    Updated: 2023/06/03 03:05:22 by thugueno         ###   ########.fr        #
+#    Updated: 2023/06/14 15:08:34 by thugueno         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,6 +37,7 @@ MODULE		:=	num_string/
 #PREREQUISITES
 
 SRCS		:=	ft_atoi.c		\
+				ft_atol.c		\
 				ft_itoa.c		\
 				ft_ultoa_base.c	\
 
