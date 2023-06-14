@@ -6,7 +6,7 @@ int	env(int argc, char **argv, char **env)
 
 	if (argc > 1)
 	{
-		printf("%s: too many argments\n", argv[0]);
+		error_handler(E_TMARG, argv[0], NULL);
 		return (1);
 	}
 	i = 0;

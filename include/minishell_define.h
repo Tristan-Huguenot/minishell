@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/10 17:10:44 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/15 00:08:55 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 
 enum e_error {
 	E_ARGC = 1000,
+	E_TMARG,
 	E_WQUOTE,
 	E_TOKEN,
 	E_UTOKEN,

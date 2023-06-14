@@ -51,6 +51,13 @@ void	error_handler(int err, char	*progname, char *name)
 	}
 	else if (err == E_IDENTIFIER)
 		ft_fprintf(2, "%s: '%s': not a valid identifier\n", progname, name);
+	else if (err == E_TMARG)
+	{
+		if (name)
+			ft_fprintf(2, "%s: %s: too many arguments\n", progname, name);
+		else
+			ft_fprintf(2, "%s: too many arguments\n", progname);
+	}
 }
 
 void	error_redir(int i, t_plot *plot, t_param *param)
