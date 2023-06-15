@@ -80,11 +80,8 @@ int		unset(int argc, char **argv, t_env **env);
 int		echo(int argc, char **cmd_arg);
 int		pwd(void);
 void	sort_strs(char **strs);
-<<<<<<< HEAD
-int		cd(int argc, char **argv, t_env **env);
-=======
+int		cd(int argc, char **argv, t_param *param);
 void	ft_exit(int argc, char **argv, t_param *param);
->>>>>>> 0d814082da504783338f6c018716c665e5aa7381
 
 	/*	EXPORT	*/
 

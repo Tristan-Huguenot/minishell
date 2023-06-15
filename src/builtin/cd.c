@@ -1,14 +1,12 @@
 #include "minishell.h"
 
-void	cd_path_env(t_env *env, char *str, char **str_var)
+void	cd_path_env(t_env *env, char *str, char *str_replace, char **str_var)
 {
-	// char	**names;
-
 	while (env->next)
 	{
 		if (!ft_strncmp(env->var, str, ft_strlen(str)))
 		{
-			*str_var = ft_strdup("OLDPWD");
+			*str_var = ft_strdup(str_replace);
 			*str_var = ft_strjoin_free(*str_var, "=");
 			*str_var = ft_strjoin_free(*str_var, env->content);
 			return ;
@@ -17,47 +15,84 @@ void	cd_path_env(t_env *env, char *str, char **str_var)
 	}
 }
 
-int	cd_path(int argc, char **argv, t_env **env)
+char	*there_is_slash(char *argv)
 {
-	char	*str_var[2];
+	int		i;
+	char	*str_tmp;
 
-	*str_var = malloc(sizeof(char *) + 1);
-	// (void)argc;
-	str_var[0] = NULL;
-	// str[0] = pwd;
-	// str[1] = old_pwd;
-	// str[2] = tmp];
+	i = 0;
+	if (argv[i] != '/')
+	{
+		argv = ft_strjoin("/", argv);
+	}
+	while (argv[i])
+		i++;
+	i--;
+	if (argv[i] == '/')
+	{
+		str_tmp = ft_substr(argv, 0, i);
+		free(argv);
+		argv = str_tmp;
+		free(str_tmp);
+	}
+	return (argv);
+}
+
+int	cd_path(int argc, char **argv, t_param *param)
+{
+	char	**str_var_pwd;
+	char	**str_var_old;
+	char	**str_var_tmp;
+
 	if (opendir(argv[1]))
 	{
-		str_var[0] =  ft_strjoin_free(str_var[0], "export");
-		cd_path_env(*env, "PWD", &str_var[1]);
-		// str_var[2] = ft_strdup(str_var[0]);
-		// cd_path(*env, "OLDPWD", &str_var[1]);
-		printf("str [0] : %s\n str [1] : %s\n  ", str_var[0], str_var[1]);
-		ft_export(argc, str_var, env);
+		if (ft_strncmp(argv[i], "..", 2))
+			return_back(argv[i], param->env);
+		there_is_slash(argv[1]);
+	str_var_tmp = malloc(sizeof(char *) * 2);
+	str_var_pwd = malloc(sizeof(char *) * 3);
+	str_var_old = malloc(sizeof(char *) * 3);
+	str_var_tmp[0] = NULL;
+	cd_path_env(param->env, "PWD", "PWD", &str_var_tmp[0]);
+	str_var_pwd[0] = ft_strdup("export");
+	str_var_old[0] = ft_strdup("export");
+	cd_path_env(param->env, "PWD", "OLDPWD", &str_var_pwd[1]);
+	printf("str pwd [0] : %s\n str pwd[1] : %s\n  ", str_var_pwd[0], str_var_pwd[1]);
+	ft_export(argc, str_var_pwd, &param->env);
+	
+		chdir(argv[1]);
+		str_var_old[1] = ft_strdup(str_var_tmp[0]);
+
+		str_var_old[1] = ft_strjoin_free(str_var_old[1], argv[1]);
+		printf("str old pwd [0] : %s\n str old pwd [1] : %s\n  ", str_var_old[0], str_var_old[1]);
+		ft_export(argc, str_var_old, &param->env);
 	}
 	else
 	{
-		perror(argv[1]);
+		ft_fprintf(2, "%s: %s: %s\n", param->progname, argv[1], strerror(errno));
 		return (1);
 	}
 	return (0);
 }
 
-int	cd(int argc, char **argv, t_env **env)
+
+
+int	cd(int argc, char **argv, t_param *param)
 {
 	int	ret;
 
 	if (argc == 1)
 	{
-		ft_fprintf(2, "minishell: %s: need one argument\n", argv[0]);
+		ft_fprintf(2, "%s: %s: need one argument\n", param->progname, argv[0]);
 		return (1);
 	}
 	else if (argc == 2)
-		ret = cd_path(argc, argv, env);
+	{
+		ret = cd_path(argc, argv, param);
+	}
 	else
 	{
-		ft_fprintf(2, "minishell: %s: too many arguments\n", argv[0]);
+		ft_fprintf(2, "%s: %s: too many arguments\n", param->progname, argv[0]);
 		return (1);
 	}
 	return (ret);
