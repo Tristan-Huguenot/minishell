@@ -60,7 +60,11 @@ SRCS	:=	src/main.c								\
 			src/builtin/unset.c						\
 			src/builtin/echo.c						\
 			src/builtin/pwd.c						\
+<<<<<<< HEAD
+			src/builtin/cd.c						\
+=======
 			src/builtin/exit.c						\
+>>>>>>> 0d814082da504783338f6c018716c665e5aa7381
 
 #TARGETS
 

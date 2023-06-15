@@ -6,7 +6,7 @@
 /*   By: nminotte <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/26 17:46:39 by nminotte          #+#    #+#             */
-/*   Updated: 2023/06/14 13:01:23 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/06/15 11:01:34 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,7 @@
 # include <readline/history.h>
 # include <errno.h>
 # include <limits.h>
+#include <dirent.h>
 # include "libft.h"
 # include "minishell_define.h"
 # include "minishell_struct.h"

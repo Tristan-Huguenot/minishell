@@ -88,9 +88,6 @@ char	*parsing_variable(char *str, t_env *env)
 	i = 0;
 	str2 = NULL;
 	while (str_tmp[i])
-		i++;
-	i = 0;
-	while (str_tmp[i])
 	{
 		j = 0;
 		if (str_tmp[i][j] != '\'' )
