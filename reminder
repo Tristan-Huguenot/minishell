@@ -35,6 +35,26 @@ creer une fonction qui verifie si Bulting sinon go execve
 
 7 - gérer les signaux
 
+signal() pour set nos functions qui gere les signaux
+
+sigaction() je crois aussi pour set les funct permet de selectionner
+	quels signaux prendre en compte, utilise une struct pour avoir plus
+	d info
+
+sigemptyset() inizialise la struct sigset_t envoyer, utiliser comme mask
+de selections des signaux pour la struct de sigaction()
+
+sigaddset() ajoute des signaux au mask sigset_t 
+
+kill() pour envoyer un signal a un enfant
+
+en mode interactif
+	ctrl - c SIGINT
+	ctrl - \ SIGQUIT
+	ctrl - d call ft_exit with no arg
+
+quand on un enfant est actif faut lui envoyer le signal et pas le gerer dans le parent
+
 DONE env ->
 	precision, env n affiche pas les variable NULL c est a dire
 	les variables definie comme ceci > "export VAR"
@@ -49,8 +69,8 @@ DONE env ->
 	pour les execve en occultant les NULL
 
 DONE echo NIL
-cd 
-pwd NIL getcwd, 
+cd NIL
+DONE pwd NIL getcwd, 
 export TRISTAN 
 	comme exit, si dans un pipe se fait dans un enfant et la variable
 	export ou modifier ne l est que dans l enfant
@@ -70,7 +90,7 @@ export TRISTAN
 
 DONE unset TRISTAN
 
-exit
+DONE exit
 	
 	Plus d infor :	effectivement return le modulo 255 sur 8 bits donc
 	long, et ensuite verifie si ce modulo est entre 0 - 127 et apres
