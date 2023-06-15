@@ -39,9 +39,7 @@ static int	check_arg(char *arg)
 void	ft_exit(int argc, char **argv, t_param *param)
 {
 	printf("exit\n");
-	if (argc <= 1)
-		g_return = 0;
-	else if (argc > 2)
+	if (argc > 2)
 	{
 		if (check_arg(argv[1]) != -1)
 		{
