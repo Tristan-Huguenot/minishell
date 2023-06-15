@@ -11,5 +11,6 @@ int	pwd(void)
 		perror("pwd error:");
 	else
 		printf("%s \n", buf);
+	free(buf);
 	return (0);
 }

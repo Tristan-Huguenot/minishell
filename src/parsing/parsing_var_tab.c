@@ -1,45 +1,43 @@
 #include "minishell.h"
 
-int	split_element_without_quote(char *str, int i)
+static int	split_element_without_quote(char *str, int i)
 {
 	while (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
-	{
-		if (ft_char_in_set(str[i], CS_WSPACE))
-		{
-			i++;
-			break ;
-		}
 		i++;
-	}
 	return (i);
 }
 
-int	split_element(char *str, int i)
+static int	split_element(char *str, int *i, int *j)
 {
 	int	tmp;
 
+	*i = 0;
+	*j = 0;
 	tmp = 1;
-	while (str[i] != '\0')
+	while (str[*i] != '\0')
 	{
-		if (str[i] && ft_char_in_set(str[i], CS_QUOTE))
+		if (str[*i] && ft_char_in_set(str[*i], CS_QUOTE))
 		{
-			i = first_quote(str, i, str[i]);
+			*i = first_quote(str, *i, str[*i]);
 			tmp++;
-			i++;
+			*i = *i + 1;
 		}
-		else if (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
+		else if (str[*i] && !ft_char_in_set(str[*i], CS_QUOTE))
 		{
-			i = split_element_without_quote(str, i);
+			*i = split_element_without_quote(str, *i);
 			tmp++;
 		}
 	}
+	*i = 0;
 	return (tmp);
 }
 
-// int	split_sub(int i, int tmp, char **str_split, char *str)
-// {
-	// return (i);
-// }
+static void	split_inc(int *i, int *tmp, int *j)
+{
+	*i = *i + 1;
+	*j = *j + 1;
+	*tmp = *i;
+}
 
 char	**split_tmp_var(char *str)
 {
@@ -48,14 +46,11 @@ char	**split_tmp_var(char *str)
 	int		tmp;
 	int		j;
 
-	i = 0;
-	tmp = split_element(str, i);
-	j = 0;
+	tmp = split_element(str, &i, &j);
 	str_split = ft_calloc(sizeof(char *), tmp);
 	tmp = i;
 	while (str[i])
 	{
-		// split_sub(i, tmp, str_split, str);
 		if (str[i] && ft_char_in_set(str[i], CS_QUOTE))
 		{
 			i = first_quote(str, i, str[i]);
@@ -64,20 +59,11 @@ char	**split_tmp_var(char *str)
 		else if (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
 		{
 			while (str[i] && !ft_char_in_set(str[i], CS_QUOTE))
-			{
-				if (ft_char_in_set(str[i], CS_WSPACE))
-				{
-					i++;
-					break ;
-				}
 				i++;
-			}
 			str_split[j] = ft_substr(str, tmp, i - tmp);
 			i--;
 		}
-		i++;
-		j++;
-		tmp = i;
+		split_inc(&i, &tmp, &j);
 	}
 	return (str_split);
 }

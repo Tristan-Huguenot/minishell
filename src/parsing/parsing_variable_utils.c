@@ -39,8 +39,8 @@ int	interpret_var_changement(char **str, t_env *env, int i, int tmp)
 	size = i - tmp;
 	strtmp = ft_substr(*str, tmp + 1, size);
 	strtmp = find_var(&strtmp, env);
-	if(!strtmp)
-		i = tmp - 1; 
+	if (!strtmp)
+		i = tmp - 1;
 	else
 		i = tmp + ft_strlen(strtmp) - 1;
 	new = ft_substr(*str, 0, tmp);

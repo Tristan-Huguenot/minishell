@@ -30,7 +30,7 @@ static void	do_builtin(t_plot *plot, t_env **envp, int builtin)
 	if (builtin == ECHO)
 		g_return = echo(plot->argc, plot->cmd_arg);
 	else if (builtin == CD)
-		g_return = 0 ;
+		g_return = cd(plot->argc, plot->cmd_arg, envp);
 	else if (builtin == PWD)
 		g_return = pwd();
 	else if (builtin == EXPORT)
@@ -47,11 +47,10 @@ static void	do_builtin(t_plot *plot, t_env **envp, int builtin)
 void	need_execution(t_param *param)
 {
 	int		builtin;
-	
+
 	builtin = is_builtin(param->plots->cmd_arg[0]);
 	if (builtin)
 		do_builtin(param->plots, &param->env, builtin);
 	// else
 		// do_execve(param->plots, param->env);
-
 }
