@@ -51,6 +51,7 @@ kill() pour envoyer un signal a un enfant
 en mode interactif
 	ctrl - c SIGINT
 	ctrl - \ SIGQUIT
+DONE (pour le parent a voir pour les enfant normalement ctrd envoie un EOF donc ca devrait se gerer tous seul dans les enfant)
 	ctrl - d call ft_exit with no arg
 
 quand on un enfant est actif faut lui envoyer le signal et pas le gerer dans le parent

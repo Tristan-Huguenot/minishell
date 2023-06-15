@@ -7,6 +7,7 @@ extern int	g_return;
 
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
+char	*init_prompt(char *name, t_env *env);
 
 /*	FILE	*/
 

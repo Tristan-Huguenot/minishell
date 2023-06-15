@@ -61,16 +61,16 @@ static void	init_env(t_param *param, char **envp)
 	}
 }
 
-static char	*init_prompt(char *name)
+char	*init_prompt(char *name, t_env *env)
 {
 	char	*tmp;
 	char	*prompt;
 
-	prompt = ft_strjoin(PROMPTC, name);
-	tmp = ft_strjoin(prompt, " $>");
-	free(prompt);
-	prompt = ft_strjoin(tmp, NOC);
-	free(tmp);
+	prompt = ft_strjoin(PROMPTC, " $? ");
+	prompt = ft_strjoin_free(prompt, name);
+	tmp = ft_strjoin_free(prompt, " $>");
+	prompt = ft_strjoin_free(tmp, NOC);
+	prompt = parsing_variable(prompt, env);
 	return (prompt);
 }
 
@@ -82,8 +82,8 @@ t_param	*init_param(char *name, char **envp)
 	if (!param)
 		return (param);
 	param->progname = name;
-	param->prompt = init_prompt(name);
 	init_env(param, envp);
+	param->prompt = init_prompt(name, param->env);
 	init_paths(param);
 	return (param);
 }

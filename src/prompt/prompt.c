@@ -53,7 +53,11 @@ void	prompt_in(t_param *param)
 {
 	char	*input;
 
+	free(param->prompt);
+	param->prompt = init_prompt(param->progname, param->env);
 	input = readline(param->prompt);
+	if (!input)
+		ft_exit(0, NULL, param);
 	if (ft_strlen(input) != 0)
 	{
 		add_history(input);
