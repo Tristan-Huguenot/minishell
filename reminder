@@ -18,7 +18,7 @@ DONE 3b - separer args en laissant quotes  --> a voir
 
 DONE 3 c -suprimer les quotes  --> NIL
 
-IN progress  Ajouter interpretation $?  ->   penser à $12dsfsgd ça donne 2dsfsgd et 						rajouter les '_'  comme char valide.
+DONE  Ajouter interpretation $?  ->   penser à $12dsfsgd ça donne 2dsfsgd et 						rajouter les '_'  comme char valide.
 
 			
 
@@ -49,9 +49,16 @@ DONE env ->
 	pour les execve en occultant les NULL
 
 DONE echo NIL
-cd 
-pwd NIL getcwd, 
-export TRISTAN 
+cd  NIL
+	cd  : va chercher $HOME  mais si $HPME n'est pas defini --> bash: cd: HOME not set
+	cd arg1 arg2 (et/ou plus) : too many arguments
+	Message d'erreur pour cd arg1 : bash: cd: arg1: Permission denied
+					 bash: cd: arg1: Not a directory
+					 bash: cd: arg1: Not such a file or directory
+	si cd .. revenir au folder-1
+					 
+DONE pwd NIL getcwd, 
+DONE export TRISTAN 
 	comme exit, si dans un pipe se fait dans un enfant et la variable
 	export ou modifier ne l est que dans l enfant
 

@@ -35,6 +35,19 @@ void	error_argc(t_param *param, char *file)
 	g_return = 0;
 }
 
+static void	error_arg(int err, char *progname, char *name)
+{
+	if (err == E_TMARG)
+	{
+		if (name)
+			ft_fprintf(2, "%s: %s: too many arguments\n", progname, name);
+		else
+			ft_fprintf(2, "%s: too many arguments\n", progname);
+	}
+	else if (err == E_NUMARG)
+		ft_fprintf(2, "%s: %s: numeric argument required\n", progname, name);
+}
+
 void	error_handler(int err, char	*progname, char *name)
 {
 	if (err == E_WQUOTE)
@@ -51,6 +64,8 @@ void	error_handler(int err, char	*progname, char *name)
 	}
 	else if (err == E_IDENTIFIER)
 		ft_fprintf(2, "%s: '%s': not a valid identifier\n", progname, name);
+	else if (err == E_TMARG || err == E_NUMARG)
+		error_arg(err, progname, name);
 }
 
 void	error_redir(int i, t_plot *plot, t_param *param)
