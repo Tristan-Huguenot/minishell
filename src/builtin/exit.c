@@ -18,11 +18,8 @@ static int	check_arg(char *arg)
 	unsigned int	nfinal;
 	int				i;
 
-	printf("narg : %s\n", arg);
 	nlong = ft_atol(arg);
-	printf("nlong : %ld\n", nlong);
 	nstr = ft_ltoa(nlong);
-	printf("nstr : %s\n", nstr);
 	if (!nstr)
 		return (-1);
 	i = (arg[0] == '+' || arg[0] == '-');
