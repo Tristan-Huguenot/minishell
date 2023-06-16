@@ -46,6 +46,8 @@ static void	error_arg(int err, char *progname, char *name)
 	}
 	else if (err == E_NUMARG)
 		ft_fprintf(2, "%s: %s: numeric argument required\n", progname, name);
+	else if (err == E_OARG)
+		ft_fprintf(2, "%s: %s: need one argument\n", progname, name);
 }
 
 void	error_handler(int err, char	*progname, char *name)
@@ -64,7 +66,7 @@ void	error_handler(int err, char	*progname, char *name)
 	}
 	else if (err == E_IDENTIFIER)
 		ft_fprintf(2, "%s: '%s': not a valid identifier\n", progname, name);
-	else if (err == E_TMARG || err == E_NUMARG)
+	else if (err == E_TMARG || err == E_NUMARG || err == E_OARG)
 		error_arg(err, progname, name);
 }
 

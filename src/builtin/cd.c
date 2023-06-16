@@ -1,98 +1,114 @@
 #include "minishell.h"
 
-void	cd_path_env(t_env *env, char *str, char *str_replace, char **str_var)
+static char	*cd_pwd(void)
 {
-	while (env->next)
+	char	*buf;
+
+	buf = malloc(sizeof(char) * PATH_MAX);
+	if (!buf)
+		g_return = 12;
+	else if (!getcwd(buf, PATH_MAX))
 	{
-		if (!ft_strncmp(env->var, str, ft_strlen(str)))
-		{
-			*str_var = ft_strdup(str_replace);
-			*str_var = ft_strjoin_free(*str_var, "=");
-			*str_var = ft_strjoin_free(*str_var, env->content);
-			return ;
-		}
-		env = env->next;
+		perror("pwd error:");
+		g_return = errno;
 	}
+	return (buf);
 }
 
-char	*there_is_slash(char *argv)
+void	ft_chdir(int argc, char **argv, t_env **env)
 {
-	int		i;
+	char	*str_old_pwd;
+	char	*str_pwd;
+
+	str_old_pwd = cd_pwd();
+	str_pwd = ft_strdup(argv[1]);
+	free(argv[1]);
+	argv[1] = ft_strjoin("OLDPWD=", str_old_pwd);
+	ft_export(argc, argv, env);
+	chdir(str_pwd);
+	free(argv[1]);
+	argv[1] = ft_strjoin("PWD=", str_pwd);
+	ft_export(argc, argv, env);
+	free(str_old_pwd);
+	free(str_pwd);
+}
+
+char	*return_back(char *buf)
+{
+	char	*str_end;
+	int		size;
 	char	*str_tmp;
 
-	i = 0;
-	if (argv[i] != '/')
-	{
-		argv = ft_strjoin("/", argv);
-	}
-	while (argv[i])
-		i++;
-	i--;
-	if (argv[i] == '/')
-	{
-		str_tmp = ft_substr(argv, 0, i);
-		free(argv);
-		argv = str_tmp;
-		free(str_tmp);
-	}
-	return (argv);
+	str_end = ft_strdup(ft_strrchr(buf, '/'));
+	size = ft_strlen(buf) - ft_strlen(str_end);
+	free(str_end);
+	str_tmp = ft_substr(buf, 0, size);
+	free(buf);
+	return (str_tmp);
 }
 
-int	cd_path(int argc, char **argv, t_param *param)
+void	cd_parsing(int argc, char **argv, t_env **env, char **cd_split)
 {
-	char	**str_var_pwd;
-	char	**str_var_old;
-	char	**str_var_tmp;
+	int		i;
+	char	*buf;
 
-	if (opendir(argv[1]))
+	(void)argc;
+	(void)env;
+	buf = cd_pwd();
+	i = 0;
+	while (cd_split[i] && buf)
 	{
-		if (ft_strncmp(argv[i], "..", 2))
-			return_back(argv[i], param->env);
-		there_is_slash(argv[1]);
-	str_var_tmp = malloc(sizeof(char *) * 2);
-	str_var_pwd = malloc(sizeof(char *) * 3);
-	str_var_old = malloc(sizeof(char *) * 3);
-	str_var_tmp[0] = NULL;
-	cd_path_env(param->env, "PWD", "PWD", &str_var_tmp[0]);
-	str_var_pwd[0] = ft_strdup("export");
-	str_var_old[0] = ft_strdup("export");
-	cd_path_env(param->env, "PWD", "OLDPWD", &str_var_pwd[1]);
-	printf("str pwd [0] : %s\n str pwd[1] : %s\n  ", str_var_pwd[0], str_var_pwd[1]);
-	ft_export(argc, str_var_pwd, &param->env);
-	
-		chdir(argv[1]);
-		str_var_old[1] = ft_strdup(str_var_tmp[0]);
-
-		str_var_old[1] = ft_strjoin_free(str_var_old[1], argv[1]);
-		printf("str old pwd [0] : %s\n str old pwd [1] : %s\n  ", str_var_old[0], str_var_old[1]);
-		ft_export(argc, str_var_old, &param->env);
+		if (!ft_strncmp(cd_split[i], "..", 2))
+		{
+			buf = return_back(buf);
+		}
+		else if (ft_strncmp(cd_split[i], ".", 1))
+		{
+			buf = ft_strjoin_free(buf, "/");
+			buf = ft_strjoin_free(buf, cd_split[i]);
+		}
+		i++;
 	}
-	else
-	{
-		ft_fprintf(2, "%s: %s: %s\n", param->progname, argv[1], strerror(errno));
-		return (1);
-	}
-	return (0);
+	free(argv[1]);
+	argv[1] = ft_strdup(buf);
+	free(buf);
+	ft_chdir(argc, argv, env);
 }
-
-
 
 int	cd(int argc, char **argv, t_param *param)
 {
-	int	ret;
+	int		ret;
+	char	**cd_split;
 
+	ret = 0;
+	cd_split = NULL;
 	if (argc == 1)
 	{
-		ft_fprintf(2, "%s: %s: need one argument\n", param->progname, argv[0]);
+		error_handler(E_OARG, param->progname, argv[0]);
 		return (1);
 	}
 	else if (argc == 2)
 	{
-		ret = cd_path(argc, argv, param);
+		if (opendir(argv[1]))
+		{
+			if (!ft_strncmp(argv[1], "/nfs", 4))
+				ft_chdir(argc, argv, &param->env);
+			else
+			{
+				cd_split = ft_split(argv[1], '/');
+				cd_parsing(argc, argv, &param->env, cd_split);
+				ft_free_strs(cd_split);
+			}
+		}
+		else
+		{
+			ft_fprintf(2, "%s: %s: %s\n", param->progname, argv[1], strerror(errno));
+			return (1);
+		}
 	}
 	else
 	{
-		ft_fprintf(2, "%s: %s: too many arguments\n", param->progname, argv[0]);
+		error_handler(E_TMARG, param->progname, argv[0]);
 		return (1);
 	}
 	return (ret);

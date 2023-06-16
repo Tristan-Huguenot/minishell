@@ -61,6 +61,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/echo.c						\
 			src/builtin/pwd.c						\
 			src/builtin/exit.c						\
+			src/builtin/cd.c						\
 
 #TARGETS
 
