@@ -51,24 +51,21 @@ void	print_plots(t_plot *plots)
 
 void	prompt_in(t_param *param)
 {
-	char	*input;
-
 	free(param->prompt);
 	param->prompt = init_prompt(param->progname, param->env);
-	input = readline(param->prompt);
-	if (!input)
+	param->input = readline(param->prompt);
+	if (!param->input)
 		ft_exit(0, NULL, param);
-	if (ft_strlen(input) != 0)
+	if (ft_strlen(param->input) != 0)
 	{
-		add_history(input);
-		if (ft_strncmp(input, "exit", 5) == 0)
-			exit_tmp(param, &input);
-		if (!parsing(param, input))
+		add_history(param->input);
+		if (!parsing(param, param->input))
 		{
 			print_plots(param->plots);
 			need_execution(param);
 		}
 		plotlink_clear(&param->plots);
 	}
-	free(input);
+	if (param->input)
+		free(param->input);
 }

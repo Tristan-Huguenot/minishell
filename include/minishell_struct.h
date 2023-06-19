@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/05 12:54:13 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/06/19 15:52:12 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ typedef struct s_param
 {
 	char	*progname;
 	char	*prompt;
+	char	*input;
 	char	**paths;
 	t_plot	*plots;
 	t_env	*env;

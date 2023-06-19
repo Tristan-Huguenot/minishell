@@ -14,6 +14,8 @@ void	free_param(t_param *param)
 		envlink_clear(&param->env);
 	if (param && param->prompt)
 		free(param->prompt);
+	if (param && param->input)
+		free(param->input);
 	if (param)
 		free(param);
 }
