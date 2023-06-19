@@ -82,6 +82,7 @@ int		echo(int argc, char **cmd_arg);
 int		pwd(void);
 void	sort_strs(char **strs);
 int		cd(int argc, char **argv, t_param *param);
+char	*return_back(char *buf);
 void	ft_exit(int argc, char **argv, t_param *param);
 
 	/*	EXPORT	*/
