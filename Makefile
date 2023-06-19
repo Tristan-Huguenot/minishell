@@ -176,13 +176,13 @@ ${LIBFT}:
 ##########################################
 ####	CTAGS							##
 
-CTAGS_FILE	:=	${SRC}										\
+CTAGS_FILE	:=	${SRCS}										\
 				${shell ls ${dir ${LIBFT}}src/*/*.c}		\
 				${shell ls ${INCLUDE}*.h}					\
 				${shell ls ${dir ${LIBFT_D}}${INCLUDE}*.h}	\
 
 tags:		${CTAGS_FILE}
-			@ctags -l c ${CTAGS_FILE}
+			@ctags ${CTAGS_FILE}
 			@echo "${CCTAGS}${INDENT} Making $@${NOCOLOR}"
 
 ctags:
