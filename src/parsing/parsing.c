@@ -23,7 +23,6 @@ static void	rendering(t_plot *plot, t_env *env)
 static int	parsing_plot(t_param *param)
 {
 	t_plot	*tmp;
-	int		i;
 
 	tmp = param->plots;
 	while (tmp)
@@ -32,12 +31,6 @@ static int	parsing_plot(t_param *param)
 			return (1);
 		parsing_arg(tmp);
 		rendering(tmp, param->env);
-		i = 0;
-		while (tmp->cmd_arg[i])
-		{
-			tmp->cmd_arg[i] = there_is_quote_to_remove(tmp->cmd_arg[i]);
-			i++;
-		}
 		tmp = tmp->next;
 	}
 	return (0);
