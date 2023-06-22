@@ -60,6 +60,7 @@ int		remove_dol(char **str, int i);
 int		remove_dol_num(char **str, int i);
 int		interpret_var_changement(char **str, t_env *env, int i, int tmp);
 int		interpretation_var(char **str, int i, t_env *env);
+char	*var_dol_interogation(char *str, int i);
 char	*find_var(char **str, t_env	*env);
 char	**split_tmp_var(char *str);
 char	*there_is_quote_to_remove(char *str);
@@ -90,5 +91,9 @@ void	ft_exit(int argc, char **argv, t_param *param);
 int		ft_export(int argc, char **argv, t_env **env);
 void	export_adding(char *arg, char *name, t_env *env);
 void	export_create(char *arg, char *name, t_env **env);
+
+/* SIGNAL */
+
+void	signal_handler(int sig);
 
 #endif

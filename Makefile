@@ -29,6 +29,7 @@ SRC0	:=	parsing/		\
 			error/			\
 			exit/			\
 			files/			\
+			signal/			\
 
 #PREREQUISITES
 
@@ -49,6 +50,7 @@ SRCS	:=	src/main.c								\
 			src/parsing/parsing_variable.c			\
 			src/parsing/parsing_var_tab.c			\
 			src/parsing/parsing_variable_utils.c	\
+			src/parsing/parsing_var_utils.c			\
 			src/parsing/is_separator.c				\
 			src/parsing/remove_quote.c				\
 			src/prompt/prompt.c						\
@@ -63,6 +65,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/exit.c						\
 			src/builtin/cd.c						\
 			src/builtin/cd_utils.c					\
+			src/signal/signal.c						\
 
 #TARGETS
 
