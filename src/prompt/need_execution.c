@@ -39,9 +39,9 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 		g_return = unset(plot->argc, plot->cmd_arg, &param->env);
 	else if (builtin == ENV)
 		g_return = env(plot->argc, plot->cmd_arg, tmp);
-	else if (builtin == EXIT)
-		ft_exit(plot->argc, plot->cmd_arg, param);
 	ft_free_strs(tmp);
+	if (builtin == EXIT)
+		ft_exit(plot->argc, plot->cmd_arg, param);
 }
 
 void	need_execution(t_param *param)
