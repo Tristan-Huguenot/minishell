@@ -37,27 +37,24 @@ void	ft_chdir(int argc, char **argv, t_env **env)
 void	cd_parsing(int argc, char **argv, t_env **env, char **cd_split)
 {
 	int		i;
-	char	*buf;
+	char	*str_old_pwd;
+	char	*str_pwd;
 
-	buf = cd_pwd();
+	str_old_pwd = cd_pwd();
 	i = 0;
-	while (cd_split[i] && buf)
+	while (cd_split[i])
 	{
-		if (!ft_strncmp(cd_split[i], "..", 2))
-		{
-			buf = return_back(buf);
-		}
-		else if (ft_strncmp(cd_split[i], ".", 1))
-		{
-			buf = ft_strjoin_free(buf, "/");
-			buf = ft_strjoin_free(buf, cd_split[i]);
-		}
+		chdir(cd_split[i]);
 		i++;
 	}
 	free(argv[1]);
-	argv[1] = ft_strdup(buf);
-	free(buf);
-	ft_chdir(argc, argv, env);
+	argv[1] = ft_strjoin("OLDPWD=", str_old_pwd);
+	ft_export(argc, argv, env);
+	free(argv[1]);
+	str_pwd = cd_pwd();
+	argv[1] = ft_strjoin("PWD=", str_pwd);
+	free(str_old_pwd);
+	free(str_pwd);
 }
 
 int	cd_arg(int argc, char **argv, t_param *param, char **cd_split)
@@ -67,7 +64,7 @@ int	cd_arg(int argc, char **argv, t_param *param, char **cd_split)
 	dir = opendir(argv[1]);
 	if (argv && argv[1] && dir)
 	{
-		if (!ft_strncmp(argv[1], "/nfs", 4))
+		if (!ft_strncmp(argv[1], "/", 1))
 			ft_chdir(argc, argv, &param->env);
 		else
 		{
