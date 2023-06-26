@@ -28,6 +28,8 @@ void	ft_chdir(int argc, char **argv, t_env **env)
 	ft_export(argc, argv, env);
 	chdir(str_pwd);
 	free(argv[1]);
+	free(str_pwd);
+	str_pwd = cd_pwd();
 	argv[1] = ft_strjoin("PWD=", str_pwd);
 	ft_export(argc, argv, env);
 	free(str_old_pwd);
@@ -53,6 +55,7 @@ void	cd_parsing(int argc, char **argv, t_env **env, char **cd_split)
 	free(argv[1]);
 	str_pwd = cd_pwd();
 	argv[1] = ft_strjoin("PWD=", str_pwd);
+	ft_export(argc, argv, env);
 	free(str_old_pwd);
 	free(str_pwd);
 }
