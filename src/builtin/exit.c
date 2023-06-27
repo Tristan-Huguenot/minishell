@@ -22,7 +22,7 @@ static int	check_arg(char *arg)
 	nstr = ft_ltoa(nlong);
 	if (!nstr)
 		return (-1);
-	i = (arg[0] == '+' || arg[0] == '-');
+	i = (arg[0] == '+');
 	if (ft_strncmp(arg + i, nstr, ft_strlen(arg + i)) != 0)
 	{
 		free(nstr);
