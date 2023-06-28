@@ -77,6 +77,7 @@ char	*init_prompt(char *name, t_env *env)
 t_param	*init_param(char *name, char **envp)
 {
 	t_param	*param;
+	t_child	*child;
 
 	param = ft_calloc(1, sizeof(*param));
 	if (!param)
@@ -85,5 +86,8 @@ t_param	*init_param(char *name, char **envp)
 	init_env(param, envp);
 	param->prompt = init_prompt(name, param->env);
 	init_paths(param);
+	child = ft_calloc(1, sizeof(*child));
+	param->child = child;
+	init_child(param);
 	return (param);
 }

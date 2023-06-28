@@ -8,6 +8,7 @@ extern int	g_return;
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
 char	*init_prompt(char *name, t_env *env);
+void	init_child(t_param *param);
 
 /*	FILE	*/
 
@@ -36,6 +37,8 @@ t_plot	*plotlink_new(char *cmd);
 void	plotlink_addback(t_plot **plots, t_plot *new);
 void	delete_plot(t_plot *plot);
 void	plotlink_clear(t_plot **plots);
+int	plotlink_size(t_plot *head);
+int	envlink_size(t_env *head);
 
 /*	IS_DELIM	*/
 
@@ -74,6 +77,7 @@ void	need_execution(t_param *param);
 
 void	free_param(t_param *param);
 void	exit_program(t_param *param);
+void	free_child(t_param *param);
 
 /*	BUILTIN	*/
 
@@ -95,5 +99,9 @@ void	export_create(char *arg, char *name, t_env **env);
 /* SIGNAL */
 
 void	signal_handler(int sig);
+
+/* PIPE AND EXECVE*/
+void	do_execve_even(t_plot *tmp_head, t_param *param, int i);
+void	do_execve_odd(t_plot *tmp_head, t_param *param);
 
 #endif

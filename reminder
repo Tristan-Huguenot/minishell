@@ -23,17 +23,17 @@ DONE  Ajouter interpretation $?  ->   penser à $12dsfsgd ça donne 2dsfsgd et 	
 			
 
 
-creer une fonction qui verifie si Bulting sinon go execve 
+DONE creer une fonction qui verifie si Bulting sinon go execve 
 
-4 - HEREDOC
+DONE 4 - HEREDOC
 
-5 - PIPEX
+DONE 5 - PIPEX
 
-5 - REDIRECTION parsing à l'ouverture
+DONE 5 - REDIRECTION parsing à l'ouverture
 
-6 - BUILTNGS
+DONNE 6 - BUILTNGS
 
-7 - gérer les signaux
+DONE 7 - gérer les signaux
 
 signal() pour set nos functions qui gere les signaux
 
@@ -116,3 +116,20 @@ DONE exit
 	bizarement apres plein de test l argument est recuperer en tant que int normal puis cast en tant que unsigned int MAIS l'argument est accepte dans les limites d un long 
 
 	Jpensais faire ca la mais tu verras l heure du message ahah, et y a plus de boulot que j avais prevu apres tous ces test jferais surement exit "demain"
+	
+	
+ 2.1 exve
+ 	cmb de il y a de pipe. savoir si c'est pair(even) ou impair(odd)
+	si n'existe pas error_handler;
+	faire un tableau de PID.
+	->enfant
+	set les g_return
+	si bultin ou cmd n'existe pas PID[i] = -1; 
+	
+ signal_handler pour child --> kill()
+
+ 2.2 redirection
+
+ 2.3 here_doc
+
+ 2.4 pipe

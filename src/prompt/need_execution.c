@@ -28,7 +28,10 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 
 	tmp = convert_env_strs(param->env);
 	if (builtin == ECHO)
+	{
+		// faire dup;
 		g_return = echo(plot->argc, plot->cmd_arg);
+	}
 	else if (builtin == CD)
 		g_return = cd(plot->argc, plot->cmd_arg, param);
 	else if (builtin == PWD)
@@ -47,10 +50,37 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 void	need_execution(t_param *param)
 {
 	int		builtin;
+	int		i;
+	t_plot	*tmp_head;
 
-	builtin = is_builtin(param->plots->cmd_arg[0]);
-	if (builtin)
-		do_builtin(param->plots, param, builtin);
-	// else
-		// do_execve(param->plots, param->env);
+	i = 0;
+	tmp_head = param->plots;
+	param->child->pid = ft_calloc(plotlink_size(param->plots), sizeof(int *));
+	param->child->w_status = ft_calloc(plotlink_size(param->plots), sizeof(int));
+	while (tmp_head)
+	{
+		
+		builtin = is_builtin(tmp_head->cmd_arg[0]);
+		if (builtin)
+			do_builtin(tmp_head, param, builtin);
+		// else if (builtin && !(i % 2))
+			// do_builtin(tmp_head, param, builtin);
+
+		// else if(i % 2)
+			// do_execve_odd(tmp_head, param);
+		else
+			do_execve_even(tmp_head, param, i);
+		i++;
+		tmp_head = tmp_head->next;
+	}
+	i = 0;
+		// printf("\n\n --------------------------------pid[i] %d , %p----------------------------------------- \n ", param->child->pid[i], &param->child->w_status[i] );
+	while (i < plotlink_size(param->plots))
+	{
+		// printf("\n\n --------------------------------pid[i] %d , %p----------------------------------------- \n ", param->child->pid[i], &param->child->w_status[i] );
+		waitpid(param->child->pid[i], &param->child->w_status[i] , 0);
+		i++;
+	}
+	free_child(param);
+	free(tmp_head);
 }

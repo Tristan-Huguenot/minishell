@@ -24,6 +24,7 @@
 # include <sys/types.h>
 # include <signal.h>
 # include "libft.h"
+# include <sys/wait.h>
 # include "minishell_define.h"
 # include "minishell_struct.h"
 # include "minishell_proto.h"

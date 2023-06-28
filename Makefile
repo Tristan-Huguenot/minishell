@@ -30,15 +30,18 @@ SRC0	:=	parsing/		\
 			exit/			\
 			files/			\
 			signal/			\
+			cmd/
 
 #PREREQUISITES
 
 SRCS	:=	src/main.c								\
 			src/init/init_param.c					\
 			src/init/init_plots.c					\
+			src/init/init_child.c					\
 			src/linked_list/list_env.c				\
 			src/linked_list/list_plots.c			\
 			src/linked_list/list_utils.c			\
+			src/linked_list/list_size.c				\
 			src/exit/exit_program.c					\
 			src/files/files_compute.c				\
 			src/error/error_handler.c				\
@@ -66,6 +69,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/cd.c						\
 			src/builtin/cd_utils.c					\
 			src/signal/signal.c						\
+			src/cmd/child_execve.c						\
 
 #TARGETS
 

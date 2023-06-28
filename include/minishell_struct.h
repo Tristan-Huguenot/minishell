@@ -1,15 +1,3 @@
-/* ************************************************************************** */
-/*                                                                            */
-/*                                                        :::      ::::::::   */
-/*   minishell_struct.h                                 :+:      :+:    :+:   */
-/*                                                    +:+ +:+         +:+     */
-/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
-/*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/19 15:52:12 by thugueno         ###   ########.fr       */
-/*                                                                            */
-/* ************************************************************************** */
-
 #ifndef MINISHELL_STRUCT_H
 # define MINISHELL_STRUCT_H
 
@@ -29,6 +17,14 @@ typedef struct s_env
 	struct s_env	*next;
 }	t_env;
 
+typedef struct s_child
+{
+	int	*pid;
+	int	even[2];
+	int	odd[2];	
+	int	*w_status;
+}	t_child;
+
 typedef struct s_param
 {
 	char	*progname;
@@ -37,6 +33,7 @@ typedef struct s_param
 	char	**paths;
 	t_plot	*plots;
 	t_env	*env;
+	t_child	*child;
 }	t_param;
 
 #endif

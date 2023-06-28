@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void	free_child(t_param *param)
+{
+	if (param->child && param->child->pid)
+		free(param->child->pid);
+	if (param->child && param->child->w_status)
+		free(param->child->w_status);
+}
+
 void	free_plots(t_param *param)
 {
 	if (param->plots)
@@ -8,6 +16,8 @@ void	free_plots(t_param *param)
 
 void	free_param(t_param *param)
 {
+	if (param && param->child)
+		free(param->child);
 	if (param && param->paths)
 		ft_free_strs(param->paths);
 	if (param && param->env)
@@ -22,6 +32,7 @@ void	free_param(t_param *param)
 
 void	exit_program(t_param *param)
 {
+	free_child(param);
 	free_plots(param);
 	free_param(param);
 	exit(g_return);
