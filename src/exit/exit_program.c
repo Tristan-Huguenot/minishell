@@ -6,6 +6,8 @@ void	free_child(t_param *param)
 		free(param->child->pid);
 	if (param->child && param->child->w_status)
 		free(param->child->w_status);
+	param->child->pid = NULL;
+	param->child->w_status = NULL;
 }
 
 void	free_plots(t_param *param)

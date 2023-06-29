@@ -30,7 +30,9 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 	if (builtin == ECHO)
 	{
 		// faire dup;
+		ft_free_strs(tmp);
 		g_return = echo(plot->argc, plot->cmd_arg);
+		exit_program(param);
 	}
 	else if (builtin == CD)
 		g_return = cd(plot->argc, plot->cmd_arg, param);
@@ -47,40 +49,69 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 		ft_exit(plot->argc, plot->cmd_arg, param);
 }
 
+void	preparation_fork(t_param *param, int builtin)
+{
+	int		i;
+	char	*path;
+	t_plot	*tmp_head;
+
+	tmp_head = param->plots;
+	i = 0;
+	while (tmp_head)
+	{
+		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
+		if (path)
+		{
+			param->child->pid[i] = fork();
+			if (param->child->pid[i] == 0)
+			{
+				if (builtin)
+				{
+					free(path);
+					do_builtin(tmp_head, param, builtin);
+				}
+				// else if (builtin && !(i % 2))
+					// do_builtin(tmp_head, param, builtin);
+
+				// else if(i % 2)
+					// do_execve_odd(tmp_head, param);
+				else
+				{
+					do_execve_even(tmp_head, param, i, path);
+				}
+			}
+			free(path);
+		}
+		i++;
+		tmp_head = tmp_head->next;
+	}
+	free(tmp_head);
+}
+
 void	need_execution(t_param *param)
 {
 	int		builtin;
 	int		i;
 	t_plot	*tmp_head;
 
-	i = 0;
 	tmp_head = param->plots;
 	param->child->pid = ft_calloc(plotlink_size(param->plots), sizeof(int *));
-	param->child->w_status = ft_calloc(plotlink_size(param->plots), sizeof(int));
-	while (tmp_head)
+	param->child->w_status = ft_calloc(plotlink_size(param->plots), \
+			sizeof(int));
+	builtin = is_builtin(tmp_head->cmd_arg[0]);
+	if (plotlink_size(param->plots) == 1
+		&& builtin != ECHO && builtin != 0)
 	{
-		
-		builtin = is_builtin(tmp_head->cmd_arg[0]);
-		if (builtin)
-			do_builtin(tmp_head, param, builtin);
-		// else if (builtin && !(i % 2))
-			// do_builtin(tmp_head, param, builtin);
-
-		// else if(i % 2)
-			// do_execve_odd(tmp_head, param);
-		else
-			do_execve_even(tmp_head, param, i);
-		i++;
-		tmp_head = tmp_head->next;
+		do_builtin(tmp_head, param, builtin);
 	}
+	else
+		preparation_fork(param, builtin);
 	i = 0;
-		// printf("\n\n --------------------------------pid[i] %d , %p----------------------------------------- \n ", param->child->pid[i], &param->child->w_status[i] );
 	while (i < plotlink_size(param->plots))
 	{
-		// printf("\n\n --------------------------------pid[i] %d , %p----------------------------------------- \n ", param->child->pid[i], &param->child->w_status[i] );
-		waitpid(param->child->pid[i], &param->child->w_status[i] , 0);
+		waitpid(param->child->pid[i], &param->child->w_status[i], 0);
 		i++;
 	}
 	free_child(param);
-	free(tmp_head);
+	// free(tmp_head);
 }

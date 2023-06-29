@@ -88,6 +88,5 @@ t_param	*init_param(char *name, char **envp)
 	init_paths(param);
 	child = ft_calloc(1, sizeof(*child));
 	param->child = child;
-	init_child(param);
 	return (param);
 }

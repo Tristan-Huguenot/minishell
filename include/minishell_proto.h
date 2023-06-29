@@ -8,7 +8,6 @@ extern int	g_return;
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
 char	*init_prompt(char *name, t_env *env);
-void	init_child(t_param *param);
 
 /*	FILE	*/
 
@@ -101,7 +100,7 @@ void	export_create(char *arg, char *name, t_env **env);
 void	signal_handler(int sig);
 
 /* PIPE AND EXECVE*/
-void	do_execve_even(t_plot *tmp_head, t_param *param, int i);
-void	do_execve_odd(t_plot *tmp_head, t_param *param);
+void	do_execve_even(t_plot *tmp_head, t_param *param, int i, char *path);
+void	do_execve_odd(t_plot *tmp_head, t_param *param, int i, char *path);
 
 #endif
