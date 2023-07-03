@@ -36,6 +36,7 @@ enum e_error {
 	E_TOKEN,
 	E_UTOKEN,
 	E_IDENTIFIER,
+	E_CHILD,
 };
 
 /* ENUM BUILTIN */

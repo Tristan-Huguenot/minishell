@@ -37,11 +37,14 @@ SRC0	:=	parsing/		\
 SRCS	:=	src/main.c								\
 			src/init/init_param.c					\
 			src/init/init_plots.c					\
+			src/init/init_childs.c					\
+			src/init/init_pipe.c					\
 			src/linked_list/list_env.c				\
 			src/linked_list/list_plots.c			\
 			src/linked_list/list_utils.c			\
 			src/linked_list/list_size.c				\
 			src/exit/exit_program.c					\
+			src/exit/close_fd.c					\
 			src/files/files_compute.c				\
 			src/error/error_handler.c				\
 			src/parsing/parsing.c					\
@@ -69,6 +72,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/cd_utils.c					\
 			src/signal/signal.c						\
 			src/cmd/child_execve.c						\
+			src/cmd/dup_fd.c						\
 
 #TARGETS
 

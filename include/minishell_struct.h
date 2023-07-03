@@ -21,7 +21,8 @@ typedef struct s_child
 {
 	int	*pid;
 	int	even[2];
-	int	odd[2];	
+	int	odd[2];
+	int	fdredir[2];
 	int	*w_status;
 }	t_child;
 

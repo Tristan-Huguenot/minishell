@@ -33,9 +33,10 @@ static int	check_arg(char *arg)
 	return (nfinal % 256);
 }
 
-void	ft_exit(int argc, char **argv, t_param *param)
+void	ft_exit(int argc, char **argv, t_param *param, int isfork)
 {
-	printf("exit\n");
+	if (!isfork)
+		printf("exit\n");
 	if (argc > 2)
 	{
 		if (check_arg(argv[1]) != -1)

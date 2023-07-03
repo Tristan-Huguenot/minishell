@@ -22,18 +22,13 @@ static int	is_builtin(char *str)
 	return (0);
 }
 
-static void	do_builtin(t_plot *plot, t_param *param, int builtin)
+static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 {
 	char	**tmp;
 
 	tmp = convert_env_strs(param->env);
 	if (builtin == ECHO)
-	{
-		// faire dup;
-		ft_free_strs(tmp);
 		g_return = echo(plot->argc, plot->cmd_arg);
-		exit_program(param);
-	}
 	else if (builtin == CD)
 		g_return = cd(plot->argc, plot->cmd_arg, param);
 	else if (builtin == PWD)
@@ -46,7 +41,9 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin)
 		g_return = env(plot->argc, plot->cmd_arg, tmp);
 	ft_free_strs(tmp);
 	if (builtin == EXIT)
-		ft_exit(plot->argc, plot->cmd_arg, param);
+		ft_exit(plot->argc, plot->cmd_arg, param, isfork);
+	if (isfork)
+		exit_program(param);
 }
 
 void	preparation_fork(t_param *param, int builtin)
@@ -59,32 +56,41 @@ void	preparation_fork(t_param *param, int builtin)
 	i = 0;
 	while (tmp_head)
 	{
+		builtin = is_builtin(tmp_head->cmd_arg[0]);
+		if (init_pipe(i, param->child))
+			return ;
+		signal(SIGINT, sig_child);
+		signal(SIGQUIT, sig_child);
 		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
-		if (path)
+		// redir
+		if (path || builtin)
 		{
 			param->child->pid[i] = fork();
 			if (param->child->pid[i] == 0)
 			{
+				dup_pipe(tmp_head, param->child, i);
+				close_pipe(param->child, i);
 				if (builtin)
 				{
 					free(path);
-					do_builtin(tmp_head, param, builtin);
+					do_builtin(tmp_head, param, builtin, 1);
 				}
-				// else if (builtin && !(i % 2))
-					// do_builtin(tmp_head, param, builtin);
-
-				// else if(i % 2)
-					// do_execve_odd(tmp_head, param);
 				else
-				{
-					do_execve_even(tmp_head, param, i, path);
-				}
+					do_execve_odd(tmp_head, param, i, path);
 			}
 			free(path);
 		}
+		else
+		{
+			param->child->pid[i] = -1;
+			printf("%s : %s\n", tmp_head->cmd_arg[0], strerror(errno));
+			// verif vide ou dossier ou not found
+		}
 		i++;
+		close_pipe(param->child, i);
 		tmp_head = tmp_head->next;
 	}
+	close_pipe(param->child, i + 1);
 	free(tmp_head);
 }
 
@@ -95,23 +101,24 @@ void	need_execution(t_param *param)
 	t_plot	*tmp_head;
 
 	tmp_head = param->plots;
-	param->child->pid = ft_calloc(plotlink_size(param->plots), sizeof(int *));
-	param->child->w_status = ft_calloc(plotlink_size(param->plots), \
-			sizeof(int));
+	if (init_child(plotlink_size(param->plots), param->child))
+		return (error_handler(E_CHILD, param->progname, NULL));
 	builtin = is_builtin(tmp_head->cmd_arg[0]);
 	if (plotlink_size(param->plots) == 1
 		&& builtin != ECHO && builtin != 0)
 	{
-		do_builtin(tmp_head, param, builtin);
+		do_builtin(tmp_head, param, builtin, 0);
 	}
 	else
+	{
 		preparation_fork(param, builtin);
+	}
 	i = 0;
 	while (i < plotlink_size(param->plots))
 	{
-		waitpid(param->child->pid[i], &param->child->w_status[i], 0);
+		if (param->child->pid[i] != -1)
+			waitpid(param->child->pid[i], &param->child->w_status[i], 0);
 		i++;
 	}
 	free_child(param);
-	// free(tmp_head);
 }

@@ -37,5 +37,6 @@ void	exit_program(t_param *param)
 	free_child(param);
 	free_plots(param);
 	free_param(param);
+	close_common_fd();
 	exit(g_return);
 }

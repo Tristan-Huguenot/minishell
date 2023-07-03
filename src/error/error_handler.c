@@ -68,6 +68,8 @@ void	error_handler(int err, char	*progname, char *name)
 		ft_fprintf(2, "%s: '%s': not a valid identifier\n", progname, name);
 	else if (err == E_TMARG || err == E_NUMARG || err == E_OARG)
 		error_arg(err, progname, name);
+	else if (err == E_CHILD)
+		ft_fprintf(2, "%s\n", strerror(errno));
 }
 
 void	error_redir(int i, t_plot *plot, t_param *param)

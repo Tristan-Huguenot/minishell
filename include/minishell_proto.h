@@ -8,6 +8,8 @@ extern int	g_return;
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
 char	*init_prompt(char *name, t_env *env);
+int	init_child(int size, t_child *child);
+int	init_pipe(int state, t_child *child);
 
 /*	FILE	*/
 
@@ -77,6 +79,9 @@ void	need_execution(t_param *param);
 void	free_param(t_param *param);
 void	exit_program(t_param *param);
 void	free_child(t_param *param);
+void	close_common_fd(void);
+void	close_pipe(t_child *child, int state);
+void	close_pipe_builtin(t_child *child, int state);
 
 /*	BUILTIN	*/
 
@@ -87,7 +92,7 @@ int		pwd(void);
 void	sort_strs(char **strs);
 int		cd(int argc, char **argv, t_param *param);
 char	*return_back(char *buf);
-void	ft_exit(int argc, char **argv, t_param *param);
+void	ft_exit(int argc, char **argv, t_param *param, int isfork);
 
 	/*	EXPORT	*/
 
@@ -98,9 +103,14 @@ void	export_create(char *arg, char *name, t_env **env);
 /* SIGNAL */
 
 void	signal_handler(int sig);
+void	sig_child(int sig);
 
 /* PIPE AND EXECVE*/
 void	do_execve_even(t_plot *tmp_head, t_param *param, int i, char *path);
 void	do_execve_odd(t_plot *tmp_head, t_param *param, int i, char *path);
+
+void	dup_pipe(t_plot *plot, t_child *child, int state);
+void	dup_pipe_even(t_plot *plot, t_child *child);
+void	dup_pipe_odd(t_plot *plot, t_child *child);
 
 #endif

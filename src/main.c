@@ -12,10 +12,12 @@ int	main(int argc, char **argv, char **envp)
 		error_argc(param, argv[1]);
 		exit_program(param);
 	}
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
 	while (1)
+	{
+		signal(SIGINT, signal_handler);
+		signal(SIGQUIT, SIG_IGN);
 		prompt_in(param);
+	}
 	g_return = 0;
 	exit_program(param);
 }

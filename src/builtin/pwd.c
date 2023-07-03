@@ -10,7 +10,7 @@ int	pwd(void)
 	if (!getcwd(buf, PATH_MAX))
 		perror("pwd error:");
 	else
-		printf("%s \n", buf);
+		printf("%s\n", buf);
 	free(buf);
 	return (0);
 }
