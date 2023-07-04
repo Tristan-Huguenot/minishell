@@ -13,13 +13,17 @@ int	init_pipe(int state, t_child *child);
 
 /*	FILE	*/
 
+int	file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
+int	check_open_redir(char **redir);
+void	init_redir(char **redir, t_child *child);
 
 /*	ERROR	*/
 
 void	error_handler(int err, char *progname, char *name);
 void	error_argc(t_param *param, char *file);
 void	error_redir(int i, t_plot *plot, t_param *param);
+void	handle_bad_command(t_plot *plot, t_child *child, int state);
 
 /*	LST		*/
 
@@ -106,9 +110,7 @@ void	signal_handler(int sig);
 void	sig_child(int sig);
 
 /* PIPE AND EXECVE*/
-void	do_execve_even(t_plot *tmp_head, t_param *param, int i, char *path);
-void	do_execve_odd(t_plot *tmp_head, t_param *param, int i, char *path);
-
+void	do_execve(t_plot *tmp_head, t_param *param, int i, char *path);
 void	dup_pipe(t_plot *plot, t_child *child, int state);
 void	dup_pipe_even(t_plot *plot, t_child *child);
 void	dup_pipe_odd(t_plot *plot, t_child *child);

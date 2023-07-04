@@ -22,6 +22,8 @@ char	*file_is_exe(char *file, char **paths)
 		return (NULL);
 	if (file && !access(file, F_OK | X_OK))
 		return (ft_strdup(file));
+	if (file[0] == '/')
+		return (NULL);
 	i = 0;
 	while (file && paths && paths[i])
 	{

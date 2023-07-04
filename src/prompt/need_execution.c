@@ -62,30 +62,27 @@ void	preparation_fork(t_param *param, int builtin)
 		signal(SIGINT, sig_child);
 		signal(SIGQUIT, sig_child);
 		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
-		// redir
-		if (path || builtin)
+
+		if (!check_open_redir(tmp_head->redir) && (path || builtin))
 		{
 			param->child->pid[i] = fork();
 			if (param->child->pid[i] == 0)
 			{
 				dup_pipe(tmp_head, param->child, i);
 				close_pipe(param->child, i);
+				init_redir(tmp_head->redir, param->child);
 				if (builtin)
 				{
 					free(path);
 					do_builtin(tmp_head, param, builtin, 1);
 				}
 				else
-					do_execve_odd(tmp_head, param, i, path);
+					do_execve(tmp_head, param, i, path);
 			}
 			free(path);
 		}
 		else
-		{
-			param->child->pid[i] = -1;
-			printf("%s : %s\n", tmp_head->cmd_arg[0], strerror(errno));
-			// verif vide ou dossier ou not found
-		}
+			handle_bad_command(tmp_head, param->child, i);
 		i++;
 		close_pipe(param->child, i);
 		tmp_head = tmp_head->next;
@@ -114,11 +111,22 @@ void	need_execution(t_param *param)
 		preparation_fork(param, builtin);
 	}
 	i = 0;
+	tmp_head = param->plots;
+
 	while (i < plotlink_size(param->plots))
 	{
 		if (param->child->pid[i] != -1)
+		{
 			waitpid(param->child->pid[i], &param->child->w_status[i], 0);
+			if (!is_builtin(tmp_head->cmd_arg[0]))
+			{
+				if (WIFEXITED(param->child->w_status[i]))
+					g_return = WEXITSTATUS(param->child->w_status[i]);
+			}
+		}
 		i++;
+		tmp_head= tmp_head->next;
 	}
 	free_child(param);
+	// free(tmp_head);
 }
