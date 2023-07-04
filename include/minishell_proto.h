@@ -55,6 +55,7 @@ int		is_delim_space(char sep);
 
 /*	PARSING	*/
 
+void		clear_cmd_arg(t_plot *plot, int i);
 int		parsing(t_param *param, char *input);
 int		parsing_redir(t_plot *plot, t_param *param);
 void	parsing_arg(t_plot *plot);

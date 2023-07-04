@@ -51,6 +51,7 @@ SRCS	:=	src/main.c								\
 			src/error/error_handler_cmd.c				\
 			src/error/error_handler.c				\
 			src/parsing/parsing.c					\
+			src/parsing/parsing_utils.c				\
 			src/parsing/parsing_arg.c				\
 			src/parsing/parsing_redir.c				\
 			src/parsing/parsing_redir_move.c		\

@@ -12,6 +12,11 @@ static int	check_open_redir_out(char *redir)
 		if (fd != -1)
 			close(fd);
 	}
+	if (file_is_dir(redir + 3))
+	{
+		ft_fprintf(2, "%s: %s\n", redir + 3, strerror(21));
+		ret = 1;
+	}
 	if (access(redir + 3, W_OK))
 	{
 		ft_fprintf(2, "%s: %s\n", redir + 3, strerror(13));
@@ -40,8 +45,10 @@ static int	check_open_redir_in(char *redir)
 
 int	check_open_redir(char **redir)
 {
+	int	ret;
 	int	i;
 
+	ret = 0;
 	i = 0;
 	while (redir[i])
 	{
@@ -49,14 +56,15 @@ int	check_open_redir(char **redir)
 		{
 			if (redir[i][1] != '2')
 				if (check_open_redir_in(redir[i]))
-					return (1);
+					ret = 1;
 		}
 		else
 		{
 			if (check_open_redir_out(redir[i]))
-				return (1);
+				ret = 1;
 		}
 		i++;
 	}
-	return (0);
+	g_return = ret;
+	return (ret);
 }

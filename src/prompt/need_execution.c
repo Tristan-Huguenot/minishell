@@ -49,6 +49,7 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 void	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
+	int		stateredir;
 	char	*path;
 	t_plot	*tmp_head;
 
@@ -62,8 +63,8 @@ void	preparation_fork(t_param *param, int builtin)
 		signal(SIGINT, sig_child);
 		signal(SIGQUIT, sig_child);
 		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
-
-		if (!check_open_redir(tmp_head->redir) && (path || builtin))
+		stateredir = check_open_redir(tmp_head->redir);
+		if (!stateredir && (path || builtin))
 		{
 			param->child->pid[i] = fork();
 			if (param->child->pid[i] == 0)
@@ -82,7 +83,13 @@ void	preparation_fork(t_param *param, int builtin)
 			free(path);
 		}
 		else
-			handle_bad_command(tmp_head, param->child, i);
+		{
+			if (!stateredir && tmp_head->cmd_arg[0])
+				handle_bad_command(tmp_head, param->child, i);
+			else
+				if (path)
+					free(path);
+		}
 		i++;
 		close_pipe(param->child, i);
 		tmp_head = tmp_head->next;
