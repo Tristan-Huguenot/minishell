@@ -24,7 +24,7 @@ static void	init_redir_out(char *redir)
 	}
 }
 
-static void	init_redir_in(char *redir, t_child *child)
+static void	init_redir_in(char *redir, t_child *child, int state)
 {
 	int	fd;
 
@@ -38,19 +38,19 @@ static void	init_redir_in(char *redir, t_child *child)
 		}
 	}
 	else
-		return ;
-	(void)child;
+		handle_here_doc(redir + 3, child, state);
 }
 
-void	init_redir(char **redir, t_child *child)
+void	init_redir(char **redir, t_child *child, int state)
 {
 	int	i;
 
 	i = 0;
 	while (redir[i])
 	{
+		printf("test\n");
 		if (redir[i][0] == '0')
-			init_redir_in(redir[i], child);
+			init_redir_in(redir[i], child, state);
 		else
 			init_redir_out(redir[i]);
 		i++;

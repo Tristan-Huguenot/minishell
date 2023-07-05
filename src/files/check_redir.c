@@ -66,5 +66,6 @@ int	check_open_redir(char **redir)
 		i++;
 	}
 	g_return = ret;
+	printf("check redir %d\n", ret);
 	return (ret);
 }

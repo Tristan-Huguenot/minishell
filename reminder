@@ -144,3 +144,10 @@ DONE exit
  here_doc signal
  
  verifier les signaux quand ./minishell ./minishell
+ 
+ initialiser heredoc avant preparation fork et do build_in
+ si builtin mais pas echo close les heredocs
+ 
+ init_redir 2eme compteur pour heredoc le fd correspondant a dup et close dans la boucle redir
+ 
+ des closes de fd a faire dans signal handler

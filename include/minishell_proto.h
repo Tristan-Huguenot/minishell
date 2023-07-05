@@ -9,6 +9,8 @@ t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
 char	*init_prompt(char *name, t_env *env);
 int		init_child(int size, t_child *child);
+int		init_even_pipe(t_child *child);
+int		init_odd_pipe(t_child *child);
 int		init_pipe(int state, t_child *child);
 
 /*	FILE	*/
@@ -16,7 +18,8 @@ int		init_pipe(int state, t_child *child);
 int		file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
 int		check_open_redir(char **redir);
-void	init_redir(char **redir, t_child *child);
+void	init_redir(char **redir, t_child *child, int state);
+void	handle_here_doc(char *redir, t_child *child, int state);
 
 /*	ERROR	*/
 
@@ -87,6 +90,7 @@ void	free_child(t_param *param);
 void	close_common_fd(void);
 void	close_pipe(t_child *child, int state);
 void	close_pipe_builtin(t_child *child, int state);
+void	close_heredoc_pipe(t_child *child, int state);
 
 /*	BUILTIN	*/
 
@@ -111,9 +115,11 @@ void	signal_handler(int sig);
 void	sig_child(int sig);
 
 /* PIPE AND EXECVE*/
+
 void	do_execve(t_plot *tmp_head, t_param *param, int i, char *path);
 void	dup_pipe(t_plot *plot, t_child *child, int state);
 void	dup_pipe_even(t_plot *plot, t_child *child);
 void	dup_pipe_odd(t_plot *plot, t_child *child);
+void	dup_heredoc_pipe(t_child *child, int state);
 
 #endif

@@ -1,6 +1,6 @@
 #include "minishell.h"
 
-static int	init_even_pipe(t_child *child)
+int	init_even_pipe(t_child *child)
 {
 	if (pipe(child->even) == -1)
 	{
@@ -12,7 +12,7 @@ static int	init_even_pipe(t_child *child)
 	return (0);
 }
 
-static int	init_odd_pipe(t_child *child)
+int	init_odd_pipe(t_child *child)
 {
 	if (pipe(child->odd) == -1)
 	{

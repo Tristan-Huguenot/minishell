@@ -69,9 +69,12 @@ int	preparation_fork(t_param *param, int builtin)
 			param->child->pid[i] = fork();
 			if (param->child->pid[i] == 0)
 			{
+				//if (tmp_head->here_doc)
+				//{
 				dup_pipe(tmp_head, param->child, i);
 				close_pipe(param->child, i);
-				init_redir(tmp_head->redir, param->child);
+				//}
+				init_redir(tmp_head->redir, param->child, i);
 				if (builtin)
 				{
 					free(path);
@@ -95,6 +98,7 @@ int	preparation_fork(t_param *param, int builtin)
 					{
 						dup_pipe(tmp_head, param->child, i);
 						close_pipe(param->child, i);
+						init_redir(tmp_head->redir, param->child, i);
 						exit_program(param);
 					}
 				}
@@ -125,9 +129,11 @@ void	need_execution(t_param *param)
 	if (init_child(plotlink_size(param->plots), param->child))
 		return (error_handler(E_CHILD, param->progname, NULL));
 	builtin = is_builtin(tmp_head->cmd_arg[0]);
+	//init_heredoc_plots;
 	if (plotlink_size(param->plots) == 1
 		&& builtin != ECHO && builtin != 0)
 	{
+		//close_heredoc;
 		do_builtin(tmp_head, param, builtin, 0);
 	}
 	else

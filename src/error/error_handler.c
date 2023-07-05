@@ -70,6 +70,9 @@ void	error_handler(int err, char	*progname, char *name)
 		error_arg(err, progname, name);
 	else if (err == E_CHILD)
 		ft_fprintf(2, "%s\n", strerror(errno));
+	else if (err == E_HEREDOC)
+		ft_fprintf(2, \
+		"warning: here-document delimited by end-of-file (wanted `%s')\n", name);
 }
 
 void	error_redir(int i, t_plot *plot, t_param *param)

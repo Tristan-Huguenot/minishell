@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/05/30 11:24:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/06/16 14:06:52 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/07/05 17:57:58 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ enum e_error {
 	E_UTOKEN,
 	E_IDENTIFIER,
 	E_CHILD,
+	E_HEREDOC,
 };
 
 /* ENUM BUILTIN */

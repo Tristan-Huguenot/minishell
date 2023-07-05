@@ -47,6 +47,7 @@ SRCS	:=	src/main.c								\
 			src/exit/close_fd.c						\
 			src/files/files_compute.c				\
 			src/files/handle_redir.c				\
+			src/files/handle_here_doc.c				\
 			src/files/check_redir.c					\
 			src/error/error_handler_cmd.c			\
 			src/error/error_handler.c				\

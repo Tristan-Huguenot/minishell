@@ -1,5 +1,13 @@
 #include "minishell.h"
 
+void	dup_heredoc_pipe(t_child *child, int state)
+{
+	if (state % 2 == 0)
+		dup2(child->odd[0], 0);
+	else
+		dup2(child->even[0], 0);
+}
+
 void	dup_pipe_even(t_plot *plot, t_child *child)
 {
 	if (child->odd[0] != -1)
