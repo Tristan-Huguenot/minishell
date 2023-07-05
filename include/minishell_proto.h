@@ -8,14 +8,14 @@ extern int	g_return;
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
 char	*init_prompt(char *name, t_env *env);
-int	init_child(int size, t_child *child);
-int	init_pipe(int state, t_child *child);
+int		init_child(int size, t_child *child);
+int		init_pipe(int state, t_child *child);
 
 /*	FILE	*/
 
-int	file_is_dir(char *file);
+int		file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
-int	check_open_redir(char **redir);
+int		check_open_redir(char **redir);
 void	init_redir(char **redir, t_child *child);
 
 /*	ERROR	*/
@@ -42,8 +42,8 @@ t_plot	*plotlink_new(char *cmd);
 void	plotlink_addback(t_plot **plots, t_plot *new);
 void	delete_plot(t_plot *plot);
 void	plotlink_clear(t_plot **plots);
-int	plotlink_size(t_plot *head);
-int	envlink_size(t_env *head);
+int		plotlink_size(t_plot *head);
+int		envlink_size(t_env *head);
 
 /*	IS_DELIM	*/
 
@@ -55,7 +55,7 @@ int		is_delim_space(char sep);
 
 /*	PARSING	*/
 
-void		clear_cmd_arg(t_plot *plot, int i);
+void	clear_cmd_arg(t_plot *plot, int i);
 int		parsing(t_param *param, char *input);
 int		parsing_redir(t_plot *plot, t_param *param);
 void	parsing_arg(t_plot *plot);

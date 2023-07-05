@@ -20,12 +20,12 @@ char	*file_is_exe(char *file, char **paths)
 
 	if (!file || ft_strlen(file) == 0 || file_is_dir(file))
 		return (NULL);
-	if (file && !access(file, F_OK | X_OK))
+	if (file && ft_strchr(file, '/') && !access(file, F_OK | X_OK))
 		return (ft_strdup(file));
 	if (file[0] == '/')
 		return (NULL);
 	i = 0;
-	while (file && paths && paths[i])
+	while (file && !ft_strchr(file, '/') && paths && paths[i])
 	{
 		tmp = ft_strjoin(paths[i], file);
 		if (!tmp)

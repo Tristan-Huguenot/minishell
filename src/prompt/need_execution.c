@@ -46,7 +46,7 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		exit_program(param);
 }
 
-void	preparation_fork(t_param *param, int builtin)
+int	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
 	int		stateredir;
@@ -59,7 +59,7 @@ void	preparation_fork(t_param *param, int builtin)
 	{
 		builtin = is_builtin(tmp_head->cmd_arg[0]);
 		if (init_pipe(i, param->child))
-			return ;
+			return (1);
 		signal(SIGINT, sig_child);
 		signal(SIGQUIT, sig_child);
 		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
@@ -87,8 +87,22 @@ void	preparation_fork(t_param *param, int builtin)
 			if (!stateredir && tmp_head->cmd_arg[0])
 				handle_bad_command(tmp_head, param->child, i);
 			else
+			{
+				if (!stateredir)
+				{
+					param->child->pid[i] = fork();
+					if (param->child->pid[i] == 0)
+					{
+						dup_pipe(tmp_head, param->child, i);
+						close_pipe(param->child, i);
+						exit_program(param);
+					}
+				}
+				else
+					param->child->pid[i] = -1;
 				if (path)
 					free(path);
+			}
 		}
 		i++;
 		close_pipe(param->child, i);
@@ -96,14 +110,17 @@ void	preparation_fork(t_param *param, int builtin)
 	}
 	close_pipe(param->child, i + 1);
 	free(tmp_head);
+	return (stateredir);
 }
 
 void	need_execution(t_param *param)
 {
 	int		builtin;
 	int		i;
+	int		stateredir;
 	t_plot	*tmp_head;
 
+	stateredir = 0;
 	tmp_head = param->plots;
 	if (init_child(plotlink_size(param->plots), param->child))
 		return (error_handler(E_CHILD, param->progname, NULL));
@@ -115,11 +132,10 @@ void	need_execution(t_param *param)
 	}
 	else
 	{
-		preparation_fork(param, builtin);
+		stateredir = preparation_fork(param, builtin);
 	}
 	i = 0;
 	tmp_head = param->plots;
-
 	while (i < plotlink_size(param->plots))
 	{
 		if (param->child->pid[i] != -1)
@@ -127,12 +143,14 @@ void	need_execution(t_param *param)
 			waitpid(param->child->pid[i], &param->child->w_status[i], 0);
 			if (!is_builtin(tmp_head->cmd_arg[0]))
 			{
-				if (WIFEXITED(param->child->w_status[i]))
+				if (WIFEXITED(param->child->w_status[i]) && !stateredir)
+				{
 					g_return = WEXITSTATUS(param->child->w_status[i]);
+				}
 			}
 		}
 		i++;
-		tmp_head= tmp_head->next;
+		tmp_head = tmp_head->next;
 	}
 	free_child(param);
 	// free(tmp_head);

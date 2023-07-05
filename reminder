@@ -133,3 +133,14 @@ DONE exit
  2.3 here_doc
 
  2.4 pipe
+ 
+ 
+ ---------------------------------------------------------------
+ 
+ faire here_doc 
+ 
+ verifier les executable ---> ./blabla : handle_bad_cmd
+ 
+ here_doc signal
+ 
+ verifier les signaux quand ./minishell ./minishell

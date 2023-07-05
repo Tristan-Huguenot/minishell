@@ -17,6 +17,8 @@ static void	sub_cmd_arg(t_plot *plot, int todel)
 		if (y != todel)
 		{
 			strs[i] = ft_strdup(plot->cmd_arg[y]);
+			if (!strs[i])
+				break ;
 			i++;
 		}
 		y++;
@@ -100,6 +102,7 @@ int	parsing(t_param *param, char *input)
 	if (quote)
 	{
 		error_handler(E_WQUOTE, param->progname, &quote);
+		g_return = 2;
 		return (1);
 	}
 	else

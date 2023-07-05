@@ -68,7 +68,7 @@ char	*init_prompt(char *name, t_env *env)
 
 	prompt = ft_strjoin(PROMPTC, " $? ");
 	prompt = ft_strjoin_free(prompt, name);
-	tmp = ft_strjoin_free(prompt, " $>");
+	tmp = ft_strjoin_free(prompt, " $> ");
 	prompt = ft_strjoin_free(tmp, NOC);
 	prompt = parsing_variable(prompt, env);
 	return (prompt);

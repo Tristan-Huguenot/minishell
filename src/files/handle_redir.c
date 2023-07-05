@@ -9,7 +9,6 @@ static void	init_redir_out(char *redir)
 		fd = open(redir + 3, O_WRONLY | O_TRUNC);
 		if (fd != -1)
 		{
-			printf("bla\n");
 			dup2(fd, 1);
 			close(fd);
 		}
@@ -19,7 +18,6 @@ static void	init_redir_out(char *redir)
 		fd = open(redir + 3, O_WRONLY | O_APPEND);
 		if (fd != -1)
 		{
-			printf("bla %d\n", fd);
 			dup2(fd, 1);
 			close(fd);
 		}

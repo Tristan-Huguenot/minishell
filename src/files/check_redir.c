@@ -50,7 +50,7 @@ int	check_open_redir(char **redir)
 
 	ret = 0;
 	i = 0;
-	while (redir[i])
+	while (redir[i] && ret == 0)
 	{
 		if (redir[i][0] == '0')
 		{
