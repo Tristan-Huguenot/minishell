@@ -26,6 +26,11 @@ void	handle_bad_command(t_plot *plot, t_child *child, int state)
 			g_return = 126;
 			ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(21));
 		}
+		else if (!access(plot->cmd_arg[0], F_OK))
+		{
+			g_return = 126;
+			ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(13));	
+		}
 		else
 			ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(2));
 	}
