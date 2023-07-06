@@ -1,10 +1,13 @@
 #include "minishell.h"
 
-// void	sig_heredoc(int sig)
-// {
-	// if ()
-	// 
-// }
+void	signal_handler_hd(int sig)
+{
+	if (sig == SIGINT)
+	{
+		printf("\n");
+		return ;
+	}
+}
 
 void	sig_child(int sig)
 {

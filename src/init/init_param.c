@@ -16,7 +16,7 @@ static void	add_last_slash(char **paths)
 	return ;
 }
 
-static void	init_paths(t_param *param)
+void	init_paths(t_param *param)
 {
 	t_env	*path;
 

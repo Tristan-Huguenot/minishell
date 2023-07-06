@@ -34,9 +34,9 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 	else if (builtin == PWD)
 		g_return = pwd();
 	else if (builtin == EXPORT)
-		g_return = ft_export(plot->argc, plot->cmd_arg, &param->env);
+		g_return = ft_export(plot->argc, plot->cmd_arg, param);
 	else if (builtin == UNSET)
-		g_return = unset(plot->argc, plot->cmd_arg, &param->env);
+		g_return = unset(plot->argc, plot->cmd_arg, param);
 	else if (builtin == ENV)
 		g_return = env(plot->argc, plot->cmd_arg, tmp);
 	ft_free_strs(tmp);
@@ -69,12 +69,9 @@ int	preparation_fork(t_param *param, int builtin)
 			param->child->pid[i] = fork();
 			if (param->child->pid[i] == 0)
 			{
-				//if (tmp_head->here_doc)
-				//{
 				dup_pipe(tmp_head, param->child, i);
 				close_pipe(param->child, i);
-				//}
-				init_redir(tmp_head->redir, param->child, i);
+				init_redir(tmp_head);
 				if (builtin)
 				{
 					free(path);
@@ -83,6 +80,8 @@ int	preparation_fork(t_param *param, int builtin)
 				else
 					do_execve(tmp_head, param, i, path);
 			}
+			else if (tmp_head->fd_heredoc != -1)
+				close_heredoc_fd(tmp_head);
 			free(path);
 		}
 		else
@@ -98,9 +97,11 @@ int	preparation_fork(t_param *param, int builtin)
 					{
 						dup_pipe(tmp_head, param->child, i);
 						close_pipe(param->child, i);
-						init_redir(tmp_head->redir, param->child, i);
+						init_redir(tmp_head);
 						exit_program(param);
 					}
+					else if (tmp_head->fd_heredoc != -1)
+						close_heredoc_fd(tmp_head);
 				}
 				else
 					param->child->pid[i] = -1;
@@ -129,11 +130,11 @@ void	need_execution(t_param *param)
 	if (init_child(plotlink_size(param->plots), param->child))
 		return (error_handler(E_CHILD, param->progname, NULL));
 	builtin = is_builtin(tmp_head->cmd_arg[0]);
-	//init_heredoc_plots;
+	init_heredoc_plots(tmp_head);
 	if (plotlink_size(param->plots) == 1
 		&& builtin != ECHO && builtin != 0)
 	{
-		//close_heredoc;
+		close_heredoc_fd(tmp_head);
 		do_builtin(tmp_head, param, builtin, 0);
 	}
 	else

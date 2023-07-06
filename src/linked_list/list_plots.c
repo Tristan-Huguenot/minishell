@@ -18,6 +18,7 @@ t_plot	*plotlink_new(char *cmd)
 		return (plot);
 	plot->cmd = cmd;
 	plot->next = NULL;
+	plot->fd_heredoc = -1;
 	return (plot);
 }
 

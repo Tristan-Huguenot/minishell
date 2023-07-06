@@ -14,7 +14,7 @@ static int	check_arg(char *arg)
 	return (0);
 }
 
-int	unset(int argc, char **argv, t_env **env)
+int	unset(int argc, char **argv, t_param *param)
 {
 	int	i;
 	int	ret;
@@ -31,7 +31,14 @@ int	unset(int argc, char **argv, t_env **env)
 			error_handler(E_IDENTIFIER, argv[0], argv[i]);
 		}
 		else
-			envlink_delvar(env, argv[i]);
+		{
+			envlink_delvar(&param->env, argv[i]);
+			if (!ft_strncmp(argv[i], "PATH", ft_strlen("PATH") + 1))
+			{
+				ft_free_strs(param->paths);
+				param->paths = NULL;
+			}
+		}
 		i++;
 	}
 	return (ret);

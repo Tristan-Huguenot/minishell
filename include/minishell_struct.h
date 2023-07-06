@@ -7,7 +7,8 @@ typedef struct s_plot
 	char			**cmd_arg;
 	int				argc;
 	char			**redir;
-	int				*here_doc;
+	int				fd_heredoc;
+	int				index_hd;
 	struct s_plot	*next;
 }	t_plot;
 

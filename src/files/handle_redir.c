@@ -6,7 +6,7 @@ static void	init_redir_out(char *redir)
 
 	if (redir[1] == '1')
 	{
-		fd = open(redir + 3, O_WRONLY | O_TRUNC);
+		fd = open(redir + 3, O_WRONLY);
 		if (fd != -1)
 		{
 			dup2(fd, 1);
@@ -15,7 +15,7 @@ static void	init_redir_out(char *redir)
 	}
 	else
 	{
-		fd = open(redir + 3, O_WRONLY | O_APPEND);
+		fd = open(redir + 3, O_WRONLY);
 		if (fd != -1)
 		{
 			dup2(fd, 1);
@@ -24,13 +24,13 @@ static void	init_redir_out(char *redir)
 	}
 }
 
-static void	init_redir_in(char *redir, t_child *child, int state)
+static void	init_redir_in(t_plot *plot, int i)
 {
 	int	fd;
 
-	if (redir[1] == '1')
+	if (plot->redir[i][1] == '1')
 	{
-		fd = open(redir + 3, O_RDONLY);
+		fd = open(plot->redir[i] + 3, O_RDONLY);
 		if (fd != -1)
 		{
 			dup2(fd, 0);
@@ -38,21 +38,27 @@ static void	init_redir_in(char *redir, t_child *child, int state)
 		}
 	}
 	else
-		handle_here_doc(redir + 3, child, state);
+	{
+		if (i == plot->index_hd && plot->fd_heredoc != -1)
+		{
+			dup2(plot->fd_heredoc, 0);
+			close(plot->fd_heredoc);
+			plot->fd_heredoc = -1;
+		}
+	}
 }
 
-void	init_redir(char **redir, t_child *child, int state)
+void	init_redir(t_plot *plot)
 {
 	int	i;
 
 	i = 0;
-	while (redir[i])
+	while (plot->redir[i])
 	{
-		printf("test\n");
-		if (redir[i][0] == '0')
-			init_redir_in(redir[i], child, state);
+		if (plot->redir[i][0] == '0')
+			init_redir_in(plot, i);
 		else
-			init_redir_out(redir[i]);
+			init_redir_out(plot->redir[i]);
 		i++;
 	}
 }

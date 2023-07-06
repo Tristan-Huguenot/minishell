@@ -135,6 +135,11 @@ DONE exit
  2.4 pipe
  
  
+ Si unset PATH faut ft_free_strs le char **path
+  Si export PATH faut ft_free_strs et recalculer le char **path
+ 
+ done dans check_redir O_truncsi et append
+ 
  ---------------------------------------------------------------
  
  faire here_doc 

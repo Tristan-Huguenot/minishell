@@ -8,7 +8,10 @@ static int	check_open_redir_out(char *redir)
 	ret = 0;
 	if (access(redir + 3, F_OK))
 	{
-		fd = open(redir + 3, O_CREAT, 00644);
+		if (redir[1] == '1')
+			fd = open(redir + 3, O_CREAT & O_TRUNC, 00644);
+		else
+			fd = open(redir + 3, O_CREAT & O_APPEND, 00644);
 		if (fd != -1)
 			close(fd);
 	}

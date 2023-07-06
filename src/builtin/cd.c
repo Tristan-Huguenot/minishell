@@ -16,7 +16,7 @@ static char	*cd_pwd(void)
 	return (buf);
 }
 
-void	ft_chdir(int argc, char **argv, t_env **env)
+void	ft_chdir(int argc, char **argv, t_param *param)
 {
 	char	*str_old_pwd;
 	char	*str_pwd;
@@ -25,18 +25,18 @@ void	ft_chdir(int argc, char **argv, t_env **env)
 	str_pwd = ft_strdup(argv[1]);
 	free(argv[1]);
 	argv[1] = ft_strjoin("OLDPWD=", str_old_pwd);
-	ft_export(argc, argv, env);
+	ft_export(argc, argv, param);
 	chdir(str_pwd);
 	free(argv[1]);
 	free(str_pwd);
 	str_pwd = cd_pwd();
 	argv[1] = ft_strjoin("PWD=", str_pwd);
-	ft_export(argc, argv, env);
+	ft_export(argc, argv, param);
 	free(str_old_pwd);
 	free(str_pwd);
 }
 
-void	cd_parsing(int argc, char **argv, t_env **env, char **cd_split)
+void	cd_parsing(int argc, char **argv, t_param *param, char **cd_split)
 {
 	int		i;
 	char	*str_old_pwd;
@@ -51,11 +51,11 @@ void	cd_parsing(int argc, char **argv, t_env **env, char **cd_split)
 	}
 	free(argv[1]);
 	argv[1] = ft_strjoin("OLDPWD=", str_old_pwd);
-	ft_export(argc, argv, env);
+	ft_export(argc, argv, param);
 	free(argv[1]);
 	str_pwd = cd_pwd();
 	argv[1] = ft_strjoin("PWD=", str_pwd);
-	ft_export(argc, argv, env);
+	ft_export(argc, argv, param);
 	free(str_old_pwd);
 	free(str_pwd);
 }
@@ -68,11 +68,11 @@ int	cd_arg(int argc, char **argv, t_param *param, char **cd_split)
 	if (argv && argv[1] && dir)
 	{
 		if (!ft_strncmp(argv[1], "/", 1))
-			ft_chdir(argc, argv, &param->env);
+			ft_chdir(argc, argv, param);
 		else
 		{
 			cd_split = ft_split(argv[1], '/');
-			cd_parsing(argc, argv, &param->env, cd_split);
+			cd_parsing(argc, argv, param, cd_split);
 			ft_free_strs(cd_split);
 		}
 		closedir(dir);

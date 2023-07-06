@@ -12,14 +12,15 @@ int		init_child(int size, t_child *child);
 int		init_even_pipe(t_child *child);
 int		init_odd_pipe(t_child *child);
 int		init_pipe(int state, t_child *child);
+void	init_paths(t_param *param);
 
 /*	FILE	*/
 
 int		file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
 int		check_open_redir(char **redir);
-void	init_redir(char **redir, t_child *child, int state);
-void	handle_here_doc(char *redir, t_child *child, int state);
+void	init_redir(t_plot *plot);
+void	init_heredoc_plots(t_plot *plots);
 
 /*	ERROR	*/
 
@@ -90,12 +91,12 @@ void	free_child(t_param *param);
 void	close_common_fd(void);
 void	close_pipe(t_child *child, int state);
 void	close_pipe_builtin(t_child *child, int state);
-void	close_heredoc_pipe(t_child *child, int state);
+void	close_heredoc_fd(t_plot *plot);
 
 /*	BUILTIN	*/
 
 int		env(int argc, char **argv, char **env);
-int		unset(int argc, char **argv, t_env **env);
+int		unset(int argc, char **argv, t_param *param);
 int		echo(int argc, char **cmd_arg);
 int		pwd(void);
 void	sort_strs(char **strs);
@@ -105,7 +106,7 @@ void	ft_exit(int argc, char **argv, t_param *param, int isfork);
 
 	/*	EXPORT	*/
 
-int		ft_export(int argc, char **argv, t_env **env);
+int		ft_export(int argc, char **argv, t_param *param);
 void	export_adding(char *arg, char *name, t_env *env);
 void	export_create(char *arg, char *name, t_env **env);
 
@@ -113,6 +114,7 @@ void	export_create(char *arg, char *name, t_env **env);
 
 void	signal_handler(int sig);
 void	sig_child(int sig);
+void	signal_handler_hd(int sig);
 
 /* PIPE AND EXECVE*/
 

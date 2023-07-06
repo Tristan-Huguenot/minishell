@@ -48,7 +48,7 @@ static int	check_identifier(char *arg, int end)
 	return (0);
 }
 
-static void	export_nonull(int middle, char *arg, t_env **env)
+static void	export_nonull(int middle, char *arg, t_param *param)
 {
 	char	*var;
 
@@ -60,13 +60,19 @@ static void	export_nonull(int middle, char *arg, t_env **env)
 		free(var);
 		return ;
 	}
-	if (arg[middle] != '=' && envlink_getvar(*env, var))
-		export_adding(arg + middle + 2, var, *env);
+	if (arg[middle] != '=' && envlink_getvar(param->env, var))
+		export_adding(arg + middle + 2, var, param->env);
 	else
-		export_create(arg + middle, var, env);
+		export_create(arg + middle, var, &param->env);
+	if (!ft_strncmp(var, "PATH", ft_strlen("PATH") + 1))
+	{
+		if (param->paths)
+			ft_free_strs(param->paths);
+		init_paths(param);
+	}
 }
 
-static int	handle_arg(char *arg, t_env **env)
+static int	handle_arg(char *arg, t_param *param)
 {
 	t_env	*new;
 	char	*tmp;
@@ -79,37 +85,37 @@ static int	handle_arg(char *arg, t_env **env)
 		error_handler(E_IDENTIFIER, "export", arg);
 	if (i == 0 || check_identifier(arg, i))
 		return (1);
-	if (!arg[i] && !envlink_getvar(*env, arg))
+	if (!arg[i] && !envlink_getvar(param->env, arg))
 	{
 		new = NULL;
 		tmp = ft_strdup(arg);
 		if (tmp)
 			new = envlink_new(tmp, NULL);
 		if (new)
-			envlink_addback(env, new);
+			envlink_addback(&param->env, new);
 		else
 			free(tmp);
 	}
 	else if (arg[i])
-		export_nonull(i, arg, env);
+		export_nonull(i, arg, param);
 	return (0);
 }
 
-int	ft_export(int argc, char **argv, t_env **env)
+int	ft_export(int argc, char **argv, t_param *param)
 {
 	int	i;
 	int	ret;
 
 	if (argc == 1)
 	{
-		print_env(*env);
+		print_env(param->env);
 		return (0);
 	}
 	ret = 0;
 	i = 1;
 	while (i < argc)
 	{
-		if (handle_arg(argv[i], env))
+		if (handle_arg(argv[i], param))
 			ret = 1;
 		i++;
 	}

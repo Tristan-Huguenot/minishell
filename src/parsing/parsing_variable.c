@@ -7,10 +7,7 @@ int	interpretation_var_q(char **str, int i, int j, t_env *env)
 		if (str[i][j] == '$')
 		{
 			if (str[i][j + 1] && str[i][j + 1] == '\"')
-			{
-				printf("ici j = %d", j);
 				return (j + 1);
-			}
 			if (str[i][j + 1] && str[i][j + 1] == '?')
 				str[i] = var_dol_interogation(str[i], j + 1);
 			else if (str[i][j + 1] && ft_isdigit(str[i][j + 1]))
