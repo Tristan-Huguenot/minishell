@@ -18,7 +18,7 @@ void	signal_handler_hd(int sig)
 
 	if (sig == SIGINT)
 		close(0);
-	c = '\0';
+	c = '\n';
 	write(1, &c, 1);
 }
 

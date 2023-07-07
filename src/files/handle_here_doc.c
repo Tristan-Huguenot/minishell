@@ -56,7 +56,7 @@ void	init_heredoc_plots(t_plot *plots, t_env *env)
 				else if (state == 2)
 				{
 					close_all_heredoc(plots);
-					break;
+					return ;
 				}
 			}
 			i++;

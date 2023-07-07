@@ -5,22 +5,13 @@ static void	init_redir_out(char *redir)
 	int	fd;
 
 	if (redir[1] == '1')
-	{
 		fd = open(redir + 3, O_WRONLY | O_TRUNC);
-		if (fd != -1)
-		{
-			dup2(fd, 1);
-			close(fd);
-		}
-	}
 	else
-	{
 		fd = open(redir + 3, O_WRONLY | O_APPEND);
-		if (fd != -1)
-		{
-			dup2(fd, 1);
-			close(fd);
-		}
+	if (fd != -1)
+	{
+		dup2(fd, 1);
+		close(fd);
 	}
 }
 
@@ -41,9 +32,14 @@ static void	init_redir_in(t_plot *plot, int i)
 	{
 		if (i == plot->index_hd && plot->fd_heredoc[0] != -1)
 		{
-			dup2(plot->fd_heredoc[0], 0);
-			close(plot->fd_heredoc[0]);
-			plot->fd_heredoc[0] = -1;
+			if (i != plot->index_hd)
+				close(plot->fd_heredoc[0]);
+			else
+			{
+				dup2(plot->fd_heredoc[0], 0);
+				close(plot->fd_heredoc[0]);
+				plot->fd_heredoc[0] = -1;
+			}
 		}
 	}
 }

@@ -165,3 +165,9 @@ DONE exit
  
  verifier gestion erreur_cmd
  
+ 
+ $o = 's -l'
+ 
+ l$o -> 'ls -l' command not found a voir pour gerer ca apres le parsing var et avant remove quote
+
+export a l air de se faire dans enfant des fois (apres un pwd)

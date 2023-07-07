@@ -79,7 +79,8 @@ int	preparation_fork(t_param *param, int builtin)
 				}
 				else
 				{
-					force_close_fd();
+					// force_close_fd();
+					close(tmp_head->fd_heredoc[0]);
 					do_execve(tmp_head, param, i, path);
 				}
 			}
@@ -104,11 +105,11 @@ int	preparation_fork(t_param *param, int builtin)
 						force_close_fd();
 						exit_program(param);
 					}
-					else if (tmp_head->fd_heredoc[0] != -1)
-					{
-						close_heredoc_fd(tmp_head);
-						force_close_fd();
-					}
+					// else if (tmp_head->fd_heredoc[0] != -1)
+					// {
+						// close_heredoc_fd(tmp_head);
+						// force_close_fd();
+					// }
 				}
 				else
 					param->child->pid[i] = -1;
