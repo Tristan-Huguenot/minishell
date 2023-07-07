@@ -156,3 +156,12 @@ DONE exit
  init_redir 2eme compteur pour heredoc le fd correspondant a dup et close dans la boucle redir
  
  des closes de fd a faire dans signal handler
+ 
+ 
+ ------------------------------------------------------------------
+ 
+ heredoc quand ctrl C ---> boucle plots et creer des heredocs vide 
+ ----> regler avec pipe -->     << p | << r | ls   +   ctrl C
+ 
+ verifier gestion erreur_cmd
+ 
