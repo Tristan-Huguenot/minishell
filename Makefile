@@ -45,6 +45,7 @@ SRCS	:=	src/main.c								\
 			src/linked_list/list_size.c				\
 			src/exit/exit_program.c					\
 			src/exit/close_fd.c						\
+			src/exit/force_close_fd.c				\
 			src/files/files_compute.c				\
 			src/files/handle_redir.c				\
 			src/files/handle_here_doc.c				\
@@ -78,6 +79,7 @@ SRCS	:=	src/main.c								\
 			src/signal/signal.c						\
 			src/cmd/child_execve.c					\
 			src/cmd/dup_fd.c						\
+			src/cmd/read_lost_pipe.c				\
 
 #TARGETS
 

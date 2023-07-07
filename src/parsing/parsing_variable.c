@@ -67,20 +67,20 @@ static void	ft_free(char **str_tmp, char *str)
 	free(str);
 }
 
-char	*parsing_variable(char *str, t_env *env)
+char	*parsing_variable(char *str, t_env *env, int isheredoc)
 {
 	int		i;
 	int		j;
 	char	**str_tmp;
 	char	*str2;
 
-	str_tmp = split_tmp_var(str);
+	str_tmp = create_str_tmp(str, isheredoc);
 	i = 0;
 	str2 = NULL;
-	while (str_tmp[i])
+	while (str_tmp && str_tmp[i])
 	{
 		j = 0;
-		if (str_tmp[i][j] != '\'' )
+		if (str_tmp[i][j] != '\'' || isheredoc)
 		{
 			while (str_tmp[i] && str_tmp[i][j])
 			{			

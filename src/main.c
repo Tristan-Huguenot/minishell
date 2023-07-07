@@ -14,8 +14,7 @@ int	main(int argc, char **argv, char **envp)
 	}
 	while (1)
 	{
-		signal(SIGINT, signal_handler);
-		signal(SIGQUIT, SIG_IGN);
+		set_handler_sig_parent();
 		prompt_in(param);
 	}
 	g_return = 0;

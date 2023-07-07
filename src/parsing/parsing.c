@@ -34,14 +34,14 @@ static void	rendering(t_plot *plot, t_env *env)
 	i = 0;
 	while (plot->redir[i])
 	{
-		plot->redir[i] = parsing_variable(plot->redir[i], env);
+		plot->redir[i] = parsing_variable(plot->redir[i], env, 0);
 		plot->redir[i] = there_is_quote_to_remove(plot->redir[i]);
 		i++;
 	}
 	i = 0;
 	while (plot->cmd_arg[i])
 	{
-		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env);
+		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env, 0);
 		if (plot->argc == 1 && plot->cmd_arg[i][0] == '\0' && !plot->redir[0])
 			clear_cmd_arg(plot, i);
 		if (plot->argc > 1 && plot->cmd_arg[i][0] == '\0' && !plot->redir[0])

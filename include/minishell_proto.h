@@ -7,7 +7,6 @@ extern int	g_return;
 
 t_param	*init_param(char *name, char **envp);
 void	init_plots(t_param *param, char *input);
-char	*init_prompt(char *name, t_env *env);
 int		init_child(int size, t_child *child);
 int		init_even_pipe(t_child *child);
 int		init_odd_pipe(t_child *child);
@@ -20,7 +19,7 @@ int		file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
 int		check_open_redir(char **redir);
 void	init_redir(t_plot *plot);
-void	init_heredoc_plots(t_plot *plots);
+void	init_heredoc_plots(t_plot *plots, t_env *env);
 
 /*	ERROR	*/
 
@@ -68,7 +67,8 @@ int		jump_next_charset(char *cmd, int i, char *charset);
 int		first_quote(char *input, int t, char q);
 char	wrong_quote(char *input);
 void	parsing_redirection(char **input, int st);
-char	*parsing_variable(char *str, t_env *env);
+char	*parsing_variable(char *str, t_env *env, int isheredoc);
+char	**create_str_tmp(char *str, int isheredoc);
 int		remove_dol(char **str, int i);
 int		remove_dol_num(char **str, int i);
 int		interpret_var_changement(char **str, t_env *env, int i, int tmp);
@@ -92,6 +92,8 @@ void	close_common_fd(void);
 void	close_pipe(t_child *child, int state);
 void	close_pipe_builtin(t_child *child, int state);
 void	close_heredoc_fd(t_plot *plot);
+void	close_all_heredoc(t_plot *plots);
+void	force_close_fd(void);
 
 /*	BUILTIN	*/
 
@@ -112,6 +114,8 @@ void	export_create(char *arg, char *name, t_env **env);
 
 /* SIGNAL */
 
+void	set_handler_sig_parent(void);
+void	set_handler_sig_hered(void);
 void	signal_handler(int sig);
 void	sig_child(int sig);
 void	signal_handler_hd(int sig);
@@ -123,5 +127,6 @@ void	dup_pipe(t_plot *plot, t_child *child, int state);
 void	dup_pipe_even(t_plot *plot, t_child *child);
 void	dup_pipe_odd(t_plot *plot, t_child *child);
 void	dup_heredoc_pipe(t_child *child, int state);
+void	read_lost_pipe(t_child *child, int state);
 
 #endif

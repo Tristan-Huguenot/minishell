@@ -1,5 +1,21 @@
 #include "minishell.h"
 
+char	**create_str_tmp(char *str, int isheredoc)
+{
+	char	**str_tmp;
+
+	if (!isheredoc)
+		str_tmp = split_tmp_var(str);
+	else
+	{
+		str_tmp = ft_calloc(2, sizeof(*str_tmp));
+		if (!str_tmp)
+			return (str_tmp);
+		str_tmp[0] = ft_strdup(str);
+	}
+	return (str_tmp);
+}
+
 char	*var_dol_interogation(char *str, int i)
 {
 	char	*str1;

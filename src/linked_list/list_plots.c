@@ -18,7 +18,8 @@ t_plot	*plotlink_new(char *cmd)
 		return (plot);
 	plot->cmd = cmd;
 	plot->next = NULL;
-	plot->fd_heredoc = -1;
+	plot->fd_heredoc[0] = -1;
+	plot->fd_heredoc[1] = -1;
 	return (plot);
 }
 
@@ -49,6 +50,7 @@ void	delete_plot(t_plot *plot)
 		ft_free_strs(plot->cmd_arg);
 	if (plot->redir)
 		ft_free_strs(plot->redir);
+	close_heredoc_fd(plot);
 	free(plot);
 }
 
