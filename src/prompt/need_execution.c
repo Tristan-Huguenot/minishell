@@ -46,6 +46,19 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		exit_program(param);
 }
 
+static void	close_other_plot(t_plot *actual, t_plot *start)
+{
+	while (start != NULL)
+	{
+		if (start != actual && start->fd_heredoc[0] != -1)
+		{
+			close(start->fd_heredoc[0]);
+			start->fd_heredoc[0] = -1;
+		}
+		start = start->next;
+	}
+}
+
 int	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
@@ -72,6 +85,7 @@ int	preparation_fork(t_param *param, int builtin)
 				dup_pipe(tmp_head, param->child, i);
 				close_pipe(param->child, i);
 				init_redir(tmp_head);
+				close_other_plot(tmp_head, param->plots);
 				if (builtin)
 				{
 					free(path);
@@ -80,7 +94,6 @@ int	preparation_fork(t_param *param, int builtin)
 				else
 				{
 					// force_close_fd();
-					close(tmp_head->fd_heredoc[0]);
 					do_execve(tmp_head, param, i, path);
 				}
 			}
@@ -170,5 +183,4 @@ void	need_execution(t_param *param)
 		tmp_head = tmp_head->next;
 	}
 	free_child(param);
-	// free(tmp_head);
 }

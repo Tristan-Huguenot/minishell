@@ -6,6 +6,11 @@ static int	handle_here_doc(t_plot *plot, char *redir, t_env *env)
 	int		new_stdin;
 
 	new_stdin = dup(0);
+	if (plot->fd_heredoc[0] != -1)
+	{
+		close(plot->fd_heredoc[0]);
+		plot->fd_heredoc[0] = -1;
+	}
 	if (pipe(plot->fd_heredoc) == -1)
 		return (1);
 	set_handler_sig_hered();
