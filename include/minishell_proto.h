@@ -19,7 +19,7 @@ int		file_is_dir(char *file);
 char	*file_is_exe(char *file, char **paths);
 int		check_open_redir(char **redir);
 void	init_redir(t_plot *plot);
-void	init_heredoc_plots(t_plot *plots, t_env *env);
+int		init_heredoc_plots(t_plot *plots, t_env *env);
 
 /*	ERROR	*/
 

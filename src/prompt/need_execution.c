@@ -152,7 +152,11 @@ void	need_execution(t_param *param)
 	if (init_child(plotlink_size(param->plots), param->child))
 		return (error_handler(E_CHILD, param->progname, NULL));
 	builtin = is_builtin(tmp_head->cmd_arg[0]);
-	init_heredoc_plots(tmp_head, param->env);
+	if (init_heredoc_plots(tmp_head, param->env))
+	{
+		free_child(param);
+		return ;
+	}
 	set_handler_sig_parent();
 	if (plotlink_size(param->plots) == 1
 		&& builtin != ECHO && builtin != 0)

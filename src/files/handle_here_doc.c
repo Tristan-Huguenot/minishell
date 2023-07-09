@@ -28,6 +28,13 @@ static int	handle_here_doc(t_plot *plot, char *redir, t_env *env)
 		error_handler(E_HEREDOC, NULL, redir);
 	else if (!isatty(0) && !input)
 	{
+		// int i = 1;
+		// while (i < new_stdin)
+		// {
+			// close(i);
+			// i++;
+		// }
+
 		dup2(new_stdin, 0);
 		close(new_stdin);
 		return (2);
@@ -39,7 +46,7 @@ static int	handle_here_doc(t_plot *plot, char *redir, t_env *env)
 	return (0);
 }
 
-void	init_heredoc_plots(t_plot *plots, t_env *env)
+int	init_heredoc_plots(t_plot *plots, t_env *env)
 {
 	t_plot	*tmp;
 	int		state;
@@ -61,11 +68,12 @@ void	init_heredoc_plots(t_plot *plots, t_env *env)
 				else if (state == 2)
 				{
 					close_all_heredoc(plots);
-					return ;
+					return (1);
 				}
 			}
 			i++;
 		}
 		tmp = tmp->next;
 	}
+	return (0);
 }
