@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:10 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:34:12 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/11 01:11:43 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,10 +37,14 @@ int	interpretation_var_q(char **str, int i, int j, t_env *env)
 
 int	interpretation_dol_lastcase(char **str, int i, int j, t_env *env)
 {
-	if (str[i][j + 1] && is_delim_space(str[i][j + 1]))
+	if (str[i][j + 1] && is_delim_space(str[i][j + 1]
+		&& str[i][j] && str[i][j] != '$'))
 		return (j);
 	else if (str[i][j + 1] && !is_delim_space(str[i][j + 1]))
 		j = interpretation_var(&str[i], j, env);
+	else if (str[i][j + 1] && is_delim_space(str[i][j + 1])
+		&& str[i][j] && str[i][j] == '$')
+		j++;
 	return (j);
 }
 
