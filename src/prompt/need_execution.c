@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 15:33:42 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/07/10 16:25:26 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 	char	**tmp;
 
 	tmp = convert_env_strs(param->env);
+	signal(SIGPIPE, SIG_IGN);
 	if (builtin == ECHO)
 		g_return = echo(plot->argc, plot->cmd_arg);
 	else if (builtin == CD)
@@ -51,8 +52,8 @@ void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		g_return = unset(plot->argc, plot->cmd_arg, param);
 	else if (builtin == ENV)
 		g_return = env(plot->argc, plot->cmd_arg, tmp);
-	printf("test\n");
 	ft_free_strs(tmp);
+	signal(SIGPIPE, SIG_DFL);
 	if (builtin == EXIT)
 		ft_exit(plot->argc, plot->cmd_arg, param, isfork);
 	if (isfork)
