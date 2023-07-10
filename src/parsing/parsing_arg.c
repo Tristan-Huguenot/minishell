@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:33:52 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:33:53 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:55:21 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@ static int	count_arg(char *str)
 	int	c;
 	int	i;
 
+	if (!str)
+		return (0);
 	c = 0;
 	i = 0;
 	while (str[i])
