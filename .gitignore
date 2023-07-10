@@ -1,5 +1,6 @@
 minishell
 minishell_tester/
+vsupp
 .build/
 tags
 *.a
