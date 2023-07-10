@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 12:37:55 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 13:00:35 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,7 @@ int	preparation_fork(t_param *param, int builtin)
 		tmp_head = tmp_head->next;
 	}
 	close_pipe(param->child, i + 1);
+	free(tmp_head);
 	return (stateredir);
 }
 

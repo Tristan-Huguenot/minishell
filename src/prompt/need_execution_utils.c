@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:19:17 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 12:36:17 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:55:07 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	execute_fork(t_plot *actual, t_param *param, int builtin, int i)
 	}
 	else if (actual->fd_heredoc[0] != -1)
 		close_heredoc_fd(actual);
-	free(actual->path);
 }
 
 void	exe_badcmd_redir(t_plot *actual, t_param *param, int sredir, int i)
