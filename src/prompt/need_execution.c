@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 13:00:35 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:33:42 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,6 +51,7 @@ void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		g_return = unset(plot->argc, plot->cmd_arg, param);
 	else if (builtin == ENV)
 		g_return = env(plot->argc, plot->cmd_arg, tmp);
+	printf("test\n");
 	ft_free_strs(tmp);
 	if (builtin == EXIT)
 		ft_exit(plot->argc, plot->cmd_arg, param, isfork);

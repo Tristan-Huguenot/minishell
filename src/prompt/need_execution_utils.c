@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:19:17 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 12:55:07 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:55:19 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ void	execute_fork(t_plot *actual, t_param *param, int builtin, int i)
 		if (builtin)
 			do_builtin(actual, param, builtin, 1);
 		else
-			do_execve(actual, param, i, actual->path);
+			do_execve(actual, param, actual->path);
 	}
 	else if (actual->fd_heredoc[0] != -1)
 		close_heredoc_fd(actual);

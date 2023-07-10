@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:34 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:31:35 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:54:55 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,11 +20,10 @@ void	dup_pipe(t_plot *plot, t_child *child, int state)
 		dup_pipe_odd(plot, child);
 }
 
-void	do_execve(t_plot *tmp_head, t_param *param, int i, char *path)
+void	do_execve(t_plot *tmp_head, t_param *param, char *path)
 {
 	char	**tmp;
 
-	(void)i;
 	tmp = convert_env_strs(param->env);
 	execve(path, tmp_head->cmd_arg, tmp);
 }

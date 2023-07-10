@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 08:59:08 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 12:37:26 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 15:56:03 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ void	signal_handler_hd(int sig);
 
 /* PIPE AND EXECVE*/
 
-void	do_execve(t_plot *tmp_head, t_param *param, int i, char *path);
+void	do_execve(t_plot *tmp_head, t_param *param, char *path);
 void	dup_pipe(t_plot *plot, t_child *child, int state);
 void	dup_pipe_even(t_plot *plot, t_child *child);
 void	dup_pipe_odd(t_plot *plot, t_child *child);
