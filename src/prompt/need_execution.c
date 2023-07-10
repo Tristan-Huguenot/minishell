@@ -6,13 +6,13 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:34:42 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:37:55 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static int	is_builtin(char *str)
+int	is_builtin(char *str)
 {
 	int	size;
 
@@ -34,7 +34,7 @@ static int	is_builtin(char *str)
 	return (0);
 }
 
-static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
+void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 {
 	char	**tmp;
 
@@ -62,7 +62,6 @@ int	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
 	int		stateredir;
-	char	*path;
 	t_plot	*tmp_head;
 
 	tmp_head = param->plots;
@@ -72,74 +71,24 @@ int	preparation_fork(t_param *param, int builtin)
 		builtin = is_builtin(tmp_head->cmd_arg[0]);
 		if (init_pipe(i, param->child))
 			return (1);
-		signal(SIGINT, sig_child);
-		signal(SIGQUIT, sig_child);
-		path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
+		set_handler_sig_child();
+		tmp_head->path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
 		stateredir = check_open_redir(tmp_head->redir);
-		if (!stateredir && (path || builtin))
-		{
-			param->child->pid[i] = fork();
-			if (param->child->pid[i] == 0)
-			{
-				dup_pipe(tmp_head, param->child, i);
-				close_pipe(param->child, i);
-				init_redir(tmp_head);
-				close_other_plot_hd(tmp_head, param->plots);
-				if (builtin)
-				{
-					free(path);
-					do_builtin(tmp_head, param, builtin, 1);
-				}
-				else
-					do_execve(tmp_head, param, i, path);
-			}
-			else if (tmp_head->fd_heredoc[0] != -1)
-				close_heredoc_fd(tmp_head);
-			free(path);
-		}
+		if (!stateredir && (tmp_head->path || builtin))
+			execute_fork(tmp_head, param, builtin, i);
 		else
-		{
-			if (!stateredir && tmp_head->cmd_arg[0])
-				handle_bad_command(tmp_head, param->child, i);
-			else
-			{
-				if (!stateredir)
-				{
-					param->child->pid[i] = fork();
-					if (param->child->pid[i] == 0)
-					{
-						dup_pipe(tmp_head, param->child, i);
-						close_pipe(param->child, i);
-						init_redir(tmp_head);
-						force_close_fd();
-						exit_program(param);
-					}
-					// else if (tmp_head->fd_heredoc[0] != -1)
-					// {
-						// close_heredoc_fd(tmp_head);
-						// force_close_fd();
-					// }
-				}
-				else
-					param->child->pid[i] = -1;
-				if (path)
-					free(path);
-			}
-			read_lost_pipe(param->child, i);
-		}
+			exe_badcmd_redir(tmp_head, param, stateredir, i);
 		i++;
 		close_pipe(param->child, i);
 		tmp_head = tmp_head->next;
 	}
 	close_pipe(param->child, i + 1);
-	free(tmp_head);
 	return (stateredir);
 }
 
 void	need_execution(t_param *param)
 {
 	int		builtin;
-	int		i;
 	int		stateredir;
 	t_plot	*tmp_head;
 
@@ -161,26 +110,6 @@ void	need_execution(t_param *param)
 		do_builtin(tmp_head, param, builtin, 0);
 	}
 	else
-	{
 		stateredir = preparation_fork(param, builtin);
-	}
-	i = 0;
-	tmp_head = param->plots;
-	while (i < plotlink_size(param->plots))
-	{
-		if (param->child->pid[i] != -1)
-		{
-			waitpid(param->child->pid[i], &param->child->w_status[i], 0);
-			if (!is_builtin(tmp_head->cmd_arg[0]))
-			{
-				if (WIFEXITED(param->child->w_status[i]) && !stateredir)
-				{
-					g_return = WEXITSTATUS(param->child->w_status[i]);
-				}
-			}
-		}
-		i++;
-		tmp_head = tmp_head->next;
-	}
-	free_child(param);
+	wait_close_childs(param, param->child, stateredir);
 }

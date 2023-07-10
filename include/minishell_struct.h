@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 08:58:36 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 08:59:00 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:21:54 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@ typedef struct s_plot
 	char			**redir;
 	int				fd_heredoc[2];
 	int				index_hd;
+	char			*path;
 	struct s_plot	*next;
 }	t_plot;
 

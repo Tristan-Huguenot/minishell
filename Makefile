@@ -47,6 +47,7 @@ SRCS	:=	src/main.c								\
 			src/exit/close_fd.c						\
 			src/exit/close_heredoc_fd.c				\
 			src/exit/force_close_fd.c				\
+			src/exit/exit_child.c					\
 			src/files/files_compute.c				\
 			src/files/handle_redir.c				\
 			src/files/handle_here_doc.c				\
@@ -67,6 +68,7 @@ SRCS	:=	src/main.c								\
 			src/parsing/remove_quote.c				\
 			src/prompt/prompt.c						\
 			src/prompt/need_execution.c				\
+			src/prompt/need_execution_utils.c		\
 			src/builtin/utils.c						\
 			src/builtin/env.c						\
 			src/builtin/export.c					\
@@ -78,6 +80,7 @@ SRCS	:=	src/main.c								\
 			src/builtin/cd.c						\
 			src/builtin/cd_utils.c					\
 			src/signal/signal.c						\
+			src/signal/signal_utils.c				\
 			src/cmd/child_execve.c					\
 			src/cmd/dup_fd.c						\
 			src/cmd/read_lost_pipe.c				\

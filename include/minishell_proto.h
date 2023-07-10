@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 08:59:08 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 09:55:37 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:37:26 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,10 @@ char	*there_is_quote_to_remove(char *str);
 
 void	prompt_in(t_param *param);
 void	need_execution(t_param *param);
+void	execute_fork(t_plot *actual, t_param *param, int builtin, int i);
+void	exe_badcmd_redir(t_plot *actual, t_param *param, int sredir, int i);
+int		is_builtin(char *str);
+void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork);
 
 /*	EXIT	*/
 
@@ -107,6 +111,7 @@ void	close_heredoc_fd(t_plot *plot);
 void	close_other_plot_hd(t_plot *actual, t_plot *start);
 void	close_all_plot_hd(t_plot *plot);
 void	force_close_fd(void);
+void	wait_close_childs(t_param *param, t_child *child, int stateredir);
 
 /*	BUILTIN	*/
 
@@ -128,6 +133,7 @@ void	export_create(char *arg, char *name, t_env **env);
 /* SIGNAL */
 
 void	set_handler_sig_parent(void);
+void	set_handler_sig_child(void);
 void	set_handler_sig_hered(void);
 void	signal_handler(int sig);
 void	sig_child(int sig);

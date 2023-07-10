@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:33:24 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:33:26 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:23:06 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,6 +62,8 @@ void	delete_plot(t_plot *plot)
 		ft_free_strs(plot->cmd_arg);
 	if (plot->redir)
 		ft_free_strs(plot->redir);
+	if (plot->path)
+		free(plot->path);
 	close_heredoc_fd(plot);
 	free(plot);
 }

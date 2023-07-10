@@ -6,23 +6,11 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:45 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:34:48 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 12:17:13 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-void	set_handler_sig_parent(void)
-{	
-	signal(SIGINT, signal_handler);
-	signal(SIGQUIT, SIG_IGN);
-}
-
-void	set_handler_sig_hered(void)
-{
-	signal(SIGINT, signal_handler_hd);
-	signal(SIGQUIT, SIG_IGN);
-}
 
 void	signal_handler_hd(int sig)
 {
