@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:48 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:31:48 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:01:04 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,25 +17,25 @@ static void	command_contain_slash(t_plot *plot)
 	if (file_is_dir(plot->cmd_arg[0]))
 	{
 		g_return = 126;
-		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(21));
+		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(EISDIR));
 	}
 	else if (!access(plot->cmd_arg[0], F_OK))
 	{
 		g_return = 126;
-		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(13));
+		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(EACCES));
 	}
 	else
-		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(2));
+		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(ENOENT));
 }
 
 static void	command_start_slash(t_plot *plot)
 {
 	if (!file_is_dir(plot->cmd_arg[0]))
-		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(2));
+		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(ENOENT));
 	else
 	{
 		g_return = 126;
-		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(21));
+		ft_fprintf(2, "%s: %s\n", plot->cmd_arg[0], strerror(EISDIR));
 	}
 }
 
