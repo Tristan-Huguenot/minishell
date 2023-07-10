@@ -119,7 +119,12 @@ CC			:=	clang
 CFLAGS		:=	-Werror -Wextra -Wall
 
 ifdef DEBUG
-	CFLAGS +=  -g
+	ifeq (${DEBUG}, 1)
+		CFLAGS +=  -g
+	endif
+	ifeq (${DEBUG}, 2)
+		CFLAGS +=  -gdwarf-4
+	endif
 else
 	CFLAGS +=  -O3
 endif
@@ -159,7 +164,7 @@ RM			:=	rm -f
 MAKE		:=	@make --no-print-directory TAB="${INDENT}"
 
 ifdef DEBUG
-	MAKE := ${MAKE} DEBUG=1 -C
+	MAKE := ${MAKE} DEBUG=${DEBUG} -C
 else
 	MAKE := ${MAKE} -C
 endif
