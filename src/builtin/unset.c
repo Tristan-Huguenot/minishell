@@ -1,4 +1,26 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   unset.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 10:35:03 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:35:04 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
+static void	delete_var(char *argv, t_param *param)
+{
+	envlink_delvar(&param->env, argv);
+	if (!ft_strncmp(argv, "PATH", ft_strlen("PATH") + 1))
+	{
+		ft_free_strs(param->paths);
+		param->paths = NULL;
+	}
+}
 
 static int	check_arg(char *arg)
 {
@@ -31,14 +53,7 @@ int	unset(int argc, char **argv, t_param *param)
 			error_handler(E_IDENTIFIER, argv[0], argv[i]);
 		}
 		else
-		{
-			envlink_delvar(&param->env, argv[i]);
-			if (!ft_strncmp(argv[i], "PATH", ft_strlen("PATH") + 1))
-			{
-				ft_free_strs(param->paths);
-				param->paths = NULL;
-			}
-		}
+			delete_var(argv[i], param);
 		i++;
 	}
 	return (ret);

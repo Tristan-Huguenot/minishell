@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   need_execution.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:34:42 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static int	is_builtin(char *str)
@@ -46,19 +58,6 @@ static void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		exit_program(param);
 }
 
-static void	close_other_plot(t_plot *actual, t_plot *start)
-{
-	while (start != NULL)
-	{
-		if (start != actual && start->fd_heredoc[0] != -1)
-		{
-			close(start->fd_heredoc[0]);
-			start->fd_heredoc[0] = -1;
-		}
-		start = start->next;
-	}
-}
-
 int	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
@@ -85,17 +84,14 @@ int	preparation_fork(t_param *param, int builtin)
 				dup_pipe(tmp_head, param->child, i);
 				close_pipe(param->child, i);
 				init_redir(tmp_head);
-				close_other_plot(tmp_head, param->plots);
+				close_other_plot_hd(tmp_head, param->plots);
 				if (builtin)
 				{
 					free(path);
 					do_builtin(tmp_head, param, builtin, 1);
 				}
 				else
-				{
-					// force_close_fd();
 					do_execve(tmp_head, param, i, path);
-				}
 			}
 			else if (tmp_head->fd_heredoc[0] != -1)
 				close_heredoc_fd(tmp_head);

@@ -1,4 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   check_redir.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 10:32:58 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:39:09 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
+
+static void	create_redir_out(char *redir, int *fd)
+{
+	if (redir[1] == '1')
+		*fd = open(redir + 3, O_WRONLY | O_TRUNC);
+	else
+		*fd = open(redir + 3, O_WRONLY | O_APPEND);
+}
 
 static int	check_open_redir_out(char *redir)
 {
@@ -10,12 +30,7 @@ static int	check_open_redir_out(char *redir)
 	if (access(redir + 3, F_OK))
 		fd = open(redir + 3, O_CREAT, 00644);
 	else if (!access(redir + 3, W_OK))
-	{
-		if (redir[1] == '1')
-			fd = open(redir + 3, O_WRONLY | O_TRUNC);
-		else
-			fd = open(redir + 3, O_WRONLY | O_APPEND);
-	}
+		create_redir_out(redir, &fd);
 	if (fd != -1)
 		close(fd);
 	if (file_is_dir(redir + 3))

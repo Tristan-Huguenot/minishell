@@ -1,25 +1,16 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   close_fd.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 10:31:53 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:31:54 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
-
-void	close_all_heredoc(t_plot *plots)
-{
-	t_plot	*tmp;
-
-	tmp = plots;
-	while (tmp)
-	{
-		if (tmp->fd_heredoc[0] != -1)
-		{
-			close(tmp->fd_heredoc[0]);
-			tmp->fd_heredoc[0] = -1;
-		}
-		if (tmp->fd_heredoc[1] != -1)
-		{
-			close(tmp->fd_heredoc[1]);
-			tmp->fd_heredoc[1] = -1;
-		}
-		tmp = tmp->next;	
-	}
-}
 
 void	close_pipe_builtin(t_child *child, int state)
 {

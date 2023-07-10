@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init_param.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 10:10:46 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:33:13 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void	add_last_slash(char **paths)
@@ -64,12 +76,11 @@ static void	init_env(t_param *param, char **envp)
 static char	*init_prompt(char *name)
 {
 	char	*prompt;
-	
-	//prompt = ft_strdup(PROMPTC);
-	//prompt = ft_strjoin_free(prompt, name);
-	prompt = ft_strdup(name);
+
+	prompt = ft_strdup(PROMPTC);
+	prompt = ft_strjoin_free(prompt, name);
 	prompt = ft_strjoin_free(prompt, " $> ");
-	//prompt = ft_strjoin_free(prompt, NOC);
+	prompt = ft_strjoin_free(prompt, NOC);
 	return (prompt);
 }
 

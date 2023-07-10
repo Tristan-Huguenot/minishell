@@ -45,6 +45,7 @@ SRCS	:=	src/main.c								\
 			src/linked_list/list_size.c				\
 			src/exit/exit_program.c					\
 			src/exit/close_fd.c						\
+			src/exit/close_heredoc_fd.c				\
 			src/exit/force_close_fd.c				\
 			src/files/files_compute.c				\
 			src/files/handle_redir.c				\

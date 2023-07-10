@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   minishell_proto.h                                  :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/07/10 08:59:08 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 09:55:37 by thugueno         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef MINISHELL_PROTO_H
 # define MINISHELL_PROTO_H
 
@@ -92,7 +104,8 @@ void	close_common_fd(void);
 void	close_pipe(t_child *child, int state);
 void	close_pipe_builtin(t_child *child, int state);
 void	close_heredoc_fd(t_plot *plot);
-void	close_all_heredoc(t_plot *plots);
+void	close_other_plot_hd(t_plot *actual, t_plot *start);
+void	close_all_plot_hd(t_plot *plot);
 void	force_close_fd(void);
 
 /*	BUILTIN	*/

@@ -1,39 +1,39 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   list_size.c                                        :+:      :+:    :+:   */
+/*   close_heredoc_fd.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/07/10 10:33:27 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:33:28 by thugueno         ###   ########.fr       */
+/*   Created: 2023/07/10 09:37:08 by thugueno          #+#    #+#             */
+/*   Updated: 2023/07/10 10:31:57 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	envlink_size(t_env *head)
+void	close_other_plot_hd(t_plot *actual, t_plot *start)
 {
-	int	i;
-
-	i = 0;
-	while (head)
+	while (start != NULL)
 	{
-		i++;
-		head = head->next;
+		if (start != actual && start->fd_heredoc[0] != -1)
+		{
+			close(start->fd_heredoc[0]);
+			start->fd_heredoc[0] = -1;
+		}
+		start = start->next;
 	}
-	return (i);
 }
 
-int	plotlink_size(t_plot *head)
+void	close_all_plot_hd(t_plot *plot)
 {
-	int	i;
-
-	i = 0;
-	while (head)
+	while (plot != NULL)
 	{
-		i++;
-		head = head->next;
+		if (plot->fd_heredoc[0] != -1)
+		{
+			close(plot->fd_heredoc[0]);
+			plot->fd_heredoc[0] = -1;
+		}
+		plot = plot->next;
 	}
-	return (i);
 }
