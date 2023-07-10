@@ -65,10 +65,11 @@ static char	*init_prompt(char *name)
 {
 	char	*prompt;
 	
-	prompt = ft_strdup(PROMPTC);
-	prompt = ft_strjoin_free(prompt, name);
+	//prompt = ft_strdup(PROMPTC);
+	//prompt = ft_strjoin_free(prompt, name);
+	prompt = ft_strdup(name);
 	prompt = ft_strjoin_free(prompt, " $> ");
-	prompt = ft_strjoin_free(prompt, NOC);
+	//prompt = ft_strjoin_free(prompt, NOC);
 	return (prompt);
 }
 

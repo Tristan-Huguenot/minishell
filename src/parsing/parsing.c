@@ -41,7 +41,6 @@ static void	rendering(t_plot *plot, t_env *env)
 	i = 0;
 	while (plot->cmd_arg[i])
 	{
-		plot->cmd_arg[i] = parsing_variable(plot->cmd_arg[i], env, 0);
 		if (plot->argc == 1 && plot->cmd_arg[i][0] == '\0' && !plot->redir[0])
 			clear_cmd_arg(plot, i);
 		if (plot->argc > 1 && plot->cmd_arg[i][0] == '\0' && !plot->redir[0])
@@ -63,6 +62,7 @@ static int	parsing_plot(t_param *param)
 	{
 		if (parsing_redir(tmp, param))
 			return (1);
+		tmp->cmd = parsing_variable(tmp->cmd, param->env, 0);
 		parsing_arg(tmp);
 		rendering(tmp, param->env);
 		tmp = tmp->next;
