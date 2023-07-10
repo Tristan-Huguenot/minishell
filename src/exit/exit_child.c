@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angouleme.fr  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 12:04:19 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 13:09:32 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/10 17:11:47 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	wait_close_childs(t_param *param, t_child *child, int stateredir)
 {
 	t_plot	*tmp;
-	int	i;
+	int		i;
 
 	i = 0;
 	tmp = param->plots;
