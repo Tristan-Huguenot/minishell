@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:41 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/11 17:05:42 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/07/11 18:50:03 by nminotte         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,9 +60,10 @@ void	do_builtin(t_plot *plot, t_param *param, int builtin, int isfork)
 		exit_program(param);
 }
 
-static int	preparation_fork(t_param *param, int builtin, int stateredir)
+int	preparation_fork(t_param *param, int builtin)
 {
 	int		i;
+	int		stateredir;
 	t_plot	*tmp_head;
 
 	tmp_head = param->plots;
@@ -70,11 +71,11 @@ static int	preparation_fork(t_param *param, int builtin, int stateredir)
 	while (tmp_head)
 	{
 		builtin = is_builtin(tmp_head->cmd_arg[0]);
-		stateredir = check_open_redir(tmp_head->redir);
 		if (init_pipe(i, param->child))
 			return (1);
 		set_handler_sig_child();
 		tmp_head->path = file_is_exe(tmp_head->cmd_arg[0], param->paths);
+		stateredir = check_open_redir(tmp_head->redir);
 		if (!stateredir && (tmp_head->path || builtin))
 			execute_fork(tmp_head, param, builtin, i);
 		else
@@ -105,13 +106,14 @@ void	need_execution(t_param *param)
 		return ;
 	}
 	set_handler_sig_parent();
-	if (plotlink_size(param->plots) == 1 && builtin == EXIT)
+	if (plotlink_size(param->plots) == 1 && builtin != ECHO
+		&& builtin != 0)
 	{
 		close_heredoc_fd(tmp_head);
 		if (!check_open_redir(tmp_head->redir))
 			do_builtin(tmp_head, param, builtin, 0);
 	}
 	else
-		stateredir = preparation_fork(param, builtin, stateredir);
+		stateredir = preparation_fork(param, builtin);
 	wait_close_childs(param, param->child, stateredir);
 }
