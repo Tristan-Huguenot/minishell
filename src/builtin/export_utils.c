@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:12 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 12:06:25 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:24:40 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	export_adding(char *arg, char **nameptr, t_env *env)
 		link->content = new_cont;
 	}
 	free(*nameptr);
-	*nameptr = NULL;
+	*nameptr = link->var;
 }
 
 void	export_create(char *arg, char **nameptr, t_env **env)
