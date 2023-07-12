@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:34:02 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:34:03 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 07:41:14 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ char	**split_tmp_var(char *str)
 	int		j;
 
 	tmp = split_element(str, &i, &j);
-	str_split = ft_calloc(sizeof(char *), tmp);
+	str_split = ft_calloc(tmp, sizeof(char *));
 	tmp = i;
 	while (str[i])
 	{
