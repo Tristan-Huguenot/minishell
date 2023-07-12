@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:59 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 10:32:00 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 08:10:19 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,5 +50,6 @@ void	exit_program(t_param *param)
 	free_plots(param);
 	free_param(param);
 	close_common_fd();
+	signal(SIGPIPE, SIG_DFL);
 	exit(g_return);
 }
