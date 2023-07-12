@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:30:43 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 11:46:31 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:05:56 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ static void	export_nonull(int middle, char *arg, t_param *param)
 	if (arg[middle] != '=' && envlink_getvar(param->env, var))
 		export_adding(arg + middle + 2, &var, param->env);
 	else
-		export_create(arg + middle, var, &param->env);
+		export_create(arg + middle, &var, &param->env);
 	if (var && !ft_strncmp(var, "PATH", ft_strlen("PATH") + 1))
 	{
 		if (param->paths)

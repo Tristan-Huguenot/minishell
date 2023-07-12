@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:12 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 11:48:17 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:06:25 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,22 +30,22 @@ void	export_adding(char *arg, char **nameptr, t_env *env)
 	*nameptr = NULL;
 }
 
-void	export_create(char *arg, char *name, t_env **env)
+void	export_create(char *arg, char **nameptr, t_env **env)
 {
 	t_env	*new;
 	char	*cont;
 	int		i;
 
-	envlink_delvar(env, name);
+	envlink_delvar(env, *nameptr);
 	i = 1;
 	if (arg[0] == '+')
 		i++;
 	cont = ft_strdup(arg + i);
-	new = envlink_new(name, cont);
+	new = envlink_new(*nameptr, cont);
 	if (!new)
 	{
-		free(name);
-		name = NULL;
+		free(*nameptr);
+		*nameptr = NULL;
 		if (cont)
 			free(cont);
 	}

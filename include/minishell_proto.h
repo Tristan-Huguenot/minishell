@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 08:59:08 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 11:48:42 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 12:07:22 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,7 +128,7 @@ void	ft_exit(int argc, char **argv, t_param *param, int isfork);
 
 int		ft_export(int argc, char **argv, t_param *param);
 void	export_adding(char *arg, char **nameptr, t_env *env);
-void	export_create(char *arg, char *name, t_env **env);
+void	export_create(char *arg, char **nameptr, t_env **env);
 
 /* SIGNAL */
 
