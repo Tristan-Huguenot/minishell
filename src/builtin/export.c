@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:30:43 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/10 15:46:30 by nminotte         ###   ########.fr       */
+/*   Updated: 2023/07/12 08:00:33 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,12 +76,14 @@ static void	export_nonull(int middle, char *arg, t_param *param)
 		export_adding(arg + middle + 2, var, param->env);
 	else
 		export_create(arg + middle, var, &param->env);
-	if (!ft_strncmp(var, "PATH", ft_strlen("PATH") + 1))
+	if (var && !ft_strncmp(var, "PATH", ft_strlen("PATH") + 1))
 	{
 		if (param->paths)
 			ft_free_strs(param->paths);
 		init_paths(param);
 	}
+	if (var)
+		free(var);
 }
 
 static int	handle_arg(char *arg, t_param *param)
