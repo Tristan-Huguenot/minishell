@@ -6,7 +6,7 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:12 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 07:57:49 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 08:20:24 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,14 @@ void	export_adding(char *arg, char *name, t_env *env)
 	char	*new_cont;
 
 	link = envlink_getvar(env, name);
-	new_cont = ft_strjoin(link->content, arg);
-	if (!new_cont)
-		return ;
-	free(link->content);
-	link->content = new_cont;
+	if (link)
+	{
+		new_cont = ft_strjoin(link->content, arg);
+		if (!new_cont)
+			return ;
+		free(link->content);
+		link->content = new_cont;
+	}
 }
 
 void	export_create(char *arg, char *name, t_env **env)
@@ -40,6 +43,7 @@ void	export_create(char *arg, char *name, t_env **env)
 	if (!new)
 	{
 		free(name);
+		name = NULL;
 		if (cont)
 			free(cont);
 	}
