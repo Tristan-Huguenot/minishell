@@ -6,18 +6,18 @@
 /*   By: thugueno <thugueno@student.42angoulem      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/07/10 10:31:12 by thugueno          #+#    #+#             */
-/*   Updated: 2023/07/12 08:20:24 by thugueno         ###   ########.fr       */
+/*   Updated: 2023/07/12 11:48:17 by thugueno         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	export_adding(char *arg, char *name, t_env *env)
+void	export_adding(char *arg, char **nameptr, t_env *env)
 {
 	t_env	*link;
 	char	*new_cont;
 
-	link = envlink_getvar(env, name);
+	link = envlink_getvar(env, *nameptr);
 	if (link)
 	{
 		new_cont = ft_strjoin(link->content, arg);
@@ -26,6 +26,8 @@ void	export_adding(char *arg, char *name, t_env *env)
 		free(link->content);
 		link->content = new_cont;
 	}
+	free(*nameptr);
+	*nameptr = NULL;
 }
 
 void	export_create(char *arg, char *name, t_env **env)
